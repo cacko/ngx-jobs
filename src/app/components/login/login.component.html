@@ -1,0 +1,36 @@
+<div *ngIf="user.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <div>
+    <button mat-flat-button color="primary" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</div>
+<ng-template #showLogin>
+  <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="emailInput">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div buttons>
+      <div *ngIf="errorMessage">
+        <p color="error">{{errorMessage}}</p>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" type="submit">
+          <mat-icon>login</mat-icon>
+          Login
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

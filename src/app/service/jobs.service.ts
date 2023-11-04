@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
+import { ResolveFn } from '@angular/router';
+import { ApiType, JobEntity } from '../entity/api.entity';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
+import { ApiService } from './api.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class JobsService {
+  constructor(private api: ApiService) { }
+
+  getJobs(): any {
+    return this.api.fetch(ApiType.JOBS);
+  }
+}
+
+export const jobsResolver: ResolveFn<JobEntity[]> = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  return inject(JobsService).getJobs();
+};
