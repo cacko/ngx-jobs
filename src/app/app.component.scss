@@ -5,15 +5,30 @@
   display: flex;
   flex-direction: column;
   mat-toolbar {
-    span[logo] {
-      height: 1.5em;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background-image: url(/assets/icon.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+    [head] {
+      display: flex;
+      flex-direction: row;
+      column-gap: 0.3rem;
+      span[logo] {
+        height: 1.5em;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-image: url(/assets/icon.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      [name] {
+        font-variant: small-caps;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+      }
+      &:hover {
+        cursor: pointer;
+      }
     }
+
+
   }
 
 }

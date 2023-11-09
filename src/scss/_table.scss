@@ -1,25 +1,25 @@
-
-@use 'sass:map';
-@use '@angular/material' as mat;
+@use "sass:map";
+@use "@angular/material" as mat;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
 
-  th, td {
+  mat-table {
     font-size: 120%;
+
+    mat-header-row {
+      mat-header-cell {
+        font-variant: small-caps;
+        text-transform: uppercase;
+        font-weight: bold !important;
+      }
+    }
+
+
+    mat-row:hover mat-cell {
+      background-color: mat.get-color-from-palette($palette);
+      cursor: pointer;
+    }
   }
-
-
-  .mat-mdc-header-row .mat-mdc-header-cell {
-    font-variant: small-caps;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
-  .mat-mdc-row:hover .mat-mdc-cell {
-    background-color: mat.get-color-from-palette($palette);
-    cursor: pointer;
-  }
-
 }

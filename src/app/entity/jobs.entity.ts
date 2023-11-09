@@ -16,6 +16,7 @@ export enum JobEvent {
   APPLIED = 'applied',
   INTERVIEW = 'interview',
   RESPONSE = 'response',
+  REJECT = 'reject',
 }
 
 export enum Source {

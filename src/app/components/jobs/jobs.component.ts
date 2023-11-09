@@ -18,7 +18,7 @@ export class JobsComponent implements OnInit {
 
   jobs: JobModel[] = [];
 
-  displayedColumns = ['company', 'position', 'location', 'status', 'applied'];
+  displayedColumns = ['company', 'position', 'location', 'status', 'last_modified', 'applied'];
   ngOnInit() {
     this.activatedRoute.data.subscribe({
       next: (data: RouteDataEntity) => {

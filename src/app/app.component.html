@@ -3,8 +3,10 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <span logo></span>
-  <span>jobs</span>
+  <div head routerLink="/">
+    <span logo></span>
+    <span name>jobs / cacko.net</span>
+  </div>
   <span class="example-spacer"></span>
   <span *ngIf="this.user">
     {{this.user.email}}
