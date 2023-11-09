@@ -1,44 +1,65 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import {
+  getAnalytics,
+  provideAnalytics,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
 import { LoginComponent } from './components/login/login.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { MomentModule } from 'ngx-moment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatRippleModule } from '@angular/material/core';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatBadgeModule } from '@angular/material/badge';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ApiService } from './service/api.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { JobComponent } from './components/job/job.component';
+import { JobeventComponent } from './components/jobevent/jobevent.component';
+import { JoblocationComponent } from './components/joblocation/joblocation.component';
+import { JobcvComponent } from './components/jobcv/jobcv.component';
+import { JobcompanyComponent } from './components/jobcompany/jobcompany.component';
+import { JobpositionComponent } from './components/jobposition/jobposition.component';
+import { JobstatusComponent } from './components/jobstatus/jobstatus.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSnackBarModule,
+  MatCardModule,
+  MatTableModule,
+  MatProgressBarModule,
+  MatToolbarModule
 ];
-
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoaderComponent,
-    JobsComponent
+    JobsComponent,
+    JobComponent,
+    JobeventComponent,
+    JoblocationComponent,
+    JobcvComponent,
+    JobcompanyComponent,
+    JobpositionComponent,
+    JobstatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +69,25 @@ const MaterialModules = [
     MomentModule,
     ReactiveFormsModule,
     ...MaterialModules,
-    provideFirebaseApp(() => initializeApp({ "projectId": "jobs-c273f", "appId": "1:889989614380:web:d411b3943ef7c5da637a89", "storageBucket": "jobs-c273f.appspot.com", "apiKey": "AIzaSyB64rCG0ZvQ8NWRDf_FHLxAL-0MY3hNPeU", "authDomain": "jobs-c273f.firebaseapp.com", "messagingSenderId": "889989614380", "measurementId": "G-VHKD2CWXNY" })),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'jobs-c273f',
+        appId: '1:889989614380:web:d411b3943ef7c5da637a89',
+        storageBucket: 'jobs-c273f.appspot.com',
+        apiKey: 'AIzaSyB64rCG0ZvQ8NWRDf_FHLxAL-0MY3hNPeU',
+        authDomain: 'jobs-c273f.firebaseapp.com',
+        messagingSenderId: '889989614380',
+        measurementId: 'G-VHKD2CWXNY',
+      })
+    ),
     provideAuth(() => getAuth()),
-    provideAnalytics(() => getAnalytics())
+    provideAnalytics(() => getAnalytics()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     {
@@ -59,8 +96,8 @@ const MaterialModules = [
       multi: true,
     },
     ScreenTrackingService,
-    UserTrackingService
+    UserTrackingService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

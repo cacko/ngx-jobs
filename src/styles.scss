@@ -1,10 +1,11 @@
 @use "@angular/material" as mat;
+@use "./scss/table" as mytable;
 @include mat.core();
 $theme-primary: mat.define-palette(mat.$blue-grey-palette, 800);
 $theme-accent: mat.define-palette(mat.$blue-grey-palette, 100, 200, 300);
 $theme-warn: mat.define-palette(mat.$amber-palette);
 $custom-typography: mat.define-typography-config(
-  $font-family: "Permanent Marker"
+  $font-family: Share Tech Mono
 );
 
 $theme: mat.define-dark-theme(
@@ -19,6 +20,8 @@ $theme: mat.define-dark-theme(
 );
 @include mat.all-component-colors($theme);
 @include mat.all-component-typographies($theme);
+
+@include mytable.theme($theme);
 
 html {
   box-sizing: border-box;

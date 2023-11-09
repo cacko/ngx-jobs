@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { ApiType, JobEntity } from '../entity/api.entity';
+import { ApiType } from '../entity/api.entity';
+import { JobEntity } from '../entity/jobs.entity';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { RouterStateSnapshot } from '@angular/router';
 import { ApiService } from './api.service';

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, EmailAuthProvider, UserCredential, authState, signInWithCredential, User, signOut } from '@angular/fire/auth';
+import { Auth, EmailAuthProvider, UserCredential, authState, signInWithCredential, User, signOut, onAuthStateChanged } from '@angular/fire/auth';
 import { EMPTY, Observable, Subscription } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,23 @@ export class UserService {
   public readonly user: Observable<User | null> = EMPTY;
 
   constructor(
-    private auth: Auth
+    private auth: Auth,
+    private api: ApiService
   ) {
     this.user = authState(this.auth);
+  }
+
+  init() {
+    this.user.subscribe((res) => {
+      res?.getIdToken().then((token) => {
+        this.api.userToken = token;
+      })
+    });
+    onAuthStateChanged(this.auth, (res) => {
+      res?.getIdToken().then((token) => {
+        this.api.userToken = token;
+      })
+    });
   }
 
   async login(email: string, password: string) {

@@ -27,6 +27,7 @@ import {
   find,
 } from 'lodash-es';
 import { Md5 } from 'ts-md5';
+import { LoaderService } from './loader.service';
 
 interface CacheEntry {
   timestamp: moment.Moment;
@@ -37,21 +38,19 @@ interface CacheEntry {
   providedIn: 'root',
 })
 export class ApiService implements HttpInterceptor {
-  private loaderSubject = new Subject<WSLoading>();
-  loading = this.loaderSubject.asObservable();
-  colorsSubject = new Subject<string>();
-  colors = this.colorsSubject.asObservable();
   errorSubject = new Subject<string>();
   error = this.errorSubject.asObservable();
-  userToken = "";
-  constructor(private httpClient: HttpClient) { }
-
+  userToken = '';
+  constructor(
+    private httpClient: HttpClient,
+    private loaderService: LoaderService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.showLoader();
+    this.loaderService.show();
     return next.handle(req).pipe(
       tap(
         (event: HttpEvent<any>) => {
@@ -67,14 +66,7 @@ export class ApiService implements HttpInterceptor {
     );
   }
   private onEnd(): void {
-    this.hideLoader();
-  }
-
-  public showLoader(): void {
-    this.loaderSubject.next(WSLoading.BLOCKING_ON);
-  }
-  public hideLoader(): void {
-    this.loaderSubject.next(WSLoading.BLOCKING_OFF);
+    this.loaderService.hide();
   }
 
   // post(
@@ -126,7 +118,7 @@ export class ApiService implements HttpInterceptor {
 
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${type}/${id}`, {
-          headers: { "X-User-Token": this.userToken },
+          headers: { 'X-User-Token': this.userToken },
           params: omitBy(params, isUndefined),
         })
         .subscribe({
@@ -154,8 +146,8 @@ export class ApiService implements HttpInterceptor {
             if (isArray(data)) {
               subscriber.next(cached.filter((c: any) => !c.deleted));
             } else {
-              const returnId = "id" in data ? data.id : "";
-              subscriber.next(find(cached, {id: returnId}));
+              const returnId = 'id' in data ? data.id : '';
+              subscriber.next(find(cached, { id: returnId }));
             }
           },
           error: (error: any) => console.debug(error),
