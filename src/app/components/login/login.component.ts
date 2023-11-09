@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     const email = this.emailInput.value || '';
     const password = this.passwordInput.value || '';
     this.user.login(email, password).then((user) => {
-
+      this.router.navigateByUrl(this.redirectTo);
     }).catch((err: FirebaseError) => {
       this.errorMessage = err.message;
     });
