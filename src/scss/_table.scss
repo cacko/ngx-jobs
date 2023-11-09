@@ -6,6 +6,11 @@
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
 
+  th, td {
+    font-size: 120%;
+  }
+
+
   .mat-mdc-header-row .mat-mdc-header-cell {
     font-variant: small-caps;
     text-transform: uppercase;
@@ -14,7 +19,6 @@
 
   .mat-mdc-row:hover .mat-mdc-cell {
     background-color: mat.get-color-from-palette($palette);
-    cursor: pointer;
   }
 
 }

@@ -21,6 +21,7 @@ tasks:
   deploy:
     desc: deploy
     cmds:
+      - task: push
       - ng build --configuration production --progress --service-worker
       - tar cfz dist.tgz dist/{{.PROJECT}}
       - scp dist.tgz open:/var/www/{{.PROJECT}}

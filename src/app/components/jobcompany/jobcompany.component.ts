@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CompanyEntity } from 'src/app/entity/jobs.entity';
 
 @Component({
   selector: 'app-jobcompany',
@@ -7,6 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class JobcompanyComponent {
 
-  @Input() company !: string;
+  @Input() company !: CompanyEntity;
 
 }

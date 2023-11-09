@@ -4096,6 +4096,11 @@ cosmiconfig@^8.2.0:
     parse-json "^5.2.0"
     path-type "^4.0.0"
 
+countries-list@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/countries-list/-/countries-list-3.0.6.tgz#eae61674539c2818e282be7b46d0645d96ae5606"
+  integrity sha512-BCJODHTSRMIxS0W80NZw8bC7x6/WS8Tf4FdtFrEbW0FONBbqTAzOrKNG06UEMgLGxOZpOJddiVEdCztKLpmPxA==
+
 critters@0.0.20:
   version "0.0.20"
   resolved "https://registry.yarnpkg.com/critters/-/critters-0.0.20.tgz#08ddb961550ab7b3a59370537e4f01df208f7646"

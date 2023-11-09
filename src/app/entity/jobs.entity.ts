@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import * as moment from 'moment';
 
 export enum LocationType {
   ONSITE = 'onsite',
@@ -33,7 +33,7 @@ export interface ImageEntity {
   thumb_src: string;
   webp_src: string;
   raw_src: string;
-  added: moment.Moment
+  added: moment.Moment;
 }
 
 export interface CVEntity {
@@ -44,12 +44,17 @@ export interface CVEntity {
 
 export interface LocationEntity {
   country_iso: string;
-  city: string
+  city: string;
+}
+
+export interface CompanyEntity {
+  name: string;
+  url?: string;
 }
 
 export interface JobEntity {
   position: string;
-  company: string;
+  company: CompanyEntity;
   id: string;
   last_modified: moment.Moment;
   cv: CVEntity;
@@ -58,6 +63,5 @@ export interface JobEntity {
   location: LocationEntity;
   onsite: LocationType;
   source: Source;
-  events ?: JobEventEntity[];
+  events?: JobEventEntity[];
 }
-

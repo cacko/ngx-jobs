@@ -14,10 +14,7 @@ interface RouteDataEntity {
   styleUrls: ['./jobs.component.scss'],
 })
 export class JobsComponent implements OnInit {
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-    ) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   jobs: JobModel[] = [];
 
@@ -35,8 +32,18 @@ export class JobsComponent implements OnInit {
     });
   }
 
-  onClick(row: JobModel) {
-    console.log(row);
+  onClickCompany(ev: MouseEvent, row: JobModel) {
+    const url = row.company.url;
+    if (!url) {
+      return;
+    }
+    ev.stopPropagation();
+    console.log(ev);
+    return window.open(row.company.url, '_blank', 'noopener');
+  }
+
+  onClick(ev: MouseEvent, row: JobModel) {
+    console.log(ev);
     this.router.navigateByUrl(`/v/${row.id}`);
   }
 }

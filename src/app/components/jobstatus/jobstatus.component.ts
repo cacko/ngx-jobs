@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { JobStatus } from 'src/app/entity/jobs.entity';
 
 @Component({
@@ -9,5 +9,17 @@ import { JobStatus } from 'src/app/entity/jobs.entity';
 export class JobstatusComponent {
 
   @Input() status !: JobStatus;
+
+  get icon(): string {
+      switch (this.status) {
+        case JobStatus.PENDING:
+          return "downloading";
+        case JobStatus.IN_PROGRESS:
+          return "sync";
+        case JobStatus.REJECTED:
+          return "thumb_down";
+      }
+      return "";
+  }
 
 }
