@@ -8,6 +8,8 @@ import {
 import { LoginComponent } from './components/login/login.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { jobsResolver } from './service/jobs.service';
+import { JobComponent } from './components/job/job.component';
+import { jobResolver } from './service/job.service';
 
 // const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 // const redirectLoggedInToHome = () => redirectLoggedInTo(['w']);
@@ -37,6 +39,16 @@ const routes: Routes = [
     pathMatch: 'full',
     resolve: {
       data: jobsResolver,
+    },
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'v/:id',
+    component: JobComponent,
+    pathMatch: 'full',
+    resolve: {
+      data: jobResolver,
     },
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },

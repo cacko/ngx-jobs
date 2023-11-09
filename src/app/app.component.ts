@@ -8,6 +8,7 @@ import {
 } from '@angular/service-worker';
 import { interval } from 'rxjs';
 import { UserService } from './service/user.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit {
   loading = false;
+  user: User | null = null;
 
   constructor(
     private loaderService: LoaderService,
@@ -23,6 +25,9 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
     private userService: UserService
   ) {
+    this.userService.user.subscribe((res) => {
+      this.user = res;
+    });
     this.userService.init();
   }
   ngOnInit(): void {

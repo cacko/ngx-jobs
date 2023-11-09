@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="job-card" *ngIf="job">
   <mat-card-header>
     <mat-card-title>
       <app-jobposition [position]="job.position"></app-jobposition>
@@ -13,8 +13,8 @@
 
     </div>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions align="end">
+    <button mat-button><mat-icon>favorite</mat-icon>LIKE</button>
+    <button mat-button><mat-icon>favorite</mat-icon>SHARE</button>
   </mat-card-actions>
 </mat-card>

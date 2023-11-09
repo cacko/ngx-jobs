@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @use "./scss/table" as mytable;
+@use 'sass:map';
 @include mat.core();
 $theme-primary: mat.define-palette(mat.$blue-grey-palette, 800);
 $theme-accent: mat.define-palette(mat.$blue-grey-palette, 100, 200, 300);
@@ -7,18 +8,41 @@ $theme-warn: mat.define-palette(mat.$amber-palette);
 $custom-typography: mat.define-typography-config(
   $font-family: Share Tech Mono
 );
-
+$background-palette: (
+  status-bar: black,
+  app-bar: map.get($theme-primary, 900),
+  background: darken(map.get($theme-primary, 900), 10%),
+  hover: rgba(white, 0.04),
+  card: darken(map.get($theme-primary, 800), 5%),
+  dialog: map.get($theme-primary, 800),
+  disabled-button: rgba(white, 0.12),
+  raised-button: map.get($theme-primary, 800),
+  selected-button: map.get($theme-primary, 900),
+  selected-disabled-button: map.get($theme-primary, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map.get($theme-primary, 700),
+  disabled-list-option: rgba(white, 0.12),
+  tooltip: map.get($theme-primary, 700),
+);
 $theme: mat.define-dark-theme(
   (
     color: (
       primary: $theme-primary,
       accent: $theme-accent,
-      warn: $theme-warn
+      warn: $theme-warn,
+      foreground: mat.$dark-theme-foreground-palette,
+      background: map.merge(mat.$dark-theme-background-palette, $background-palette),
     ),
     typography: $custom-typography
   )
 );
-@include mat.all-component-colors($theme);
+@include mat.all-component-colors((primary: $theme-primary,
+    accent: $theme-accent,
+    warn: $theme-warn,
+    is-dark: true,
+    foreground: mat.$dark-theme-foreground-palette,
+    background: map.merge(mat.$dark-theme-background-palette, $background-palette),
+  ));
 @include mat.all-component-typographies($theme);
 
 @include mytable.theme($theme);
