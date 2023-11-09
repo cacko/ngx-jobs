@@ -1,11 +1,18 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 3em;
+  padding: 3rem;
   width: 100%;
   height: 100%;
   align-items: self-start;
   [table-wrapper] {
     overflow-x: auto;
+  }
+  @media screen and (max-width: 960px) {
+    padding: 0;
+    h2 {
+      align-self: center;
+      font-variant: small-caps;
+    }
   }
 }
