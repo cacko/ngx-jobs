@@ -11,7 +11,7 @@
   <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="emailInput">
+      <input matInput type="email" formControlName="emailInput">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
