@@ -4,6 +4,7 @@
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
+  $warn: map.get($color-config, warn);
   $background-palette: map.get($color-config, background);
   mat-table {
     display: none;
@@ -19,6 +20,10 @@
 
     mat-row {
       flex-wrap: wrap;
+
+      &[status="rejected"] {
+        background-color: mat.get-color-from-palette($warn);
+      }
     }
 
     mat-row:hover mat-cell {

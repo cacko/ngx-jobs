@@ -36,7 +36,10 @@
             ],
             "scripts": [],
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "ngswConfigPath": "ngsw-config.json",
+            "allowedCommonJsDependencies": [
+              "moment"
+            ]
           },
           "configurations": {
             "production": {
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngx-jobs:build:production"
+              "buildTarget": "ngx-jobs:build:production"
             },
             "development": {
-              "browserTarget": "ngx-jobs:build:development"
+              "buildTarget": "ngx-jobs:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-jobs:build"
+            "buildTarget": "ngx-jobs:build"
           }
         },
         "test": {

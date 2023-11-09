@@ -8,11 +8,24 @@
   [table-wrapper] {
     overflow-x: auto;
   }
+
+  h2 {
+    font-variant: small-caps;
+    text-transform: lowercase;
+  }
+
+  [header] {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
   @media screen and (max-width: 960px) {
     padding: 0;
     h2 {
       align-self: center;
-      font-variant: small-caps;
     }
   }
 }

@@ -1,4 +1,10 @@
-<h2>Applied for</h2>
+<div header>
+  <h2>Applied for</h2>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Export liste to XLSX">
+    <mat-icon>file_download</mat-icon>
+  </button>
+</div>
 <mat-table [dataSource]="jobs" class="mat-elevation-z8">
   <ng-container matColumnDef="company">
     <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
@@ -33,7 +39,8 @@
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick($event, row)"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick($event, row)"
+    [attr.status]="row.status"></mat-row>
 </mat-table>
 <div table-grid *ngFor="let job of jobs">
   <div label>Company</div>

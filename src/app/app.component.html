@@ -4,12 +4,12 @@
     <mat-icon>menu</mat-icon>
   </button> -->
   <div head routerLink="/">
-    <span logo></span>
-    <span name>jobs / cacko.net</span>
+    <app-logo></app-logo>
+    <span name>jobs&#64;cacko.net</span>
   </div>
-  <span class="example-spacer"></span>
-  <span *ngIf="this.user">
-    {{this.user.email}}
+  <span class="spacer"></span>
+  <span username *ngIf="this.user" (click)="logout()">
+    {{this.user.email | match: '^[^@]+'}}
   </span>
   <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>favorite</mat-icon>

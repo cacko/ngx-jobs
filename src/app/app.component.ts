@@ -9,6 +9,7 @@ import {
 import { interval } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
     private loaderService: LoaderService,
     private swUpdate: SwUpdate,
     private snackBar: MatSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.userService.user.subscribe((res) => {
       this.user = res;
@@ -52,5 +54,9 @@ export class AppComponent implements OnInit {
     this.loaderService.visible.subscribe((res) => {
       this.loading = res;
     });
+  }
+
+  logout() {
+    this.userService.logout().then(() => this.router.navigateByUrl("/login"))
   }
 }

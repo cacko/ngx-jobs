@@ -35,6 +35,8 @@ import { JobstatusComponent } from './components/jobstatus/jobstatus.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgPipesModule } from 'ngx-pipes';
+import { LogoComponent } from './components/logo/logo.component';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -44,7 +46,7 @@ const MaterialModules = [
   MatCardModule,
   MatTableModule,
   MatProgressBarModule,
-  MatToolbarModule
+  MatToolbarModule,
 ];
 
 @NgModule({
@@ -60,6 +62,7 @@ const MaterialModules = [
     JobcompanyComponent,
     JobpositionComponent,
     JobstatusComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ const MaterialModules = [
     HttpClientModule,
     MomentModule,
     ReactiveFormsModule,
+    NgPipesModule,
     ...MaterialModules,
     provideFirebaseApp(() =>
       initializeApp({
