@@ -4,10 +4,10 @@
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
-
+  $background-palette: map.get($color-config, background);
   mat-table {
+    display: none;
     font-size: 120%;
-
     mat-header-row {
       flex-wrap: wrap;
       mat-header-cell {
@@ -24,6 +24,22 @@
     mat-row:hover mat-cell {
       background-color: mat.get-color-from-palette($palette);
       cursor: pointer;
+    }
+  }
+
+  [table-grid] {
+    display: none;
+    width: 100%;
+    grid-template-columns: max-content 55%;
+    background-color: var(--mat-table-background-color);
+    row-gap: 0.3em;
+  }
+  @media screen and (max-width: 960px) {
+    app-jobs [table-grid] {
+      display: grid;
+    }
+    app-jobs mat-table {
+      display: none;
     }
   }
 }

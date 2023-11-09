@@ -35,3 +35,17 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick($event, row)"></mat-row>
 </mat-table>
+<div table-grid *ngFor="let job of jobs">
+  <div label>Company</div>
+  <div content><app-jobcompany [company]="job.company"></app-jobcompany></div>
+  <div label>Position</div>
+  <div content><app-jobposition [position]="job.position"></app-jobposition></div>
+  <div label>Location</div>
+  <div content><app-joblocation [location]="job.location"></app-joblocation></div>
+  <div label>Status</div>
+  <div content><app-jobstatus [status]="job.status"></app-jobstatus></div>
+  <div label>Last Action</div>
+  <div content>{{job?.last_modified|amTimeAgo}}</div>
+  <div label>Applied</div>
+  <div content>{{job.applied?.timestamp|amTimeAgo}}</div>
+</div>
