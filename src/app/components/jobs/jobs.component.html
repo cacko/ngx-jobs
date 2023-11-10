@@ -1,7 +1,8 @@
 <div header>
   <div title>Applied for</div>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="Export liste to XLSX">
+  <button mat-icon-button aria-label="Export liste to XLSX"
+   (click)="onExport()" [disabled]="exportDisabled">
     <mat-icon>file_download</mat-icon>
   </button>
 </div>

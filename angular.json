@@ -38,7 +38,8 @@
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": [
-              "moment"
+              "moment",
+              "file-saver"
             ]
           },
           "configurations": {

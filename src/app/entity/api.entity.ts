@@ -1,14 +1,13 @@
 export enum ApiConfig {
   BASE_URI = 'https://jobs.cacko.net/api',
   // BASE_URI = 'http://localhost:44551/api',
-
 }
 
 export enum ApiType {
   JOBS = 'jobs',
   JOB = 'job',
+  JOBS_EXPORT = 'jobs.xlsx',
 }
-
 
 export enum WSLoading {
   BLOCKING_ON = 'blocking_on',

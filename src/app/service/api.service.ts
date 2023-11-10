@@ -100,6 +100,12 @@ export class ApiService implements HttpInterceptor {
   //   );
   // }
 
+
+
+
+
+
+
   fetch(
     type: ApiType,
     query: string = '',

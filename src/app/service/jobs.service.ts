@@ -16,6 +16,10 @@ export class JobsService {
   getJobs(): any {
     return this.api.fetch(ApiType.JOBS);
   }
+
+  getExport(): any {
+    return  this.api.fetch(ApiType.JOBS_EXPORT);
+  }
 }
 
 export const jobsResolver: ResolveFn<JobEntity[]> = (
