@@ -46,3 +46,4 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 .yarn
+dist.tgz
