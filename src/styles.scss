@@ -1,11 +1,9 @@
 @use "@angular/material" as mat;
 @use "./scss/components/table" as mytable;
 @use "sass:map";
-@import "./scss/theme.css";
-
 @include mat.core();
 
-$theme-primary: mat.define-palette(mat.$blue-grey-palette, 800);
+$theme-primary: mat.define-palette(mat.$blue-palette, 300);
 $theme-accent: mat.define-palette(mat.$blue-grey-palette, 100, 200, 300);
 $theme-warn: mat.define-palette(mat.$red-palette, 900);
 $custom-typography: mat.define-typography-config(
@@ -14,7 +12,7 @@ $custom-typography: mat.define-typography-config(
 $background-palette: (
   status-bar: black,
   app-bar: map.get($theme-primary, 900),
-  background: darken(map.get($theme-primary, 900), 10%),
+  background: darken(map.get($theme-primary, 400), 10%),
   hover: rgba(white, 0.04),
   card: darken(map.get($theme-primary, 800), 5%),
   dialog: map.get($theme-primary, 800),
@@ -43,18 +41,18 @@ $theme: mat.define-dark-theme(
   primary: $theme-primary,
   accent: $theme-accent,
   warn: $theme-warn,
-  is-dark: true,
-  foreground: mat.$dark-theme-foreground-palette,
-  background: map.merge(mat.$dark-theme-background-palette, $background-palette)
+  // is-dark: true,
+  // foreground: mat.$dark-theme-foreground-palette,
+  // background: map.merge(mat.$dark-theme-background-palette, $background-palette)
 ));
 @include mat.all-component-colors(
   (
     primary: $theme-primary,
     accent: $theme-accent,
     warn: $theme-warn,
-    is-dark: true,
-    foreground: mat.$dark-theme-foreground-palette,
-    background: map.merge(mat.$dark-theme-background-palette, $background-palette)
+    // is-dark: true,
+    // foreground: mat.$dark-theme-foreground-palette,
+    // background: map.merge(mat.$dark-theme-background-palette, $background-palette)
   )
 );
 @include mat.all-component-typographies($theme);
