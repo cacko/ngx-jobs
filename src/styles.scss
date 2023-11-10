@@ -1,6 +1,8 @@
 @use "@angular/material" as mat;
-@use "./scss/table" as mytable;
+@use "./scss/components/table" as mytable;
 @use "sass:map";
+@import "./scss/theme.css";
+
 @include mat.core();
 
 $theme-primary: mat.define-palette(mat.$blue-grey-palette, 800);
@@ -58,8 +60,8 @@ $theme: mat.define-dark-theme(
 @include mat.all-component-typographies($theme);
 
 @include mytable.theme($theme);
-@import "./scss/toolbar";
-@import "./scss/logo";
+@import "./scss/components/toolbar";
+@import "./scss/components/logo";
 
 html {
   box-sizing: border-box;
