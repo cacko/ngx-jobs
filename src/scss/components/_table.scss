@@ -7,6 +7,7 @@
   $palette: map.get($color-config, primary);
   $warn: map.get($color-config, warn);
   $background-palette: map.get($color-config, background);
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
   mat-table {
     display: none;
     font-size: 120%;
