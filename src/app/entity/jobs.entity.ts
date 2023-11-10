@@ -27,7 +27,7 @@ export enum Source {
 export interface JobEventEntity {
   event: JobEvent;
   description: string;
-  timestamp: number;
+  timestamp: moment.Moment;
 }
 
 export interface ImageEntity {

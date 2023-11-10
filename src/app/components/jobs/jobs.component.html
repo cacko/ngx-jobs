@@ -1,8 +1,7 @@
 <div header>
   <div title>Applied for</div>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="Export liste to XLSX"
-   (click)="onExport()" [disabled]="exportDisabled">
+  <button mat-icon-button aria-label="Export liste to XLSX" (click)="onExport()" [disabled]="exportDisabled">
     <mat-icon>file_download</mat-icon>
   </button>
 </div>
@@ -56,4 +55,7 @@
   <div content>{{job?.last_modified|amTimeAgo}}</div>
   <div label>Applied</div>
   <div content>{{job.applied?.timestamp|amTimeAgo}}</div>
+  <button open-details mat-icon-button aria-label="Details" (click)="onClick($event, job)">
+    <mat-icon>info</mat-icon>
+  </button>
 </div>

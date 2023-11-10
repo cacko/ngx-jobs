@@ -32,4 +32,15 @@
       align-self: center;
     }
   }
+
+  [table-grid] {
+    position: relative;
+    [open-details] {
+      position: absolute;
+      top: 0;
+      right: 0.5rem;
+    }
+  }
+
+
 }

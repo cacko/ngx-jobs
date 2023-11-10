@@ -1,11 +1,7 @@
 :host {
   display: flex;
+  flex-direction: column;
   padding: 3em;
-  width: 100%;
   height: 100%;
-  align-items: self-start;
-
-  .job-card {
-    width: 100%;
-  }
+  align-items: center;
 }

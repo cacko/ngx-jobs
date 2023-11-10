@@ -37,13 +37,13 @@
   [table-grid] {
     border: none;
     font-size: 120%;
-    margin-bottom: 1rem;
     display: none;
     width: 100%;
     align-items: center;
     grid-template-columns: 1fr 2fr;
     background-color: mat.get-color-from-palette($background-palette, card);
     column-gap: 0.5rem;
+    border-top: 1rem solid mat.get-color-from-palette($background-palette, app-bar);
     [label] {
       font-variant: small-caps;
       text-transform: uppercase;

@@ -11,6 +11,7 @@ import {
   LocationType,
   Source,
 } from '../entity/jobs.entity';
+import { JobEventModel } from './jobEvent.model';
 
 export class JobModel implements JobEntity {
   position!: string;
@@ -24,11 +25,11 @@ export class JobModel implements JobEntity {
   onsite!: LocationType;
   source!: Source;
   url!: string;
-  events: JobEventEntity[] = [];
+  events: JobEventModel[] = [];
 
   constructor(original: Object) {
-    console.log(original);
     Object.assign(this, original);
+    this.events = this.events.map((ev) => new JobEventModel(ev));
   }
 
   get applied(): JobEventEntity | undefined {
