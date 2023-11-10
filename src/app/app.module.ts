@@ -26,7 +26,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { JobComponent } from './components/job/job.component';
-import { JobeventComponent } from './components/jobevent/jobevent.component';
 import { JoblocationComponent } from './components/joblocation/joblocation.component';
 import { JobcvComponent } from './components/jobcv/jobcv.component';
 import { JobcompanyComponent } from './components/jobcompany/jobcompany.component';
@@ -40,9 +39,11 @@ import { LogoComponent } from './components/logo/logo.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { JoburlComponent } from './components/joburl/joburl.component';
 import { JobsiteComponent } from './components/jobsite/jobsite.component';
-import { JobeventsComponent } from './components/jobevents/jobevents.component';
 import { JobsourceComponent } from './components/jobsource/jobsource.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { JobdetailsComponent } from './components/jobdetails/jobdetails.component';
+import { CvimageComponent } from './components/cvimage/cvimage.component';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -64,20 +65,20 @@ const MaterialModules = [
     LoaderComponent,
     JobsComponent,
     JobComponent,
-    JobeventComponent,
     JoblocationComponent,
     JobcvComponent,
     JobcompanyComponent,
     JobpositionComponent,
     JobstatusComponent,
     LogoComponent,
+    TimelineComponent,
+    JobdetailsComponent,
+    JoburlComponent,
+    CvimageComponent
   ],
   imports: [
-    JoburlComponent,
     JobsiteComponent,
-    JobeventsComponent,
     JobsourceComponent,
-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

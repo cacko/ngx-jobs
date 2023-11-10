@@ -1,0 +1,12 @@
+:host {
+  [label] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.45rem;
+  }
+  app-cvimage {
+    height: 1rem;
+    width: 1rem;
+  }
+}

@@ -1,0 +1,28 @@
+<div label>
+  <app-cvimage [cv]="job.cv"></app-cvimage>
+  <span>Applied CV</span>
+</div>
+<div content>
+  <app-jobcv [cv]="job.cv"></app-jobcv>
+</div>
+<div label>
+  <mat-icon>link</mat-icon>
+  <span>Job Url</span>
+</div>
+<div content>
+  <app-joburl [url]="job.url"></app-joburl>
+</div>
+<div label>
+  <mat-icon>room_preferences</mat-icon>
+  <span>Workplace</span>
+</div>
+<div content>
+  <app-jobsite [onsite]="job.onsite"></app-jobsite>
+</div>
+<div label>
+  <mat-icon>language</mat-icon>
+  <span>Source</span>
+</div>
+<div content>
+  <app-jobsource [source]="job.source"></app-jobsource>
+</div>

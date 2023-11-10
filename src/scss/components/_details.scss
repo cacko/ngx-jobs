@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../mixin.scss";
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $palette: map.get($color-config, primary);
+  $warn: map.get($color-config, warn);
+  $background-palette: map.get($color-config, background);
+
+  app-jobdetails {
+    border: none;
+    margin-bottom: 1rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    background-color: mat.get-color-from-palette($background-palette, card);
+    [label] {
+      font-variant: small-caps;
+      text-transform: uppercase;
+      text-align: right;
+      justify-content: end;
+      padding: 0.7rem;
+      background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
+    }
+    [content] {
+      font-weight: 400;
+      padding: 0.7rem;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    app-jobs [table-grid] {
+      display: grid;
+    }
+    app-jobs mat-table {
+      display: none;
+    }
+  }
+}
