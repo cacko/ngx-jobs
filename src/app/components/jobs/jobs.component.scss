@@ -9,22 +9,26 @@
     overflow-x: auto;
   }
 
-  h2 {
+  [title] {
+    font-size: 1.5rem;
     font-variant: small-caps;
     text-transform: lowercase;
+    font-family: Bebas Neue;
   }
 
   [header] {
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: center;
+    padding: 0 1em;
   }
   .spacer {
     flex: 1 1 auto;
   }
   @media screen and (max-width: 960px) {
     padding: 0;
-    h2 {
+    [title] {
       align-self: center;
     }
   }
