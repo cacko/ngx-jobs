@@ -8,30 +8,42 @@
   </div>
 </div>
 <ng-template #showLogin>
-  <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()">
-    <app-logo></app-logo>
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="emailInput">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-    <div buttons>
-      <div *ngIf="errorMessage">
-        <p color="error">{{errorMessage}}</p>
-      </div>
-      <div>
-        <button mat-raised-button color="primary" type="submit">
-          <mat-icon>login</mat-icon>
-          Login
-        </button>
-      </div>
-    </div>
-  </form>
+  <mat-card appearance="raised">
+    <mat-card-content>
+      <app-logo></app-logo>
+      <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="fill" *ngIf="loginMode">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="emailInput">
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="loginMode == modeName.PASSWORD">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div buttons>
+          <div *ngIf="errorMessage">
+            <p color="error">{{errorMessage}}</p>
+          </div>
+          <div>
+            <button mat-raised-button color="primary" (click)="onClick($event, modeName.PASSWORD)">
+              <ng-icon name="remixLockPasswordLine"></ng-icon>
+              <div>With Password</div>
+            </button>
+          </div>
+          <div>
+            <button mat-raised-button color="accent" (click)="onClick($event, modeName.MAGIC)">
+              <ng-icon name="remixMailSendLine"></ng-icon>
+              With Magic Link
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+
 </ng-template>

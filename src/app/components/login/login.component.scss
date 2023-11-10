@@ -11,23 +11,36 @@
     text-align: center;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
+  mat-card {
+    border-radius: 1rem;
 
-    app-logo {
-      width: 80%;
-      align-self: center;
-      padding: 1rem;
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      row-gap: 3rem;
     }
-  }
 
-  [buttons] {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    button {
-      width: 15rem;
+    form {
+      display: flex;
+      flex-direction: column;
+
+      app-logo {
+        width: 80%;
+        align-self: center;
+        padding: 1rem;
+      }
+    }
+
+    [buttons] {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      button {
+        width: 15rem;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }

@@ -44,6 +44,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { JobdetailsComponent } from './components/jobdetails/jobdetails.component';
 import { CvimageComponent } from './components/cvimage/cvimage.component';
+import { remixLockPasswordLine, remixMailSendLine } from '@ng-icons/remixicon';
+import { NgIconsModule } from '@ng-icons/core';
+
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -58,6 +61,10 @@ const MaterialModules = [
   MatTooltipModule,
 ];
 
+const Icons = {
+  remixLockPasswordLine,
+  remixMailSendLine
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,12 +81,13 @@ const MaterialModules = [
     TimelineComponent,
     JobdetailsComponent,
     JoburlComponent,
-    CvimageComponent
+    CvimageComponent,
   ],
   imports: [
     JobsiteComponent,
     JobsourceComponent,
     BrowserModule,
+    NgIconsModule.withIcons(Icons),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

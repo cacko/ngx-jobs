@@ -1,8 +1,5 @@
 <app-loader *ngIf="loading"></app-loader>
-<mat-toolbar>
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button> -->
+<mat-toolbar *ngIf="this.user">
   <div head routerLink="/">
     <app-logo></app-logo>
     <span name>jobs&#64;cacko.net</span>
@@ -11,12 +8,6 @@
   <span username *ngIf="this.user" (click)="logout()">
     {{this.user.email | match: '^[^@]+'}}
   </span>
-  <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button> -->
 </mat-toolbar>
 
 <router-outlet></router-outlet>

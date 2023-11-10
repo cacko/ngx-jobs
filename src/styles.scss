@@ -5,20 +5,23 @@
 @use "sass:map";
 @include mat.core();
 
-$theme-primary: mat.define-palette(mat.$blue-grey-palette);
-$theme-accent: mat.define-palette(mat.$blue-grey-palette);
+$theme-primary: mat.define-palette(mat.$blue-grey-palette, 700);
+$theme-accent: mat.define-palette(mat.$blue-grey-palette, 300);
 $theme-warn: mat.define-palette(mat.$red-palette, 900);
 $custom-typography: mat.define-typography-config(
   $font-family: Share Tech Mono,
   $headline-5: mat.define-typography-level(24px, 32px, 400, $font-family: Bebas Neue),
   $headline-6: mat.define-typography-level(20px, 28px, 400, $font-family: Bebas Neue),
-  $subtitle-1: mat.define-typography-level(18px, 26px, 400, $font-family: Bebas Neue)
-
+  $subtitle-1: mat.define-typography-level(18px, 24px, 400, $font-family: Bebas Neue),
+  $body-1: mat.define-typography-level(18px, 24px, 400),
+  $body-2: mat.define-typography-level(18px, 24px, 400),
+  $caption: mat.define-typography-level(18px, 24px, 400),
+  $button: mat.define-typography-level(18px, 24px, 400)
 );
 $background-palette: (
   status-bar: black,
-  app-bar: darken(map.get($theme-primary, 700), 20%),
-  background: darken(map.get($theme-primary, 500), 20%),
+  app-bar: darken(map.get($theme-primary, 900), 20%),
+  background: darken(map.get($theme-primary, 700), 20%),
   hover: rgba(white, 0.04),
   card: darken(map.get($theme-primary, 800), 5%),
   dialog: map.get($theme-primary, 800),
@@ -40,7 +43,8 @@ $theme: mat.define-dark-theme(
       foreground: mat.$dark-theme-foreground-palette,
       background: map.merge(mat.$dark-theme-background-palette, $background-palette)
     ),
-    typography: $custom-typography
+    typography: $custom-typography,
+    density: 1
   )
 );
 
@@ -52,7 +56,7 @@ $theme: mat.define-dark-theme(
     warn: $theme-warn,
     is-dark: true,
     foreground: mat.$dark-theme-foreground-palette,
-    background: map.merge(mat.$dark-theme-background-palette, $background-palette)
+    background: map.merge(mat.$dark-theme-background-palette, $background-palette),
   )
 );
 @include mat.all-component-themes(
@@ -62,7 +66,7 @@ $theme: mat.define-dark-theme(
     warn: $theme-warn,
     is-dark: true,
     foreground: mat.$dark-theme-foreground-palette,
-    background: map.merge(mat.$dark-theme-background-palette, $background-palette)
+    background: map.merge(mat.$dark-theme-background-palette, $background-palette),
   )
 );
 @include mat.all-component-typographies($theme);
@@ -72,6 +76,7 @@ $theme: mat.define-dark-theme(
 @include mytimeline.theme($theme);
 @import "./scss/components/toolbar";
 @import "./scss/components/logo";
+@import "./scss/components/ngicon";
 
 html {
   box-sizing: border-box;
@@ -98,6 +103,7 @@ body {
   app-root {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     @media screen and (min-width: 450px) {
       flex-direction: row;
