@@ -37,6 +37,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
 import { LogoComponent } from './components/logo/logo.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { JoburlComponent } from './components/joburl/joburl.component';
+import { JobsiteComponent } from './components/jobsite/jobsite.component';
+import { JobeventsComponent } from './components/jobevents/jobevents.component';
+import { JobsourceComponent } from './components/jobsource/jobsource.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -47,6 +53,8 @@ const MaterialModules = [
   MatTableModule,
   MatProgressBarModule,
   MatToolbarModule,
+  MatStepperModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
@@ -65,6 +73,11 @@ const MaterialModules = [
     LogoComponent,
   ],
   imports: [
+    JoburlComponent,
+    JobsiteComponent,
+    JobeventsComponent,
+    JobsourceComponent,
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

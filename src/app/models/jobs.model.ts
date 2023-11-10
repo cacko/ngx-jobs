@@ -23,9 +23,11 @@ export class JobModel implements JobEntity {
   location!: LocationEntity;
   onsite!: LocationType;
   source!: Source;
+  url!: string;
   events: JobEventEntity[] = [];
 
   constructor(original: Object) {
+    console.log(original);
     Object.assign(this, original);
   }
 

@@ -64,5 +64,6 @@ export interface JobEntity {
   location: LocationEntity;
   onsite: LocationType;
   source: Source;
+  url: string;
   events?: JobEventEntity[];
 }
