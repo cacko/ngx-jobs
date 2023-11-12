@@ -2,7 +2,7 @@
 @use "@angular/material" as mat;
 @use "../mixin.scss";
 
-@mixin theme($theme) {
+@mixin apply_table_theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
   $warn: map.get($color-config, warn);
@@ -41,23 +41,27 @@
     width: 100%;
     align-items: center;
     grid-template-columns: 1fr 2fr;
-    background-color: mat.get-color-from-palette($background-palette, card);
     column-gap: 0.5rem;
-    border-top: 1rem solid mat.get-color-from-palette($background-palette, app-bar);
+    background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
+    border-bottom: 1rem solid mat.get-color-from-palette($background-palette, app-bar);
+    &:first-of-type {
+      border-top: 0;
+    }
     [label] {
       font-variant: small-caps;
       text-transform: uppercase;
       text-align: right;
-      background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
-      padding: 0.5rem;
     }
     [content] {
+      background-color: mat.get-color-from-palette($background-palette, card);
+      padding: 0.5rem;
       font-weight: 400;
     }
     &[status="rejected"] {
-      background-color: darken(mat.get-color-from-palette($warn), 10%);
-      [label] {
-        background-color: darken(mat.get-color-from-palette($warn), 20%);
+      background-color: darken(mat.get-color-from-palette($warn), 20%);
+      [content] {
+        background-color: darken(mat.get-color-from-palette($warn), 10%);
+
       }
     }
   }

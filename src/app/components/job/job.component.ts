@@ -14,7 +14,7 @@ interface RouteDataEntity {
 })
 export class JobComponent implements OnInit {
 
-  job ?: JobModel;
+  job !: JobModel;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 

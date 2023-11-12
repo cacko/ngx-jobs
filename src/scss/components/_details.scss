@@ -2,7 +2,7 @@
 @use "@angular/material" as mat;
 @use "../mixin.scss";
 
-@mixin theme($theme) {
+@mixin apply-details-theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
   $warn: map.get($color-config, warn);
@@ -26,15 +26,6 @@
     [content] {
       font-weight: 400;
       padding: 0.7rem;
-    }
-  }
-
-  @media screen and (max-width: 960px) {
-    app-jobs [table-grid] {
-      display: grid;
-    }
-    app-jobs mat-table {
-      display: none;
     }
   }
 }
