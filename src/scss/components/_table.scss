@@ -68,6 +68,7 @@
   @media screen and (max-width: 960px) {
     app-jobs [table-grid] {
       display: grid;
+      user-select: none;
     }
     app-jobs mat-table {
       display: none;
