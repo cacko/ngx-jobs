@@ -1,13 +1,19 @@
 <app-loader *ngIf="loading"></app-loader>
 <mat-toolbar *ngIf="this.user">
   <div head routerLink="/">
-    <app-logo></app-logo>
+    <app-logo *ngIf="!useBackButton"></app-logo>
+    <button *ngIf="useBackButton" mat-icon-button aria-label="back to listing">
+      <ng-icon name="typChevronLeftOutline"></ng-icon>
+    </button>
     <span name>jobs&#64;cacko.net</span>
   </div>
   <span class="spacer"></span>
-  <span username *ngIf="this.user" (click)="logout()">
+  <span username>
     {{this.user.email | match: '^[^@]+'}}
   </span>
+  <button mat-icon-button aria-label="Logout" (click)="logout()">
+    <ng-icon name="remixLogoutCircleRLine"></ng-icon>
+  </button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

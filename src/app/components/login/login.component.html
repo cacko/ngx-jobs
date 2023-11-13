@@ -29,21 +29,19 @@
             <p color="error">{{errorMessage}}</p>
           </div>
           <div>
-            <button mat-raised-button color="primary" (click)="onClick($event, modeName.PASSWORD)">
-              <ng-icon name="remixLockPasswordLine"></ng-icon>
+            <button mat-raised-button button-with-icon color="primary" (click)="onClick($event, modeName.PASSWORD)">
+              <ng-icon name="lucideKeyboard"></ng-icon>
               <div>With Password</div>
             </button>
           </div>
           <div>
-            <button mat-raised-button color="accent" (click)="onClick($event, modeName.MAGIC)">
-              <ng-icon name="remixMailSendLine"></ng-icon>
-              With Magic Link
+            <button mat-raised-button button-with-icon color="accent" (click)="onClick($event, modeName.MAGIC)">
+              <ng-icon name="lucideMailWarning"></ng-icon>
+              <div>With MagicLink</div>
             </button>
           </div>
         </div>
       </form>
     </mat-card-content>
-
   </mat-card>
-
 </ng-template>

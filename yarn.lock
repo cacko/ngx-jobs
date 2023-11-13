@@ -3642,6 +3642,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ng-icons/lucide@npm:^26.0.0":
+  version: 26.0.0
+  resolution: "@ng-icons/lucide@npm:26.0.0"
+  dependencies:
+    tslib: "npm:^2.2.0"
+  checksum: 0c50a611a9379c33300c2977b404ec81a001c34d93d795d3facdffad40e5391f1d1f11338b67068a5674caf7186f7bf9e7cc5a4885270da37c801fac507e533a
+  languageName: node
+  linkType: hard
+
 "@ng-icons/remixicon@npm:^26.0.0":
   version: 26.0.0
   resolution: "@ng-icons/remixicon@npm:26.0.0"
@@ -3651,6 +3660,15 @@ __metadata:
     "@angular/common": ^16.1.0
     "@angular/core": ^16.1.0
   checksum: f03f17c4bff9c52859ee93b555af3c204a8276dc92b6b7d80931730812bcf2bfde06976656b2e39e792130a4c8615beea4ef402ad241208302375439781b45f4
+  languageName: node
+  linkType: hard
+
+"@ng-icons/typicons@npm:^26.0.0":
+  version: 26.0.0
+  resolution: "@ng-icons/typicons@npm:26.0.0"
+  dependencies:
+    tslib: "npm:^2.2.0"
+  checksum: 18afd1e2a8455fa1552f37a66bc9897f0f6ee1190b54d8c9de32cd6d619b9883c1bb4abea23ff6e2e7917da31fc21a835f4434ad2c1868443c295e498f9ff40c
   languageName: node
   linkType: hard
 
@@ -8408,7 +8426,9 @@ __metadata:
     "@angular/router": "npm:^17.0.2"
     "@angular/service-worker": "npm:^17.0.2"
     "@ng-icons/core": "npm:^26.0.0"
+    "@ng-icons/lucide": "npm:^26.0.0"
     "@ng-icons/remixicon": "npm:^26.0.0"
+    "@ng-icons/typicons": "npm:^26.0.0"
     "@types/file-saver": "npm:^2.0.7"
     "@types/jasmine": "npm:~4.3.0"
     "@types/lodash-es": "npm:^4"
@@ -8422,6 +8442,7 @@ __metadata:
     karma-jasmine-html-reporter: "npm:~2.1.0"
     lodash-es: "npm:^4.17.21"
     moment: "npm:^2.29.4"
+    ngx-long-press2: "npm:^16.1.0"
     ngx-moment: "npm:^6.0.2"
     ngx-pipes: "npm:^3.2.2"
     rxjs: "npm:~7.8.0"
@@ -8431,6 +8452,18 @@ __metadata:
     zone.js: "npm:~0.14.2"
   languageName: unknown
   linkType: soft
+
+"ngx-long-press2@npm:^16.1.0":
+  version: 16.1.0
+  resolution: "ngx-long-press2@npm:16.1.0"
+  dependencies:
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    "@angular/common": ^16.x
+    "@angular/core": ^16.x
+  checksum: 81c297bc4bba4b351c15a6b1e2294030abe654350f8ec190e84a39a93122c3ae5a509a3a209ee08f41dadc7c45e45a684665a6fdc641a8d4f6444aac2521f9eb
+  languageName: node
+  linkType: hard
 
 "ngx-moment@npm:^6.0.2":
   version: 6.0.2

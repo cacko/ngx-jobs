@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.1em;
+  [source] {
+    text-transform: uppercase;
+  }
+}

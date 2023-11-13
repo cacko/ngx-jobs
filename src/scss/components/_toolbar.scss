@@ -1,8 +1,9 @@
 mat-toolbar {
+  align-items: center;
   span {
     font-family: 'Bebas Neue';
     font-variant: small-caps;
-    text-transform: lowercase;
+    text-transform: uppercase;
   }
   @media screen and (max-width: 960px) {
     &.mat-toolbar.mat-toolbar-single-row {

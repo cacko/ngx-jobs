@@ -13,11 +13,11 @@ export class JobstatusComponent {
   get icon(): string {
       switch (this.status) {
         case JobStatus.PENDING:
-          return "downloading";
+          return "typWatch";
         case JobStatus.IN_PROGRESS:
-          return "sync";
+          return "typFlash";
         case JobStatus.REJECTED:
-          return "thumb_down";
+          return "typThumbsDown";
       }
       return "";
   }

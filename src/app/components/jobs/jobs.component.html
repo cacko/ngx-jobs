@@ -1,8 +1,9 @@
 <div header>
+  <span class="spacer on-mobile no-desktop"></span>
   <div title>Applied for</div>
   <span class="spacer"></span>
   <button mat-icon-button aria-label="Export liste to XLSX" (click)="onExport()" [disabled]="exportDisabled">
-    <mat-icon>file_download</mat-icon>
+    <ng-icon name="remixFileExcel2Fill"></ng-icon>
   </button>
 </div>
 <mat-table [dataSource]="jobs" class="mat-elevation-z8">
@@ -42,7 +43,7 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick($event, row)"
     [attr.status]="row.status"></mat-row>
 </mat-table>
-<div table-grid *ngFor="let job of jobs" [attr.status]="job.status">
+<div ngxLongPress2 table-grid *ngFor="let job of jobs" [attr.status]="job.status" (onLongPress)="onClick($event, job)">
   <div label>Company</div>
   <div content><app-jobcompany [company]="job.company"></app-jobcompany></div>
   <div label>Position</div>
@@ -55,7 +56,4 @@
   <div content>{{job?.last_modified|amTimeAgo}}</div>
   <div label>Applied</div>
   <div content>{{job.applied?.timestamp|amTimeAgo}}</div>
-  <button open-details mat-icon-button aria-label="Details" (click)="onClick($event, job)">
-    <mat-icon>info</mat-icon>
-  </button>
 </div>

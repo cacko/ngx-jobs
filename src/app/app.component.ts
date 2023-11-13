@@ -9,7 +9,7 @@ import {
 import { interval } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   loading = false;
   user: User | null = null;
+  useBackButton: boolean = false;
 
   constructor(
     private loaderService: LoaderService,
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
     private userService: UserService,
     private router: Router
+
   ) {
     this.userService.user.subscribe((res) => {
       this.user = res;
@@ -54,6 +56,12 @@ export class AppComponent implements OnInit {
     this.loaderService.visible.subscribe((res) => {
       this.loading = res;
     });
+
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.useBackButton = val.url !== "/";
+      }
+    })
   }
 
   logout() {

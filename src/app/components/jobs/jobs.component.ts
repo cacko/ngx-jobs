@@ -58,7 +58,7 @@ export class JobsComponent implements OnInit {
     return window.open(row.company.url, '_blank', 'noopener');
   }
 
-  onClick(ev: MouseEvent, row: JobModel) {
+  onClick(ev: Event, row: JobModel) {
     this.router.navigateByUrl(`/v/${row.id}`);
   }
 
@@ -69,5 +69,5 @@ export class JobsComponent implements OnInit {
     );
   }
 
-  
+
 }

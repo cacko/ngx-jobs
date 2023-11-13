@@ -1,0 +1,14 @@
+.mdc-button {
+  .mdc-button__label {
+    font-variant: small-caps;
+    text-transform: uppercase;
+  }
+  &[button-with-icon] {
+    .mdc-button__label {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      column-gap: 0.3rem;
+    }
+  }
+}

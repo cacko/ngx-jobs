@@ -26,4 +26,8 @@ export class JobComponent implements OnInit {
       },
     });
   }
+
+  async onBack() {
+    await this.router.navigateByUrl("/");
+  }
 }

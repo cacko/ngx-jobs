@@ -1,16 +1,14 @@
 :host {
-  .spacer {
-    flex: 1 1 auto;
-  }
   display: flex;
   flex-direction: column;
   mat-toolbar {
     [head] {
       display: flex;
       flex-direction: row;
+      align-items: center;
       column-gap: 0.3rem;
       app-logo {
-        height: 1.5rem;
+        height: 48px;
       }
 
       &:hover {

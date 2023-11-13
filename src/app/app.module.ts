@@ -11,6 +11,7 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/analytics';
+import { NgxLongPress2Module } from 'ngx-long-press2';
 import { LoginComponent } from './components/login/login.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { JobsComponent } from './components/jobs/jobs.component';
@@ -44,8 +45,30 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { JobdetailsComponent } from './components/jobdetails/jobdetails.component';
 import { CvimageComponent } from './components/cvimage/cvimage.component';
-import { remixLockPasswordLine, remixMailSendLine } from '@ng-icons/remixicon';
+import {
+  remixFileExcel2Fill,
+  remixLogoutCircleRLine
+} from '@ng-icons/remixicon';
+import {
+  lucideMailWarning,
+  lucideKeyboard,
+  lucideLink,
+  lucideBuilding
+
+} from '@ng-icons/lucide'
+import {
+  typLink,
+  typThumbsDown,
+  typWatch,
+  typFlash,
+  typChevronLeftOutline,
+  typSocialLinkedin,
+  typFlag,
+  typMicrophone,
+  typMail
+} from '@ng-icons/typicons';
 import { NgIconsModule } from '@ng-icons/core';
+import {MatRippleModule} from '@angular/material/core';
 
 const MaterialModules = [
   MatButtonModule,
@@ -59,11 +82,25 @@ const MaterialModules = [
   MatToolbarModule,
   MatStepperModule,
   MatTooltipModule,
+  MatRippleModule,
 ];
 
 const Icons = {
-  remixLockPasswordLine,
-  remixMailSendLine
+  lucideMailWarning,
+  lucideKeyboard,
+  lucideLink,
+  typThumbsDown,
+  typLink,
+  typWatch,
+  typFlash,
+  remixFileExcel2Fill,
+  remixLogoutCircleRLine,
+  typChevronLeftOutline,
+  lucideBuilding,
+  typSocialLinkedin,
+  typFlag,
+  typMicrophone,
+  typMail
 };
 @NgModule({
   declarations: [
@@ -82,10 +119,11 @@ const Icons = {
     JobdetailsComponent,
     JoburlComponent,
     CvimageComponent,
+    JobsourceComponent,
+
   ],
   imports: [
     JobsiteComponent,
-    JobsourceComponent,
     BrowserModule,
     NgIconsModule.withIcons(Icons),
     AppRoutingModule,
@@ -94,6 +132,7 @@ const Icons = {
     MomentModule,
     ReactiveFormsModule,
     NgPipesModule,
+    NgxLongPress2Module,
     ...MaterialModules,
     provideFirebaseApp(() =>
       initializeApp({
