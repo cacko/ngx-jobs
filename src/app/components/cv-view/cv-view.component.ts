@@ -26,4 +26,8 @@ export class CvViewComponent {
 
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
+
 }

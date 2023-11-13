@@ -1,0 +1,11 @@
+:host {
+  button {
+    position: fixed;
+    top: 0;
+    right: 0.3rem;
+    z-index: 1001;
+    ng-icon {
+      transform: scale(2);
+    }
+  }
+}
