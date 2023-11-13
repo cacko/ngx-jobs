@@ -39,8 +39,8 @@ export class AppComponent implements OnInit {
       this.swUpdate.versionUpdates.subscribe((evt: VersionEvent) => {
         if (evt.type == 'VERSION_READY') {
           this.snackBar
-            .open('Update is available', 'Update')
-            .onAction()
+            .open('Update is available', 'Update', { duration: 15000 })
+            .afterDismissed()
             .subscribe(() =>
               this.swUpdate
                 .activateUpdate()
