@@ -48,7 +48,8 @@ import { CvimageComponent } from './components/cvimage/cvimage.component';
 import {
   remixFileExcel2Fill,
   remixLogoutCircleRLine,
-  remixLinkedinBoxFill
+  remixLinkedinBoxFill,
+  remixLoginCircleLine
 } from '@ng-icons/remixicon';
 import {
   lucideMailWarning,
@@ -103,7 +104,8 @@ const Icons = {
   typFlag,
   typMicrophone,
   typMail,
-  typDocumentText
+  typDocumentText,
+  remixLoginCircleLine
 };
 @NgModule({
   declarations: [

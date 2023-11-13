@@ -69,9 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   onClick(ev: MouseEvent, mode: LOGIN_MODE) {
-    // if (!this.loginMode || mode != this.loginMode) {
-    //   ev.preventDefault();
-    // }
+    ev.preventDefault();
     this.loginMode = mode;
     switch (mode) {
       case LOGIN_MODE.PASSWORD:

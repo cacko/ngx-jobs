@@ -29,6 +29,12 @@
             <p color="error">{{errorMessage}}</p>
           </div>
           <div>
+            <button mat-raised-button button-with-icon type="submit" *ngIf="loginMode">
+              <ng-icon name="remixLoginCircleLine"></ng-icon>
+              <div>Login</div>
+            </button>
+          </div>
+          <div>
             <button mat-raised-button button-with-icon color="primary" (click)="onClick($event, modeName.PASSWORD)">
               <ng-icon name="lucideKeyboard"></ng-icon>
               <div>With Password</div>
