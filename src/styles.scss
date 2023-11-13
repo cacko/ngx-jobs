@@ -33,24 +33,32 @@ $my-theme: mat.define-dark-theme(
     color: (
       primary: $theme-primary,
       accent: $theme-accent,
-      warn: $theme-warn,
-      foreground: mat.$dark-theme-foreground-palette,
-      background: map.merge(mat.$dark-theme-background-palette, $background-palette)
+      warn: $theme-warn
     ),
-    is-dark: true,
     typography: $custom-typography,
     density: 1
   )
 );
 
 @include mat.core-theme($my-theme);
-@include mat.all-component-bases(map.get($my-theme, color));
+@include mat.all-component-bases($my-theme);
 @include mat.all-component-themes($my-theme);
+@include mat.all-component-colors(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn,
+      foreground: mat.$dark-theme-foreground-palette,
+      background: $background-palette
+    )
+  )
+);
 @include mat.all-component-typographies($my-theme);
 
-@include mytable.apply-table-theme($my-theme);
-@include mydetails.apply-details-theme($my-theme);
-@include mytimeline.apply-timeline-theme($my-theme);
+@include mytable.apply-table-theme($my-theme, $background-palette);
+@include mydetails.apply-details-theme($my-theme, $background-palette);
+@include mytimeline.apply-timeline-theme($my-theme, $background-palette);
 @import "./scss/components/toolbar";
 @import "./scss/components/logo";
 @import "./scss/components/ngicon";

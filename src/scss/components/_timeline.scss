@@ -2,13 +2,11 @@
 @use "@angular/material" as mat;
 @use "../mixin.scss";
 
-@mixin apply-timeline-theme($theme) {
+@mixin apply-timeline-theme($theme, $background-palette) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
   $accent: map.get($color-config, accent);
   $warn: map.get($color-config, warn);
-  $background-palette: map.get($color-config, background);
-  $foreground: map.get($color-config, foreground);
 
   app-timeline {
     padding: 0 1rem;

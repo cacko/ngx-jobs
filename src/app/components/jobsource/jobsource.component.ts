@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Source } from 'src/app/entity/jobs.entity';
 
 @Component({
@@ -6,16 +6,19 @@ import { Source } from 'src/app/entity/jobs.entity';
   templateUrl: './jobsource.component.html',
   styleUrl: './jobsource.component.scss'
 })
-export class JobsourceComponent {
+export class JobsourceComponent implements OnInit {
 
   @Input() source !: Source;
 
-  get icon(): string | null {
+  icon: string = '';
+
+  ngOnInit(): void {
       switch(this.source) {
         case Source.LINKEDIN:
-          return 'typSocialLinkedin';
+          this.icon = 'remixLinkedinBoxFill';
+          break;
         default:
-          return null;
+          this.icon = "";
       }
   }
 }

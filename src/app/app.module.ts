@@ -47,7 +47,8 @@ import { JobdetailsComponent } from './components/jobdetails/jobdetails.componen
 import { CvimageComponent } from './components/cvimage/cvimage.component';
 import {
   remixFileExcel2Fill,
-  remixLogoutCircleRLine
+  remixLogoutCircleRLine,
+  remixLinkedinBoxFill
 } from '@ng-icons/remixicon';
 import {
   lucideMailWarning,
@@ -65,7 +66,8 @@ import {
   typSocialLinkedin,
   typFlag,
   typMicrophone,
-  typMail
+  typMail,
+  typDocumentText
 } from '@ng-icons/typicons';
 import { NgIconsModule } from '@ng-icons/core';
 import {MatRippleModule} from '@angular/material/core';
@@ -97,10 +99,11 @@ const Icons = {
   remixLogoutCircleRLine,
   typChevronLeftOutline,
   lucideBuilding,
-  typSocialLinkedin,
+  remixLinkedinBoxFill,
   typFlag,
   typMicrophone,
-  typMail
+  typMail,
+  typDocumentText
 };
 @NgModule({
   declarations: [

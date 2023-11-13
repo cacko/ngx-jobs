@@ -4,9 +4,6 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './joburl.component.html',
   styleUrl: './joburl.component.scss',
 })
-export class JoburlComponent implements OnInit {
-  ngOnInit(): void {
-    console.log(this.url);
-  }
+export class JoburlComponent {
   @Input() url!: string;
 }

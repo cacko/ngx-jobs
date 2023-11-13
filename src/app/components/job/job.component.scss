@@ -10,11 +10,11 @@
     position: relative;
   }
 
-  h1, h2, h3 {
+  h1 {
     font-variant: small-caps;
     text-transform: uppercase;
   }
   @media screen and (max-width: 960px) {
-    padding: 0;
+    padding: 1rem 0;
   }
 }

@@ -6,20 +6,24 @@ import { JobStatus } from 'src/app/entity/jobs.entity';
   templateUrl: './jobstatus.component.html',
   styleUrls: ['./jobstatus.component.scss']
 })
-export class JobstatusComponent {
+export class JobstatusComponent implements OnInit {
 
   @Input() status !: JobStatus;
 
-  get icon(): string {
+  icon: string = '';
+
+  ngOnInit(): void {
       switch (this.status) {
         case JobStatus.PENDING:
-          return "typWatch";
+          this.icon = "typWatch";
+          break;
         case JobStatus.IN_PROGRESS:
-          return "typFlash";
+          this.icon = "typFlash";
+          break;
         case JobStatus.REJECTED:
-          return "typThumbsDown";
+          this.icon = "typThumbsDown";
+          break;
       }
-      return "";
   }
 
 }

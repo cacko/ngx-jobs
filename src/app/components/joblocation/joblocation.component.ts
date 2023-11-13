@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocationEntity } from 'src/app/entity/jobs.entity';
 import {
   getEmojiFlag,
@@ -12,16 +12,15 @@ import {
   templateUrl: './joblocation.component.html',
   styleUrls: ['./joblocation.component.scss']
 })
-export class JoblocationComponent {
+export class JoblocationComponent implements OnInit {
 
   @Input() location !: LocationEntity;
+  data !: ICountryData;
+  flag !: string;
 
-  get data(): ICountryData {
-    return getCountryData(this.location.country_iso as TCountryCode);
-  }
-
-  get flag(): string {
-    return getEmojiFlag(this.location.country_iso as TCountryCode);
+  ngOnInit(): void {
+    this.data = getCountryData(this.location.country_iso as TCountryCode);
+    this.flag = getEmojiFlag(this.location.country_iso as TCountryCode);
   }
 
 }
