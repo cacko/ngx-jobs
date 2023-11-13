@@ -16,7 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { MomentModule } from 'ngx-moment';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
@@ -49,15 +49,14 @@ import {
   remixFileExcel2Fill,
   remixLogoutCircleRLine,
   remixLinkedinBoxFill,
-  remixLoginCircleLine
+  remixLoginCircleLine,
 } from '@ng-icons/remixicon';
 import {
   lucideMailWarning,
   lucideKeyboard,
   lucideLink,
-  lucideBuilding
-
-} from '@ng-icons/lucide'
+  lucideBuilding,
+} from '@ng-icons/lucide';
 import {
   typLink,
   typThumbsDown,
@@ -68,11 +67,11 @@ import {
   typFlag,
   typMicrophone,
   typMail,
-  typDocumentText
+  typDocumentText,
 } from '@ng-icons/typicons';
 import { NgIconsModule } from '@ng-icons/core';
-import {MatRippleModule} from '@angular/material/core';
-
+import { MatRippleModule } from '@angular/material/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -86,6 +85,7 @@ const MaterialModules = [
   MatStepperModule,
   MatTooltipModule,
   MatRippleModule,
+  MatButtonToggleModule,
 ];
 
 const Icons = {
@@ -105,7 +105,7 @@ const Icons = {
   typMicrophone,
   typMail,
   typDocumentText,
-  remixLoginCircleLine
+  remixLoginCircleLine,
 };
 @NgModule({
   declarations: [
@@ -125,7 +125,6 @@ const Icons = {
     JoburlComponent,
     CvimageComponent,
     JobsourceComponent,
-
   ],
   imports: [
     JobsiteComponent,
@@ -136,6 +135,7 @@ const Icons = {
     HttpClientModule,
     MomentModule,
     ReactiveFormsModule,
+    FormsModule,
     NgPipesModule,
     NgxLongPress2Module,
     ...MaterialModules,

@@ -11,7 +11,8 @@
   <mat-card appearance="raised">
     <mat-card-content>
       <app-logo></app-logo>
-      <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()">
+      <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()"
+        *ngIf="!waitForLink">
         <mat-form-field appearance="fill" *ngIf="loginMode">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="emailInput">
@@ -24,30 +25,31 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
+        <mat-button-toggle-group (change)="onLoginMode($event)">
+          <mat-button-toggle [checked]="loginMode==modeName.PASSWORD" button-with-icon value="{{modeName.PASSWORD}}" aria-label="Text align left">
+            <ng-icon name="lucideKeyboard"></ng-icon>
+            <span>Keyboard</span>
+          </mat-button-toggle>
+          <mat-button-toggle [checked]="loginMode==modeName.MAGIC"  button-with-icon value="{{modeName.MAGIC}}" aria-label="Text align center">
+            <ng-icon name="lucideMailWarning"></ng-icon>
+            <span>MagicLink</span>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
         <div buttons>
           <div *ngIf="errorMessage">
             <p color="error">{{errorMessage}}</p>
           </div>
           <div>
-            <button mat-raised-button button-with-icon type="submit" *ngIf="loginMode">
+            <button mat-raised-button button-with-icon type="submit" color="primary">
               <ng-icon name="remixLoginCircleLine"></ng-icon>
               <div>Login</div>
             </button>
           </div>
-          <div>
-            <button mat-raised-button button-with-icon color="primary" (click)="onClick($event, modeName.PASSWORD)">
-              <ng-icon name="lucideKeyboard"></ng-icon>
-              <div>With Password</div>
-            </button>
-          </div>
-          <div>
-            <button mat-raised-button button-with-icon color="accent" (click)="onClick($event, modeName.MAGIC)">
-              <ng-icon name="lucideMailWarning"></ng-icon>
-              <div>With MagicLink</div>
-            </button>
-          </div>
         </div>
       </form>
+      <p *ngIf="waitForLink">
+        Check your email at {{waitForLink}} for login link
+      </p>
     </mat-card-content>
   </mat-card>
 </ng-template>

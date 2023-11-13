@@ -12,3 +12,22 @@
     }
   }
 }
+mat-button-toggle {
+  flex: 1 1 auto;
+  text-align: center;
+  .mat-button-toggle-label-content > * {
+    vertical-align: middle;
+  }
+  .mat-button-toggle-label-content {
+    font-variant: small-caps;
+    text-transform: uppercase;
+  }
+  &[button-with-icon] {
+    .mat-button-toggle-label-content {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      column-gap: 0.3rem;
+    }
+  }
+}

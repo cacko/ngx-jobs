@@ -8,8 +8,10 @@ import {
   User,
   signOut,
   onAuthStateChanged,
+  signInWithEmailLink,
+  isSignInWithEmailLink,
 } from '@angular/fire/auth';
-import { EMPTY, Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -40,11 +42,23 @@ export class UserService {
     return await signInWithCredential(this.auth, authCredential);
   }
 
-  async getMagicLink(email: string) {
-    // return await sendSignInLinkToEmail(this.auth, email, );
+  getMagicLink(email: string) {
+    const actionCodeSettings = {
+      url: `${window.location.origin}/login?email=${email}`,
+      handleCodeInApp: true,
+    };
+    return sendSignInLinkToEmail(this.auth, email, actionCodeSettings);
+  }
+
+  async loginWithLink(email: string, link: string)  {
+    return await signInWithEmailLink(this.auth, email, link);
   }
 
   async logout() {
     return await signOut(this.auth);
+  }
+
+  isEmailLinkSigning() {
+    return isSignInWithEmailLink(this.auth, window.location.href);
   }
 }
