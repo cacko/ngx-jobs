@@ -27,6 +27,7 @@ $background-palette: (
   disabled-list-option: rgba(white, 0.12),
   tooltip: map.get($theme-primary, 700)
 );
+
 $my-theme: mat.define-dark-theme(
   (
     color: (
@@ -35,7 +36,7 @@ $my-theme: mat.define-dark-theme(
       warn: $theme-warn
     ),
     typography: $custom-typography,
-    density: 0
+    density: 0.5
   )
 );
 
