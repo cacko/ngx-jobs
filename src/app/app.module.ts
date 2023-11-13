@@ -63,7 +63,7 @@ import {
   typWatch,
   typFlash,
   typChevronLeftOutline,
-  typSocialLinkedin,
+  typEyeOutline,
   typFlag,
   typMicrophone,
   typMail,
@@ -72,6 +72,7 @@ import {
 import { NgIconsModule } from '@ng-icons/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CvViewComponent } from './components/cv-view/cv-view.component';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -106,6 +107,7 @@ const Icons = {
   typMail,
   typDocumentText,
   remixLoginCircleLine,
+  typEyeOutline
 };
 @NgModule({
   declarations: [
@@ -125,6 +127,7 @@ const Icons = {
     JoburlComponent,
     CvimageComponent,
     JobsourceComponent,
+    CvViewComponent
   ],
   imports: [
     JobsiteComponent,

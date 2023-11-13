@@ -39,6 +39,7 @@ export class UserService {
 
   async login(email: string, password: string) {
     const authCredential = EmailAuthProvider.credential(email, password);
+    console.debug(email, password);
     return await signInWithCredential(this.auth, authCredential);
   }
 

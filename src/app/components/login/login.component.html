@@ -15,29 +15,32 @@
         *ngIf="!waitForLink">
         <mat-form-field appearance="fill" *ngIf="loginMode">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="emailInput">
+          <input matInput type="email" formControlName="emailInput" [required]="true">
         </mat-form-field>
         <mat-form-field appearance="fill" *ngIf="loginMode == modeName.PASSWORD">
           <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput">
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput"
+            [required]="loginMode == modeName.PASSWORD">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
         <mat-button-toggle-group (change)="onLoginMode($event)">
-          <mat-button-toggle [checked]="loginMode==modeName.PASSWORD" button-with-icon value="{{modeName.PASSWORD}}" aria-label="Text align left">
+          <mat-button-toggle [checked]="loginMode==modeName.PASSWORD" button-with-icon value="{{modeName.PASSWORD}}"
+            aria-label="Text align left">
             <ng-icon name="lucideKeyboard"></ng-icon>
             <span>Keyboard</span>
           </mat-button-toggle>
-          <mat-button-toggle [checked]="loginMode==modeName.MAGIC"  button-with-icon value="{{modeName.MAGIC}}" aria-label="Text align center">
+          <mat-button-toggle [checked]="loginMode==modeName.MAGIC" button-with-icon value="{{modeName.MAGIC}}"
+            aria-label="Text align center">
             <ng-icon name="lucideMailWarning"></ng-icon>
             <span>MagicLink</span>
           </mat-button-toggle>
         </mat-button-toggle-group>
         <div buttons>
           <div *ngIf="errorMessage">
-            <p color="error">{{errorMessage}}</p>
+            <p errors>{{errorMessage}}</p>
           </div>
           <div>
             <button mat-raised-button button-with-icon type="submit" color="primary">

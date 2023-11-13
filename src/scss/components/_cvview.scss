@@ -1,0 +1,20 @@
+@import "../mixin.scss";
+
+.cv-zoom-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.cv-zoom-panel {
+  overflow-y: auto !important;
+  padding: 0;
+  border-radius: 1em;
+  @include lightbox();
+}
+
+app-cv-view {
+  img {
+    width: 40rem;
+    max-width: 95vw;
+    border: none;
+  }
+}

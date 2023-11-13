@@ -2,14 +2,15 @@
 @use "./scss/components/table" as mytable;
 @use "./scss/components/details" as mydetails;
 @use "./scss/components/timeline" as mytimeline;
+@use "./scss/components/errors" as myerrors;
 @use "sass:map";
 @include mat.core();
 
 $theme-primary: mat.define-palette(mat.$blue-grey-palette, 700);
 $theme-accent: mat.define-palette(mat.$blue-grey-palette, 300);
-$theme-warn: mat.define-palette(mat.$red-palette, 900);
+$theme-warn: mat.define-palette(mat.$red-palette, 500);
 $custom-typography: mat.define-typography-config(
-  $font-family: "Share Tech Mono",
+  $font-family: "Share Tech Mono"
 );
 $background-palette: (
   status-bar: black,
@@ -60,11 +61,13 @@ $my-theme: mat.define-dark-theme(
 @include mytable.apply-table-theme($my-theme, $background-palette);
 @include mydetails.apply-details-theme($my-theme, $background-palette);
 @include mytimeline.apply-timeline-theme($my-theme, $background-palette);
+@include myerrors.apply-errors-theme($my-theme, $background-palette);
 @import "./scss/components/toolbar";
 @import "./scss/components/logo";
 @import "./scss/components/ngicon";
 @import "./scss/components/button";
 @import "./scss/components/spacer";
+@import "./scss/components/cvview";
 html {
   box-sizing: border-box;
   padding: 0;

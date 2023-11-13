@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { UserService } from 'src/app/service/user.service';
 import { FirebaseError } from '@angular/fire/app';
@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   private redirectTo: string = '/';
   hide = true;
   form: FormGroup;
-  emailInput = new FormControl('');
+  emailInput = new FormControl('', [
+    Validators.email
+  ]);
   passwordInput = new FormControl('');
   errorMessage: string | null = null;
   public loginMode?: LOGIN_MODE;
@@ -50,13 +52,14 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
+
     const email = this.emailInput.value || '';
     const password = this.passwordInput.value || '';
     switch (this.loginMode) {
       case LOGIN_MODE.MAGIC:
-        return this.sendEmailLink(email);
+        return this.emailInput.valid && this.sendEmailLink(email);
       case LOGIN_MODE.PASSWORD:
-        return this.loginWithPassword(email, password);
+        return this.emailInput.valid && this.passwordInput.valid && this.loginWithPassword(email, password);
     }
   }
 
