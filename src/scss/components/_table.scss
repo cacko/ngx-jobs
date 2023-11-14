@@ -23,7 +23,8 @@
       flex-wrap: wrap;
 
       &[status="rejected"] {
-        background-color: mat.get-color-from-palette($warn);
+        opacity: 0.5;
+        background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
       }
     }
 
@@ -57,10 +58,10 @@
       font-weight: 400;
     }
     &[status="rejected"] {
-      background-color: darken(mat.get-color-from-palette($warn), 20%);
+      background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
       [content] {
-        background-color: darken(mat.get-color-from-palette($warn), 10%);
-
+        background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
+        opacity: 0.5;
       }
     }
   }
