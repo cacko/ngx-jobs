@@ -1,2 +1,12 @@
-<div>{{location.city}}</div>
-<div [matTooltip]="data.name">{{flag}}</div>
+<section [ngSwitch]="mode">
+  <ng-template [ngSwitchCase]="modes.BRIEF">
+    <div>{{location.city}}</div>
+    <div [matTooltip]="data.name">{{flag}}</div>
+  </ng-template>
+  <ng-template [ngSwitchCase]="modes.FULL">
+    <div>{{location.city}}</div>
+    <span class="spacer"></span>
+    <div>{{data.name}}</div>
+    <div [matTooltip]="data.name">{{flag}}</div>
+  </ng-template>
+</section>

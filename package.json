@@ -27,6 +27,7 @@
     "@ng-icons/remixicon": "^26.0.0",
     "@ng-icons/typicons": "^26.0.0",
     "countries-list": "^3.0.6",
+    "devicon": "^2.15.1",
     "file-saver": "^2.0.5",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.4",

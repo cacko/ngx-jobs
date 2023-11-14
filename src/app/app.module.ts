@@ -68,7 +68,8 @@ import {
   typMicrophone,
   typMail,
   typDocumentText,
-  typDelete
+  typDelete,
+  typLocation
 } from '@ng-icons/typicons';
 import { NgIconsModule } from '@ng-icons/core';
 import { MatRippleModule } from '@angular/material/core';
@@ -109,7 +110,8 @@ const Icons = {
   typDocumentText,
   remixLoginCircleLine,
   typEyeOutline,
-  typDelete
+  typDelete,
+  typLocation
 };
 @NgModule({
   declarations: [

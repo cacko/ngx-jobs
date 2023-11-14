@@ -1,6 +1,9 @@
 :host {
-  display: flex;
-  flex-direction: row;
-  column-gap: 0.3rem;
-  align-items: center;
+  section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.3rem;
+    align-items: center;
+  }
+
 }

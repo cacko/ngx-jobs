@@ -7,6 +7,11 @@ import {
   TCountryCode,
 } from 'countries-list'
 
+export enum LocationModes {
+  BRIEF = "brief",
+  FULL = "full"
+}
+
 @Component({
   selector: 'app-joblocation',
   templateUrl: './joblocation.component.html',
@@ -17,6 +22,8 @@ export class JoblocationComponent implements OnInit {
   @Input() location !: LocationEntity;
   data !: ICountryData;
   flag !: string;
+  @Input() mode : string = "brief";
+  modes = LocationModes;
 
   ngOnInit(): void {
     this.data = getCountryData(this.location.country_iso as TCountryCode);

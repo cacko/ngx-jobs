@@ -5687,6 +5687,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"devicon@npm:^2.15.1":
+  version: 2.15.1
+  resolution: "devicon@npm:2.15.1"
+  checksum: d908f5fd886a3e5916f4d1693774c1c23a48834992b03ec446cb67a4dec68680c8a85e5cecc9a33f372421f9a029b138524feecaca9427dd7ff672232b19474c
+  languageName: node
+  linkType: hard
+
 "di@npm:^0.0.1":
   version: 0.0.1
   resolution: "di@npm:0.0.1"
@@ -8433,6 +8440,7 @@ __metadata:
     "@types/jasmine": "npm:~4.3.0"
     "@types/lodash-es": "npm:^4"
     countries-list: "npm:^3.0.6"
+    devicon: "npm:^2.15.1"
     file-saver: "npm:^2.0.5"
     jasmine-core: "npm:~4.6.0"
     karma: "npm:~6.4.0"

@@ -68,6 +68,8 @@ $my-theme: mat.define-dark-theme(
 @import "./scss/components/button";
 @import "./scss/components/spacer";
 @import "./scss/components/cvview";
+@import "./scss/components/devicon";
+
 html {
   box-sizing: border-box;
   padding: 0;
