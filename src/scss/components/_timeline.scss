@@ -8,6 +8,18 @@
   $accent: map.get($color-config, accent);
   $warn: map.get($color-config, warn);
 
+  $reject: mat.get-color-from-palette($warn);
+  $interview: mat.get-color-from-palette($accent);
+  $applied: mat.get-color-from-palette($palette);
+  $response: darken(mat.get-color-from-palette($accent), 10%);
+
+  $events: (
+    applied: $applied,
+    inteview: $interview,
+    reject: $reject,
+    response: $response
+  );
+
   app-timeline {
     padding: 0 1rem;
     margin: 50px auto;
@@ -87,11 +99,13 @@
 
           .timeline-title {
             margin-bottom: 1.4rem;
+            text-align: right;
 
             .badge {
               padding: 0.5rem 2rem;
               border-radius: 1rem;
-              font-weight: bold;
+              font-size: 80%;
+              // font-weight: bold;
               text-transform: uppercase;
             }
           }
@@ -103,31 +117,19 @@
           }
         }
 
-        &.applied {
-          .timeline-title,
-          .timeline-icon {
-            background: mat.get-color-from-palette($palette);
-          }
-        }
-
-        &.response {
-          .timeline-title,
-          .timeline-icon {
-            background: darken(mat.get-color-from-palette($accent), 10%);
-          }
-        }
-
-        &.interview {
-          .timeline-title,
-          .timeline-icon {
-            background: mat.get-color-from-palette($accent);
-          }
-        }
-
-        &.reject {
-          .badge,
-          .timeline-icon {
-            background: mat.get-color-from-palette($warn);
+        @each $event, $color in $events {
+          &.#{$event} {
+            .badge,
+            .timeline-icon {
+              background: $color;
+            }
+            .timeline-body {
+              border: 1px solid $color;
+            }
+            .timeline-body:before {
+              border-left: 1px solid $color;
+              border-bottom: 1px solid $color;
+            }
           }
         }
       }
