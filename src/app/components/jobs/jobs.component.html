@@ -14,7 +14,7 @@
 <mat-table [dataSource]="jobs" class="mat-elevation-z8">
   <ng-container matColumnDef="company">
     <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
-    <mat-cell *matCellDef="let element" (click)="onClickCompany($event, element)" data-label="company">
+    <mat-cell *matCellDef="let element" (click)="onClickCompany($event, element)" data-label="company" matTooltip="Open Company Website">
       <app-jobcompany [company]="element.company"></app-jobcompany>
     </mat-cell>
   </ng-container>
