@@ -50,6 +50,7 @@ import {
   remixLogoutCircleRLine,
   remixLinkedinBoxFill,
   remixLoginCircleLine,
+  remixMoneyPoundCircleFill
 } from '@ng-icons/remixicon';
 import {
   lucideMailWarning,
@@ -111,7 +112,8 @@ const Icons = {
   remixLoginCircleLine,
   typEyeOutline,
   typDelete,
-  typLocation
+  typLocation,
+  remixMoneyPoundCircleFill
 };
 @NgModule({
   declarations: [
