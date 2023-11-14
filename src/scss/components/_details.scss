@@ -19,6 +19,9 @@
       text-transform: uppercase;
       text-align: right;
       justify-content: end;
+      opacity: 0.6;
+
+      font-size: 90%;
       padding: 0.7rem;
     }
     [content] {
@@ -33,9 +36,7 @@
       display: block;
       padding: 0.3rem;
       [label] {
-        opacity: 0.6;
         justify-content: start;
-        font-size: 90%;
       }
       [content] {
         height: auto;
