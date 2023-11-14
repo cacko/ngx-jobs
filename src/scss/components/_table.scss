@@ -68,6 +68,10 @@
     app-jobs [table-grid] {
       display: grid;
       user-select: none;
+      [label] {
+        font-size: 90%;
+        opacity: 0.6;
+      }
     }
     app-jobs mat-table {
       display: none;
