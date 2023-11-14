@@ -104,21 +104,21 @@
         }
 
         &.applied {
-          .badge,
+          .timeline-title,
           .timeline-icon {
             background: mat.get-color-from-palette($palette);
           }
         }
 
         &.response {
-          .badge,
+          .timeline-title,
           .timeline-icon {
             background: darken(mat.get-color-from-palette($accent), 10%);
           }
         }
 
         &.interview {
-          .badge,
+          .timeline-title,
           .timeline-icon {
             background: mat.get-color-from-palette($accent);
           }
