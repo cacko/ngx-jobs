@@ -8,7 +8,11 @@
           <span class="badge">{{ev.event}}</span>
       </h4> -->
       <p description>{{ev.description}}</p>
-      <p class="timeline-subtitle">{{ev.timestamp|amTimeAgo}}</p>
+      <p class="timeline-subtitle">
+        <span matTooltip="{{ev.timestamp|amDateFormat:'LLL'}}">
+          {{ev.timestamp|amTimeAgo}}
+        </span>
+      </p>
     </div>
   </div>
 </div>

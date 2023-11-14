@@ -2,11 +2,12 @@
   <span class="spacer on-mobile no-desktop"></span>
   <div title>Applied for</div>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="Export liste to XLSX" (click)="onExport()" class="on-mobile no-desktop" [disabled]="exportDisabled">
+  <button mat-icon-button aria-label="Export liste to XLSX" (click)="onExport()" class="on-mobile no-desktop"
+    [disabled]="exportDisabled">
     <ng-icon name="remixFileExcel2Fill"></ng-icon>
   </button>
-  <button mat-button button-with-icon aria-label="Export liste to XLSX" (click)="onExport()"
-    [disabled]="exportDisabled" class="on-desktop no-mobile">
+  <button mat-button button-with-icon aria-label="Export liste to XLSX" (click)="onExport()" [disabled]="exportDisabled"
+    class="on-desktop no-mobile">
     <ng-icon name="remixFileExcel2Fill"></ng-icon>
     <span>Export</span>
   </button>
@@ -14,7 +15,8 @@
 <mat-table [dataSource]="jobs" class="mat-elevation-z8">
   <ng-container matColumnDef="company">
     <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
-    <mat-cell *matCellDef="let element" (click)="onClickCompany($event, element)" data-label="company" matTooltip="Open Company Website">
+    <mat-cell *matCellDef="let element" (click)="onClickCompany($event, element)" data-label="company"
+      matTooltip="Open Company Website">
       <app-jobcompany [company]="element.company"></app-jobcompany>
     </mat-cell>
   </ng-container>
@@ -32,11 +34,21 @@
   </ng-container>
   <ng-container matColumnDef="applied">
     <mat-header-cell *matHeaderCellDef>Applied</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.applied.timestamp|amTimeAgo}}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">
+        {{element.applied.timestamp|amTimeAgo}}
+
+      </span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="last_modified">
     <mat-header-cell *matHeaderCellDef>Last Action</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.last_modified|amTimeAgo}}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">
+        {{element.last_modified|amTimeAgo}}
+      </span>
+
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
