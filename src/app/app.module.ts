@@ -76,6 +76,10 @@ import { NgIconsModule } from '@ng-icons/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CvViewComponent } from './components/cv-view/cv-view.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
+
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -90,6 +94,7 @@ const MaterialModules = [
   MatTooltipModule,
   MatRippleModule,
   MatButtonToggleModule,
+  MatExpansionModule
 ];
 
 const Icons = {

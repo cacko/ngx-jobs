@@ -11,10 +11,17 @@
   app-timeline {
     padding: 0 1rem;
     margin: 50px auto;
+    @media screen and (max-width: 960px) {
+      padding: 0 0.3rem;
+    }
     .timeline {
       position: relative;
       padding-left: 4rem;
       margin: 0 0 0 30px;
+      @media screen and (max-width: 960px) {
+        padding-left: unset;
+        margin: unset;
+      }
 
       &:before {
         content: "";
@@ -24,6 +31,9 @@
         width: 4px;
         height: 100%;
         background-color: mat.get-color-from-palette($background-palette, card);
+        @media screen and (max-width: 960px) {
+          display: none;
+        }
       }
 
       .timeline-container {
@@ -46,16 +56,15 @@
             top: 50%;
             transform: translate(-50%, -50%);
           }
-
-
-
+          @media screen and (max-width: 960px) {
+            display: none;
+          }
         }
 
         .timeline-body {
           background: mat.get-color-from-palette($background-palette, card);
           border-radius: 1rem;
           padding: 20px 20px 15px;
-
 
           [description] {
             white-space: pre-wrap;
@@ -71,6 +80,9 @@
             left: -10px;
             transform: rotate(45deg);
             border-radius: 0 0 0 2px;
+            @media screen and (max-width: 960px) {
+              display: none;
+            }
           }
 
           .timeline-title {
