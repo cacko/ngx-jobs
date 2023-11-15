@@ -16,3 +16,12 @@ app-flying-icon {
     opacity: 0;
   }
 }
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}

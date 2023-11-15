@@ -13,5 +13,5 @@ export const DEVICONS: IconsInterface = {
   firebase: 'devicon-firebase-plain colored',
   android: 'evicon-android-plain colored',
   facebook: 'devicon-facebook-plain colored',
-  
+  linkedin: 'devicon-linkedin-plain colored'
 };
