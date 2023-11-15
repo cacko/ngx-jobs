@@ -29,8 +29,8 @@ export class FlyingIconComponent {
     )},${random(30)} C${random(30)},${random(300)} ${random(300)},${random(
       30
     )} ${random(300)},${random(230)}")`;
-    style.animation = `move ${random(5,10) * 1000}ms infinite alternate ease-in-out`;
-
+    style.animation = `move ${random(5,10)}s infinite alternate ease-in-out`;
+      style.animationDelay = `${random(5,20)}s`
     this.iconCls = DEVICONS[this.icon];
     this.animService.register(this.classSubject);
   }
