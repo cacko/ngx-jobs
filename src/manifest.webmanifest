@@ -6,6 +6,18 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "capture_links": "existing_client_event",
+  "url_handlers": [
+    {
+      "origin": "https://jobs.cacko.net"
+    },
+    {
+      "origin": "https://jobs-c273f.firebaseapp.com/"
+    }
+  ],
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
