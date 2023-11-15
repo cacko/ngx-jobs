@@ -14,7 +14,7 @@ app-flying-icon {
   transition: all 5000ms ease-in-out;
 
   &:hover {
-    opacity: 0;
+    display: none;
   }
 }
 
