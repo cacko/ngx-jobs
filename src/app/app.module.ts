@@ -79,6 +79,7 @@ import { CvViewComponent } from './components/cv-view/cv-view.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatSortModule } from '@angular/material/sort';
+import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
 
 const MaterialModules = [
   MatButtonModule,
@@ -142,6 +143,7 @@ const Icons = {
     CvimageComponent,
     JobsourceComponent,
     CvViewComponent,
+    FlyingIconComponent
   ],
   imports: [
     JobsiteComponent,

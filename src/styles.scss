@@ -69,6 +69,8 @@ $my-theme: mat.define-dark-theme(
 @import "./scss/components/spacer";
 @import "./scss/components/cvview";
 @import "./scss/components/devicon";
+@import "./scss/components/fly-icon";
+@import "animate.css/animate";
 
 html {
   box-sizing: border-box;

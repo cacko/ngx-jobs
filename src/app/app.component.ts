@@ -10,6 +10,9 @@ import { interval } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
 import { NavigationEnd, Router } from '@angular/router';
+import { DEVICONS } from './entity/icons.entity';
+import { AnimationService } from './service/animation.service';
+import { random } from 'lodash-es';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +23,22 @@ export class AppComponent implements OnInit {
   loading = false;
   user: User | null = null;
   useBackButton: boolean = false;
-
+  flyIcons = DEVICONS;
+  title = "geo";
   constructor(
     private loaderService: LoaderService,
     private swUpdate: SwUpdate,
     private snackBar: MatSnackBar,
     private userService: UserService,
-    private router: Router
-
+    private router: Router,
+    private animationService: AnimationService
   ) {
     this.userService.user.subscribe((res) => {
       this.user = res;
     });
     this.userService.init();
+    this.animationService.start();
+
   }
   ngOnInit(): void {
     if (this.swUpdate.isEnabled) {
@@ -59,12 +65,15 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.useBackButton = val.url !== "/";
+        this.useBackButton = val.url !== '/';
       }
-    })
+    });
+
   }
 
+
+
   logout() {
-    this.userService.logout().then(() => this.router.navigateByUrl("/login"))
+    this.userService.logout().then(() => this.router.navigateByUrl('/login'));
   }
 }
