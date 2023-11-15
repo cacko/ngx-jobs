@@ -6,11 +6,16 @@ import {
   VersionEvent,
   VersionReadyEvent,
 } from '@angular/service-worker';
-import { interval } from 'rxjs';
+import { Subject, interval } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
 import { NavigationEnd, Router } from '@angular/router';
-import { DEVICONS } from './entity/icons.entity';
+import {
+  DEVICONS,
+  StylesEntity,
+  StyleObservers,
+  StyleSubjects,
+} from './entity/icons.entity';
 import { AnimationService } from './service/animation.service';
 import { random } from 'lodash-es';
 
@@ -24,7 +29,10 @@ export class AppComponent implements OnInit {
   user: User | null = null;
   useBackButton: boolean = false;
   flyIcons = DEVICONS;
-  title = "geo";
+  title = 'geo';
+  styleSubjects: StyleSubjects = {};
+  styleObservers: StyleObservers = {};
+
   constructor(
     private loaderService: LoaderService,
     private swUpdate: SwUpdate,
@@ -37,8 +45,10 @@ export class AppComponent implements OnInit {
       this.user = res;
     });
     this.userService.init();
-    this.animationService.start();
-
+    Object.keys(DEVICONS).forEach((id) => {
+      this.styleSubjects[id] = new Subject<StylesEntity>();
+      this.styleObservers[id] = this.getStyleSubject(id).asObservable();
+    });
   }
   ngOnInit(): void {
     if (this.swUpdate.isEnabled) {
@@ -69,9 +79,16 @@ export class AppComponent implements OnInit {
       }
     });
 
+    this.animationService.start();
   }
 
+  getStyleSubject(id: string) {
+    return this.styleSubjects[id];
+  }
 
+  getStyleObserver(id: string) {
+    return this.styleObservers[id];
+  }
 
   logout() {
     this.userService.logout().then(() => this.router.navigateByUrl('/login'));

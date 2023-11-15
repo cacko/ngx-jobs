@@ -15,5 +15,6 @@
     <ng-icon name="remixLogoutCircleRLine"></ng-icon>
   </button>
 </mat-toolbar>
-<app-flying-icon *ngFor="let nm of flyIcons|keys" [icon]="nm" [attr.id]="nm"></app-flying-icon>
+<app-flying-icon *ngFor="let nm of flyIcons|keys" [icon]="nm" [attr.id]="nm" [ngStyle]="getStyleObserver(nm)|async"
+  [styleSubject]="getStyleSubject(nm)"></app-flying-icon>
 <router-outlet></router-outlet>

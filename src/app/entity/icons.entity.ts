@@ -1,3 +1,5 @@
+import { Observable, Subject } from 'rxjs';
+
 export interface IconsInterface {
   [key: string]: string;
 }
@@ -13,5 +15,17 @@ export const DEVICONS: IconsInterface = {
   firebase: 'devicon-firebase-plain colored',
   android: 'evicon-android-plain colored',
   facebook: 'devicon-facebook-plain colored',
-  linkedin: 'devicon-linkedin-plain colored'
+  linkedin: 'devicon-linkedin-plain colored',
 };
+
+export interface StylesEntity {
+  [key: string]: string;
+}
+
+export interface StyleSubjects {
+  [key: string]: Subject<StylesEntity>;
+}
+
+export interface StyleObservers {
+  [key: string]: Observable<StylesEntity>;
+}
