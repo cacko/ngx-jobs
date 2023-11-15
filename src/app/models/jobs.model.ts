@@ -12,6 +12,7 @@ import {
   Source,
 } from '../entity/jobs.entity';
 import { JobEventModel } from './jobEvent.model';
+import * as moment from 'moment';
 
 export class JobModel implements JobEntity {
   position!: string;
@@ -29,6 +30,7 @@ export class JobModel implements JobEntity {
 
   constructor(original: Object) {
     Object.assign(this, original);
+    this.last_modified = moment(this.last_modified);
     this.events = this.events.map((ev) => new JobEventModel(ev));
   }
 

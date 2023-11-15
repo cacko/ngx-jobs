@@ -50,7 +50,7 @@ import {
   remixLogoutCircleRLine,
   remixLinkedinBoxFill,
   remixLoginCircleLine,
-  remixMoneyPoundCircleFill
+  remixMoneyPoundCircleFill,
 } from '@ng-icons/remixicon';
 import {
   lucideMailWarning,
@@ -70,15 +70,15 @@ import {
   typMail,
   typDocumentText,
   typDelete,
-  typLocation
+  typLocation,
 } from '@ng-icons/typicons';
 import { NgIconsModule } from '@ng-icons/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CvViewComponent } from './components/cv-view/cv-view.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { A11yModule } from '@angular/cdk/a11y';
+import { MatSortModule } from '@angular/material/sort';
 
 const MaterialModules = [
   MatButtonModule,
@@ -94,7 +94,10 @@ const MaterialModules = [
   MatTooltipModule,
   MatRippleModule,
   MatButtonToggleModule,
-  MatExpansionModule
+  MatExpansionModule,
+  A11yModule,
+  MatSnackBarModule,
+  MatSortModule,
 ];
 
 const Icons = {
@@ -118,7 +121,7 @@ const Icons = {
   typEyeOutline,
   typDelete,
   typLocation,
-  remixMoneyPoundCircleFill
+  remixMoneyPoundCircleFill,
 };
 @NgModule({
   declarations: [
@@ -138,7 +141,7 @@ const Icons = {
     JoburlComponent,
     CvimageComponent,
     JobsourceComponent,
-    CvViewComponent
+    CvViewComponent,
   ],
   imports: [
     JobsiteComponent,

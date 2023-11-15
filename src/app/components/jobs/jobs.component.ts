@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { orderBy } from 'lodash-es';
+import { clamp, orderBy, sortBy } from 'lodash-es';
 import { JobEntity } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
-import { JobsService } from 'src/app/service/jobs.service';
-import { saveAs} from 'file-saver';
-import { APP_BASE_HREF } from '@angular/common';
+import { saveAs } from 'file-saver';
 import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
 import { ApiService } from 'src/app/service/api.service';
-
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -18,13 +18,7 @@ interface RouteDataEntity {
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.scss'],
 })
-export class JobsComponent implements OnInit {
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private apiService: ApiService
-  ) {}
-
+export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
 
@@ -36,6 +30,42 @@ export class JobsComponent implements OnInit {
     'last_modified',
     'applied',
   ];
+
+  dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
+  @ViewChild(MatSort) sort: MatSort | null = null;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.sortData = this.sortData;
+  }
+
+  private sortData(data: JobModel[], sort: Sort): JobModel[] {
+    return data.sort((a, b) => {
+      console.log(a, b);
+      const d = sort.direction === 'asc' ? 1 : -1;
+      switch (sort.active) {
+        case 'company':
+          return a.company.name.localeCompare(b.company.name) * d;
+        case 'position':
+          return a.position.localeCompare(b.position) * d;
+        case 'location':
+          return a.location.city.localeCompare(b.location.city) * d;
+        case 'status':
+          return a.status.localeCompare(b.status) * d;
+        case 'last_modified':
+          return clamp(a.last_modified.unix() - b.last_modified.unix(), -1, 1) * d;
+        default:
+          return 0;
+      }
+    });
+  }
+
   ngOnInit() {
     this.activatedRoute.data.subscribe({
       next: (data: RouteDataEntity) => {
@@ -45,6 +75,7 @@ export class JobsComponent implements OnInit {
           ['desc']
         );
         this.jobs = jobs.map((data) => new JobModel(data));
+        this.dataSource.data = this.jobs;
       },
     });
   }
@@ -68,6 +99,4 @@ export class JobsComponent implements OnInit {
     "jobs.xlsx"
     );
   }
-
-
 }
