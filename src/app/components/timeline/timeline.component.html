@@ -4,9 +4,9 @@
       <ng-icon [name]="getIcon(ev)"></ng-icon>
     </div>
     <div class="timeline-body">
-      <!-- <h4 class="timeline-title">
-          <span class="badge">{{ev.event}}</span>
-      </h4> -->
+      <button copy-content  mat-icon-button [cdkCopyToClipboard]="ev.description" (cdkCopyToClipboardCopied)="onCopied($event)">
+        <ng-icon name="lucideCopy"></ng-icon>
+      </button>
       <p description>{{ev.description}}</p>
       <p class="timeline-subtitle">
         <span matTooltip="{{ev.timestamp|amDateFormat:'LLL'}}">

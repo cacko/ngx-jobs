@@ -57,6 +57,7 @@ import {
   lucideKeyboard,
   lucideLink,
   lucideBuilding,
+  lucideCopy
 } from '@ng-icons/lucide';
 import {
   typLink,
@@ -80,7 +81,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatSortModule } from '@angular/material/sort';
 import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
-
+import {ClipboardModule} from '@angular/cdk/clipboard';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -99,6 +100,7 @@ const MaterialModules = [
   A11yModule,
   MatSnackBarModule,
   MatSortModule,
+  ClipboardModule
 ];
 
 const Icons = {
@@ -123,6 +125,7 @@ const Icons = {
   typDelete,
   typLocation,
   remixMoneyPoundCircleFill,
+  lucideCopy
 };
 @NgModule({
   declarations: [
