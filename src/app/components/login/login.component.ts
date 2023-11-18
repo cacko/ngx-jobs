@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
     this.loginMode = LOGIN_MODE.MAGIC;
     this.activatedRoute.queryParams.subscribe((qp: any) => {
       if (this.user.isEmailLinkSigning()) {
-        console.debug('is signig');
+        this.loader.show();
         return this.loginWithEmailLink(qp.email);
       }
       this.redirectTo = qp.redirectTo || '/';
