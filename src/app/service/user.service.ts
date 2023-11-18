@@ -27,21 +27,15 @@ export class UserService {
 
   init() {
     this.user.subscribe((res) => {
+      console.log("use stat6e", res);
       res?.getIdToken().then((token) => {
         this.api.userToken = token;
       });
     });
     onAuthStateChanged(this.auth, (res) => {
+      console.log("autg change", res);
       res?.getIdToken().then((token) => {
         this.api.userToken = token;
-      });
-    });
-    onIdTokenChanged(this.auth, (res) => {
-      console.log("on token changed");
-      console.log("old token", this.api.userToken);
-      res?.getIdToken().then((token) => {
-        this.api.userToken = token;
-        console.log("new token", token);
       });
     });
   }
