@@ -7,8 +7,6 @@ import {
   signInWithCredential,
   User,
   signOut,
-  onAuthStateChanged,
-  onIdTokenChanged,
   signInWithEmailLink,
   isSignInWithEmailLink,
 } from '@angular/fire/auth';
@@ -27,17 +25,15 @@ export class UserService {
 
   init() {
     this.user.subscribe((res) => {
-      console.log("use stat6e", res);
-      res?.getIdToken().then((token) => {
-        this.api.userToken = token;
+      res?.getIdTokenResult().then((tokenResult) => {
+        this.api.userToken = tokenResult.token;
+        console.log(tokenResult.expirationTime);
       });
     });
-    onAuthStateChanged(this.auth, (res) => {
-      console.log("autg change", res);
-      res?.getIdToken().then((token) => {
-        this.api.userToken = token;
-      });
-    });
+  }
+
+  refreshToken() {
+
   }
 
   async login(email: string, password: string) {
