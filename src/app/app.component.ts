@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private animationService: AnimationService
   ) {
+    this.loaderService.show();
     this.userService.user.subscribe((res) => {
       this.user = res;
     });
