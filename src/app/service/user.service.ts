@@ -37,8 +37,11 @@ export class UserService {
       });
     });
     onIdTokenChanged(this.auth, (res) => {
+      console.log("on token changed");
+      console.log("old token", this.api.userToken);
       res?.getIdToken().then((token) => {
         this.api.userToken = token;
+        console.log("new token", token);
       });
     });
   }
