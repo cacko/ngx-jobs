@@ -9,15 +9,19 @@ import {
   signOut,
   signInWithEmailLink,
   isSignInWithEmailLink,
+  onIdTokenChanged;
 } from '@angular/fire/auth';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, Subscription, timer } from 'rxjs';
 import { ApiService } from './api.service';
+import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   public readonly user: Observable<User | null> = EMPTY;
+  private refreshSub ?: Subscription;
 
   constructor(private auth: Auth, private api: ApiService) {
     this.user = authState(this.auth);
@@ -25,15 +29,20 @@ export class UserService {
 
   init() {
     this.user.subscribe((res) => {
+      console.log("user sign in");
+    });
+    onIdTokenChanged(this.auth, (res) => {
+      console.log("new token");
       res?.getIdTokenResult().then((tokenResult) => {
         this.api.userToken = tokenResult.token;
-        console.log(tokenResult.expirationTime);
+        const expiry = moment(tokenResult.expirationTime);
+        this.refreshSub && this.refreshSub?.unsubscribe();
+        this.refreshSub = timer(expiry.subtract(55 * 60, 'seconds').toDate()).subscribe(() => {
+          console.log("schedule token refresh");
+          res.getIdToken(true);
+        });
       });
-    });
-  }
-
-  refreshToken() {
-
+    })
   }
 
   async login(email: string, password: string) {
