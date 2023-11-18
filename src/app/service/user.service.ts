@@ -9,7 +9,7 @@ import {
   signOut,
   signInWithEmailLink,
   isSignInWithEmailLink,
-  onIdTokenChanged;
+  onIdTokenChanged
 } from '@angular/fire/auth';
 import { EMPTY, Observable, Subscription, timer } from 'rxjs';
 import { ApiService } from './api.service';
