@@ -8,6 +8,7 @@ import {
   User,
   signOut,
   onAuthStateChanged,
+  onIdTokenChanged,
   signInWithEmailLink,
   isSignInWithEmailLink,
 } from '@angular/fire/auth';
@@ -31,6 +32,11 @@ export class UserService {
       });
     });
     onAuthStateChanged(this.auth, (res) => {
+      res?.getIdToken().then((token) => {
+        this.api.userToken = token;
+      });
+    });
+    onIdTokenChanged(this.auth, (res) => {
       res?.getIdToken().then((token) => {
         this.api.userToken = token;
       });
