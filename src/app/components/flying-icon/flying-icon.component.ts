@@ -13,15 +13,21 @@ export class FlyingIconComponent {
   classes = this.classSubject.asObservable();
 
 
-  constructor(private animService: AnimationService) {}
+  constructor(
+    private animService: AnimationService,
+    private elementRef: ElementRef
+    ) {}
 
   iconCls!: string;
 
   ngOnInit(): void {
     this.iconCls = DEVICONS[this.icon];
-    this.animService.register(this.classSubject, this.styleSubject);
+    const position = this.animService.register(this.classSubject);
+    const nativeEl = this.elementRef.nativeElement;
+    nativeEl.style.top = `${position.y}vh`;
+    nativeEl.style.left = `${position.x}vw`;
+
   }
 
   @Input() icon!: string;
-  @Input() styleSubject !: Subject<StylesEntity>;
 }

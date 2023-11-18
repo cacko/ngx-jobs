@@ -1,6 +1,6 @@
 app-flying-icon {
-  top: -10em;
-  left: -10em;
+// top: -10em;
+//   left: -10em;
   position: fixed;
   z-index: 100;
   display: flex;
@@ -15,7 +15,6 @@ app-flying-icon {
     font-size: 2rem;
   }
   transition: opacity 500ms ease-in-out;
-  transition: all 1500ms linear;
 
   &:hover {
     opacity: 0;

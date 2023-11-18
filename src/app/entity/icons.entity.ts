@@ -4,6 +4,11 @@ export interface IconsInterface {
   [key: string]: string;
 }
 
+export interface IconPosition {
+  x: number;
+  y: number;
+}
+
 export const DEVICONS: IconsInterface = {
   python: 'devicon-python-plain colored',
   php: 'devicon-php-plain colored',
@@ -16,6 +21,13 @@ export const DEVICONS: IconsInterface = {
   android: 'evicon-android-plain colored',
   facebook: 'devicon-facebook-plain colored',
   linkedin: 'devicon-linkedin-plain colored',
+  angular: 'devicon-angularjs-plain colored',
+  azure: 'devicon-azure-plain colored',
+  docker: 'devicon-docker-plain colored',
+  github: 'devicon-github-original colored',
+  javascript: 'devicon-javascript-plain colored',
+  mysql: 'devicon-mysql-plain colored',
+  postgresql: 'devicon-postgresql-plain colored'
 };
 
 export interface StylesEntity {
