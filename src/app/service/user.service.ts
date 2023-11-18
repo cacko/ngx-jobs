@@ -36,8 +36,11 @@ export class UserService {
       res?.getIdTokenResult().then((tokenResult) => {
         this.api.userToken = tokenResult.token;
         const expiry = moment(tokenResult.expirationTime);
+        const refresh = expiry.subtract(55 * 60, 'seconds')
         this.refreshSub && this.refreshSub?.unsubscribe();
-        this.refreshSub = timer(expiry.subtract(55 * 60, 'seconds').toDate()).subscribe(() => {
+        console.log(expiry, refresh);
+
+        this.refreshSub = timer(refresh.toDate()).subscribe(() => {
           console.log("schedule token refresh");
           res.getIdToken(true);
         });
