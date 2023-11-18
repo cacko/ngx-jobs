@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private animationService: AnimationService
   ) {
-    this.loaderService.show();
     this.userService.user.subscribe((res) => {
       this.user = res;
     });
@@ -79,7 +78,7 @@ export class AppComponent implements OnInit {
         this.useBackButton = val.url !== '/';
       }
     });
-
+    this.loaderService.show();
     this.animationService.start();
   }
 
