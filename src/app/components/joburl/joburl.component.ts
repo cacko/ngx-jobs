@@ -6,4 +6,5 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class JoburlComponent {
   @Input() url!: string;
+  @Input() truncate: boolean = false;
 }

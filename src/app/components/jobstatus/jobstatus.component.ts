@@ -9,6 +9,7 @@ import { JobStatus } from 'src/app/entity/jobs.entity';
 export class JobstatusComponent implements OnInit {
 
   @Input() status !: JobStatus;
+  @Input() truncate: boolean = false;
 
   icon: string = '';
 

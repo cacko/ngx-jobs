@@ -27,9 +27,8 @@
         background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
       }
       mat-cell {
-        font-size: 16px;
         app-simple-icon {
-          height: 1rem;
+          height: 24px;
         }
         mat-icon {
           font-size: 1rem;

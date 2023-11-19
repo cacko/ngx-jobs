@@ -10,5 +10,6 @@ import { SkillModel } from 'src/app/models/skill.model';
 export class JobskillsComponent {
 
   @Input() skills !: SkillModel[];
+  @Input() truncate: boolean = false;
   groups = SkillGroup;
 }

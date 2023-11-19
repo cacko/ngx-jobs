@@ -18,6 +18,7 @@ export class JobpositionComponent implements OnInit {
   }
 
   @Input() position!: string;
+  @Input() truncate: boolean = false;
 
   icon?: SimpleIcon;
 }

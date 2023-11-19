@@ -16,5 +16,6 @@ export class JobcompanyComponent {
 
   @Input() company !: CompanyEntity;
   @Input() mode: CompanyMode = CompanyMode.BRIEF;
+  @Input() truncate: boolean = false;
   modes = CompanyMode
 }

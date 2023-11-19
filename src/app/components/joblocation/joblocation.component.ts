@@ -19,6 +19,7 @@ export enum LocationModes {
 })
 export class JoblocationComponent implements OnInit {
 
+  @Input() truncate: boolean = false;
   @Input() location !: LocationEntity;
   city !: string;
   country !: string;

@@ -1,4 +1,4 @@
-<div>{{company.name}}</div>
+<div [truncate]="truncate" [matTooltip]="company.name">{{company.name}}</div>
 <span class="spacer" *ngIf="mode==modes.FULL"></span>
 <a mat-flat-button button-with-icon *ngIf="mode==modes.FULL && company.url" href="{{company.url}}" target="_blank"
   rel="noopener" color="primary">

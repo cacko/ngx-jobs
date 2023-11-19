@@ -11,6 +11,7 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class JobcvComponent {
   @Input() cv!: CVEntity;
+  @Input() truncate: boolean = false;
 
   constructor(public dialog: Dialog) {}
 

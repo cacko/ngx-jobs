@@ -57,6 +57,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatChipsModule } from '@angular/material/chips';
 import { JobskillsComponent } from './components/jobskills/jobskills.component';
 import { SimpleIconComponent } from './components/simple-icon/simple-icon.component';
+import { TruncateDirective } from './directive/truncate.directive';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -102,9 +103,10 @@ const MaterialModules = [
     FlyingIconComponent,
     JobskillsComponent,
     SimpleIconComponent,
+    TruncateDirective,
+    JobsiteComponent
   ],
   imports: [
-    JobsiteComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -34,7 +34,9 @@ export class JobModel implements JobEntity {
   constructor(original: Object) {
     Object.assign(this, original);
     this.last_modified = moment(this.last_modified);
-    this.events = this.events.map((ev) => new JobEventModel(ev));
+    this.events = this.events
+      .map((ev) => new JobEventModel(ev))
+      .sort((a, b) => b.timestamp.diff(a.timestamp));
     this.skills = this.skills
       .filter((sk) =>
         [SkillGroup.TECHNICAL, SkillGroup.TECHNOLOGY].includes(sk.group)
