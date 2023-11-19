@@ -1,12 +1,8 @@
 import { LoaderService } from './service/loader.service';
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
-import {
-  SwUpdate,
-  VersionEvent,
-  VersionReadyEvent,
-} from '@angular/service-worker';
-import { Subject, interval } from 'rxjs';
+import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { Observable, Subject, interval, map } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
 import { NavigationEnd, Router } from '@angular/router';
@@ -17,7 +13,7 @@ import {
   StyleSubjects,
 } from './entity/icons.entity';
 import { AnimationService } from './service/animation.service';
-import { random } from 'lodash-es';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +28,7 @@ export class AppComponent implements OnInit {
   title = 'geo';
   styleSubjects: StyleSubjects = {};
   styleObservers: StyleObservers = {};
+  $isDesktop?: Observable<boolean>;
 
   constructor(
     private loaderService: LoaderService,
@@ -39,7 +36,8 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
     private userService: UserService,
     private router: Router,
-    private animationService: AnimationService
+    private animationService: AnimationService,
+    private breakpoints: BreakpointObserver
   ) {
     this.userService.user.subscribe((res) => {
       this.user = res;
@@ -68,6 +66,10 @@ export class AppComponent implements OnInit {
         this.swUpdate.checkForUpdate();
       });
     }
+
+    this.$isDesktop = this.breakpoints
+      .observe([Breakpoints.Large, Breakpoints.XLarge, Breakpoints.Medium])
+      .pipe(map((state) => state.matches));
 
     this.loaderService.visible.subscribe((res) => {
       this.loading = res;

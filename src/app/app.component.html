@@ -15,5 +15,7 @@
     <ng-icon name="remixLogoutCircleRLine"></ng-icon>
   </button>
 </mat-toolbar>
-<app-flying-icon *ngFor="let nm of flyIcons|keys" [icon]="nm" [attr.id]="nm"></app-flying-icon>
+<div *ngIf="$isDesktop | async">
+  <app-flying-icon *ngFor="let nm of flyIcons|keys" [icon]="nm" [attr.id]="nm"></app-flying-icon>
+</div>
 <router-outlet></router-outlet>
