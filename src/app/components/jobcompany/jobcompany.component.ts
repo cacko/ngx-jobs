@@ -1,6 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CompanyEntity } from 'src/app/entity/jobs.entity';
 
+
+export enum CompanyMode {
+  BRIEF = "brief",
+  FULL = "full"
+}
+
 @Component({
   selector: 'app-jobcompany',
   templateUrl: './jobcompany.component.html',
@@ -9,5 +15,6 @@ import { CompanyEntity } from 'src/app/entity/jobs.entity';
 export class JobcompanyComponent {
 
   @Input() company !: CompanyEntity;
-
+  @Input() mode: CompanyMode = CompanyMode.BRIEF;
+  modes = CompanyMode
 }

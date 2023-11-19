@@ -24,6 +24,13 @@ export enum Source {
   DIRECT = 'direct',
 }
 
+export enum SkillGroup {
+  BUSINESS = 'BUS',
+  SOFT = 'SOFT',
+  TECHNOLOGY = 'TECHNOLOGY',
+  TECHNICAL = 'TECHNICAL',
+}
+
 export interface JobEventEntity {
   event: JobEvent;
   description: string;
@@ -53,6 +60,11 @@ export interface CompanyEntity {
   url?: string;
 }
 
+export interface SkillEntity {
+  group: SkillGroup;
+  name: string;
+}
+
 export interface JobEntity {
   position: string;
   company: CompanyEntity;
@@ -66,4 +78,5 @@ export interface JobEntity {
   source: Source;
   url: string;
   events?: JobEventEntity[];
+  skills?: SkillEntity[];
 }

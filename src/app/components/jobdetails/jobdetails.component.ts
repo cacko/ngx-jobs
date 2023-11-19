@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { JobModel } from 'src/app/models/jobs.model';
-import { CVModel } from 'src/app/models/cv.model';
+import { CompanyMode } from 'src/app/components/jobcompany/jobcompany.component';
 
 @Component({
   selector: 'app-jobdetails',
@@ -10,6 +10,6 @@ import { CVModel } from 'src/app/models/cv.model';
 export class JobdetailsComponent {
 
   @Input() job!: JobModel;
-
+  companyModes = CompanyMode;
 
 }
