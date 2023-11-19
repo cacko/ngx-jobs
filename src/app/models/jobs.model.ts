@@ -13,6 +13,7 @@ import {
 } from '../entity/jobs.entity';
 import { JobEventModel } from './jobEvent.model';
 import * as moment from 'moment';
+import { SkillModel } from './skill.model';
 
 export class JobModel implements JobEntity {
   position!: string;
@@ -27,11 +28,13 @@ export class JobModel implements JobEntity {
   source!: Source;
   url!: string;
   events: JobEventModel[] = [];
+  skills: SkillModel[] = [];
 
   constructor(original: Object) {
     Object.assign(this, original);
     this.last_modified = moment(this.last_modified);
     this.events = this.events.map((ev) => new JobEventModel(ev));
+    this.skills = this.skills.map((sk) => new SkillModel(sk));
   }
 
   get applied(): JobEventEntity | undefined {

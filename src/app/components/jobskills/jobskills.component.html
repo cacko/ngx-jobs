@@ -1,0 +1,6 @@
+<mat-chip-listbox>
+  <mat-chip *ngFor="let sk of skills" color="warn">
+    <i [class]="sk.icon" *ngIf="sk.icon"></i>
+    {{sk.name}}
+  </mat-chip>
+</mat-chip-listbox>

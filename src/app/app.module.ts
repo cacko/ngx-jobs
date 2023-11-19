@@ -57,7 +57,8 @@ import {
   lucideKeyboard,
   lucideLink,
   lucideBuilding,
-  lucideCopy
+  lucideCopy,
+  lucideWrench
 } from '@ng-icons/lucide';
 import {
   typLink,
@@ -82,6 +83,8 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { MatSortModule } from '@angular/material/sort';
 import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatChipsModule} from '@angular/material/chips';
+import { JobskillsComponent } from './components/jobskills/jobskills.component';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -100,7 +103,8 @@ const MaterialModules = [
   A11yModule,
   MatSnackBarModule,
   MatSortModule,
-  ClipboardModule
+  ClipboardModule,
+  MatChipsModule
 ];
 
 const Icons = {
@@ -125,7 +129,8 @@ const Icons = {
   typDelete,
   typLocation,
   remixMoneyPoundCircleFill,
-  lucideCopy
+  lucideCopy,
+  lucideWrench
 };
 @NgModule({
   declarations: [
@@ -146,7 +151,8 @@ const Icons = {
     CvimageComponent,
     JobsourceComponent,
     CvViewComponent,
-    FlyingIconComponent
+    FlyingIconComponent,
+    JobskillsComponent
   ],
   imports: [
     JobsiteComponent,

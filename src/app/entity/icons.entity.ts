@@ -27,7 +27,13 @@ export const DEVICONS: IconsInterface = {
   github: 'devicon-github-original colored',
   javascript: 'devicon-javascript-plain colored',
   mysql: 'devicon-mysql-plain colored',
-  postgresql: 'devicon-postgresql-plain colored'
+  postgresql: 'devicon-postgresql-plain colored',
+  aws: 'devicon-amazonwebservices-original colored',
+  bootstrap: 'devicon-bootstrap-plain colored',
+  git: 'devicon-git-plain colored',
+  go: 'devicon-go-original-wordmark colored',
+  ionic: 'devicon-ionic-original colored',
+  java: 'devicon-java-plain colored'
 };
 
 export interface StylesEntity {
