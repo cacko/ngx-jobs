@@ -59,7 +59,10 @@ export class JobsComponent implements OnInit, AfterViewInit {
         case 'status':
           return a.status.localeCompare(b.status) * d;
         case 'last_modified':
-          return clamp(a.last_modified.unix() - b.last_modified.unix(), -1, 1) * d;
+        case 'applied':
+          return (
+            clamp(a.last_modified.unix() - b.last_modified.unix(), -1, 1) * d
+          );
         default:
           return 0;
       }
@@ -94,9 +97,10 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   onExport() {
-    saveAs(`
+    saveAs(
+      `
     ${ApiConfig.BASE_URI}/${ApiType.JOBS_EXPORT}`,
-    "jobs.xlsx"
+      'jobs.xlsx'
     );
   }
 }

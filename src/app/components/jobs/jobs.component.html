@@ -22,19 +22,19 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Company">Position</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Position">Position</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <app-jobposition [position]="element.position"></app-jobposition>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="location">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Company">Location</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Location">Location</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <app-joblocation [location]="element.location"></app-joblocation>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="applied">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Company">Applied</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by applied">Applied</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">
         {{element.applied.timestamp|amTimeAgo}}
@@ -43,7 +43,7 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="last_modified">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Company">Last Action</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Last action">Last Action</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">
         {{element.last_modified|amTimeAgo}}
@@ -52,7 +52,7 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Company">Status</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Status">Status</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <app-jobstatus [status]="element.status"></app-jobstatus>
     </mat-cell>
