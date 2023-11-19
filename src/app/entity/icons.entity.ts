@@ -1,7 +1,8 @@
 import { Observable, Subject } from 'rxjs';
+import { SimpleIcon, siAmazonaws, siAndroid, siAngular, siBootstrap, siDjango, siDocker, siFacebook, siFastapi, siFirebase, siFlask, siGit, siGithub, siGo, siIonic, siJavascript, siKotlin, siLinkedin, siLinux, siMicrosoftazure, siMysql, siPhp, siPostgresql, siPython, siShell, siSwift, siTypescript } from 'simple-icons';
 
 export interface IconsInterface {
-  [key: string]: string;
+  [key: string]: SimpleIcon;
 }
 
 export interface IconPosition {
@@ -10,32 +11,31 @@ export interface IconPosition {
 }
 
 export const DEVICONS: IconsInterface = {
-  python: 'devicon-python-plain colored',
-  php: 'devicon-php-plain colored',
-  django: 'devicon-django-plain colored',
-  flask: 'devicon-flask-original colored',
-  linux: 'devicon-linux-plain colored',
-  typescript: 'devicon-typescript-plain colored',
-  fastapi: 'devicon-fastapi-plain colored',
-  firebase: 'devicon-firebase-plain colored',
-  android: 'evicon-android-plain colored',
-  facebook: 'devicon-facebook-plain colored',
-  linkedin: 'devicon-linkedin-plain colored',
-  angular: 'devicon-angularjs-plain colored',
-  azure: 'devicon-azure-plain colored',
-  docker: 'devicon-docker-plain colored',
-  github: 'devicon-github-original colored',
-  javascript: 'devicon-javascript-plain colored',
-  mysql: 'devicon-mysql-plain colored',
-  postgresql: 'devicon-postgresql-plain colored',
-  aws: 'devicon-amazonwebservices-original colored',
-  bootstrap: 'devicon-bootstrap-plain colored',
-  git: 'devicon-git-plain colored',
-  go: 'devicon-go-original-wordmark colored',
-  ionic: 'devicon-ionic-original colored',
-  java: 'devicon-java-plain colored',
-  perl: 'devicon-perl-plain colored',
-  base: 'devicon-bash-plain colored'
+  python: siPython,
+  php: siPhp,
+  django: siDjango,
+  flask: siFlask,
+  linux: siLinux,
+  typescript: siTypescript,
+  fastapi: siFastapi,
+  firebase: siFirebase,
+  android: siAndroid,
+  linkedin: siLinkedin,
+  angular: siAngular,
+  azure: siMicrosoftazure,
+  docker: siDocker,
+  github: siGithub,
+  javascript: siJavascript,
+  mysql: siMysql,
+  postgresql: siPostgresql,
+  aws: siAmazonaws,
+  bootstrap: siBootstrap,
+  git: siGit,
+  go: siGo,
+  ionic: siIonic,
+  java: siKotlin,
+  swift: siSwift,
+  bash: siShell
 };
 
 export interface StylesEntity {

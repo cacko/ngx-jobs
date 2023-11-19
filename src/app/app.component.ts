@@ -14,7 +14,8 @@ import {
 } from './entity/icons.entity';
 import { AnimationService } from './service/animation.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
+import type { SimpleIcon } from 'simple-icons';
+import { siAbletonlive, siAmazonroute53 , siPython} from 'simple-icons';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   styleSubjects: StyleSubjects = {};
   styleObservers: StyleObservers = {};
   $isDesktop?: Observable<boolean>;
+  icon = siPython;
 
   constructor(
     private loaderService: LoaderService,

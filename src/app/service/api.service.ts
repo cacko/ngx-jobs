@@ -26,9 +26,8 @@ import {
   isNumber,
   find,
 } from 'lodash-es';
-import { Md5 } from 'ts-md5';
 import { LoaderService } from './loader.service';
-
+import { SHA1 } from 'crypto-js';
 interface CacheEntry {
   timestamp: moment.Moment;
   data: any;
@@ -89,4 +88,22 @@ export class ApiService implements HttpInterceptor {
         });
     });
   }
+
+  // private toCache()
+
+  // private cacheKey(type: ApiType): string {
+  //   return SHA1(`${type}`).toString();
+  // }
+
+  // private inCache(key: string): any {
+  //   const cached: string | null = localStorage.getItem(key);
+
+  //   if (!cached) {
+  //     return null;
+  //   }
+
+  //   const entry: CacheEntry = JSON.parse(cached);
+
+  //   return entry.data;
+  // }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {DEVICONS} from '../../entity/icons.entity';
+import { DEVICONS } from '../../entity/icons.entity';
+import { SimpleIcon } from 'simple-icons';
 
 @Component({
   selector: 'app-jobposition',
@@ -8,14 +9,15 @@ import {DEVICONS} from '../../entity/icons.entity';
 })
 export class JobpositionComponent implements OnInit {
   ngOnInit(): void {
-    this.icon = Object.keys(DEVICONS).reduce(
+    const iconName = Object.keys(DEVICONS).reduce(
       (res, lng) =>
-        this.position.toLowerCase().indexOf(lng) > -1 ? DEVICONS[lng] : res,
+        this.position.toLowerCase().indexOf(lng) > -1 ? lng : res,
       ''
     );
+    this.icon = DEVICONS[iconName];
   }
 
   @Input() position!: string;
 
-  icon: string = '';
+  icon?: SimpleIcon;
 }

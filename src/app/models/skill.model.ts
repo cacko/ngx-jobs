@@ -1,5 +1,6 @@
 import { SkillEntity, SkillGroup } from '../entity/jobs.entity';
 import { DEVICONS } from '../entity/icons.entity';
+import { SimpleIcon } from 'simple-icons';
 
 export class SkillModel implements SkillEntity {
   group!: SkillGroup;
@@ -9,11 +10,12 @@ export class SkillModel implements SkillEntity {
     Object.assign(this, original);
   }
 
-  get icon(): string {
-    return Object.keys(DEVICONS).reduce(
+  get icon(): SimpleIcon | null {
+    const iconName = Object.keys(DEVICONS).reduce(
       (res, lng) =>
-        this.name.toLowerCase().indexOf(lng) > -1 ? DEVICONS[lng] : res,
+        this.name.toLowerCase().indexOf(lng) > -1 ? lng : res,
       ''
     );
+    return DEVICONS[iconName];
   }
 }

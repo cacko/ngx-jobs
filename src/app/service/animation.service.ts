@@ -29,7 +29,10 @@ export class AnimationService {
     'animate__shakeY',
     'animate__rubberBand',
     'animate__flip',
-    'animate__flip',
+    'animate__wobble',
+    'animate__jello',
+    'animate__rotateIn',
+    'animate__swing'
   ];
   // classes = 'animate__animated';\
   classes: string[] = [];

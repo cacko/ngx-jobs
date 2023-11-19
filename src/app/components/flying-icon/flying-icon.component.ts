@@ -3,6 +3,7 @@ import { AnimationService } from 'src/app/service/animation.service';
 import { DEVICONS, StylesEntity } from 'src/app/entity/icons.entity';
 import { Subject } from 'rxjs';
 import { random } from 'lodash-es';
+import { SimpleIcon } from 'simple-icons';
 @Component({
   selector: 'app-flying-icon',
   templateUrl: './flying-icon.component.html',
@@ -18,10 +19,10 @@ export class FlyingIconComponent {
     private elementRef: ElementRef
     ) {}
 
-  iconCls!: string;
+  siIcon!: SimpleIcon;
 
   ngOnInit(): void {
-    this.iconCls = DEVICONS[this.icon];
+    this.siIcon = DEVICONS[this.icon];
     const position = this.animService.register(this.classSubject);
     const nativeEl = this.elementRef.nativeElement;
     nativeEl.style.top = `${position.y}vh`;

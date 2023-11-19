@@ -15,7 +15,7 @@ export class JobsourceComponent implements OnInit {
   ngOnInit(): void {
       switch(this.source) {
         case Source.LINKEDIN:
-          this.icon = 'remixLinkedinBoxFill';
+          this.icon = 'simpleLinkedin';
           break;
         default:
           this.icon = "";

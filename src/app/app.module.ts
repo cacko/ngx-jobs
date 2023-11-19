@@ -45,21 +45,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { JobdetailsComponent } from './components/jobdetails/jobdetails.component';
 import { CvimageComponent } from './components/cvimage/cvimage.component';
-import {LayoutModule} from '@angular/cdk/layout';
-import {
-  remixFileExcel2Fill,
-  remixLogoutCircleRLine,
-  remixLinkedinBoxFill,
-  remixLoginCircleLine,
-  remixMoneyPoundCircleFill,
-} from '@ng-icons/remixicon';
+import { LayoutModule } from '@angular/cdk/layout';
+import { simpleMicrosoftexcel, simpleLinkedin } from '@ng-icons/simple-icons';
 import {
   lucideMailWarning,
   lucideKeyboard,
   lucideLink,
   lucideBuilding,
   lucideCopy,
-  lucideWrench
+  lucideWrench,
+  lucideLogOut,
+  lucideLogIn,
+  lucidePlane,
 } from '@ng-icons/lucide';
 import {
   typLink,
@@ -83,9 +80,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatSortModule } from '@angular/material/sort';
 import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
-import {ClipboardModule} from '@angular/cdk/clipboard';
-import {MatChipsModule} from '@angular/material/chips';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatChipsModule } from '@angular/material/chips';
 import { JobskillsComponent } from './components/jobskills/jobskills.component';
+import { SimpleIconComponent } from './components/simple-icon/simple-icon.component';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -106,7 +104,7 @@ const MaterialModules = [
   MatSortModule,
   ClipboardModule,
   MatChipsModule,
-  LayoutModule
+  LayoutModule,
 ];
 
 const Icons = {
@@ -117,22 +115,22 @@ const Icons = {
   typLink,
   typWatch,
   typFlash,
-  remixFileExcel2Fill,
-  remixLogoutCircleRLine,
+  simpleMicrosoftexcel,
+  lucideLogOut,
   typChevronLeftOutline,
   lucideBuilding,
-  remixLinkedinBoxFill,
+  simpleLinkedin,
   typFlag,
   typMicrophone,
   typMail,
   typDocumentText,
-  remixLoginCircleLine,
+  lucideLogIn,
   typEyeOutline,
   typDelete,
   typLocation,
-  remixMoneyPoundCircleFill,
+  lucidePlane,
   lucideCopy,
-  lucideWrench
+  lucideWrench,
 };
 @NgModule({
   declarations: [
@@ -154,7 +152,8 @@ const Icons = {
     JobsourceComponent,
     CvViewComponent,
     FlyingIconComponent,
-    JobskillsComponent
+    JobskillsComponent,
+    SimpleIconComponent
   ],
   imports: [
     JobsiteComponent,

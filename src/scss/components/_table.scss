@@ -16,7 +16,6 @@
         text-transform: uppercase;
         font-weight: bold !important;
         background: darken(mat.get-color-from-palette($background-palette, card), 10%) !important;
-
       }
     }
 
@@ -27,11 +26,15 @@
         opacity: 0.5;
         background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
       }
+      app-simple-icon {
+        height: 1rem;
+      }
     }
 
     mat-row:hover mat-cell {
       background-color: mat.get-color-from-palette($palette);
       cursor: pointer;
+
     }
   }
 
