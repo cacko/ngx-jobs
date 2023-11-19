@@ -1,7 +1,7 @@
 <app-cvimage [cv]="cv"></app-cvimage>
 <div>{{cv.name}}</div>
 <span class="spacer"></span>
-<button mat-button button-with-icon (click)="openDialog($event)">
+<button mat-flat-button  button-with-icon (click)="openDialog($event)" color="primary">
   <ng-icon name="typEyeOutline"></ng-icon>
   <span>preview</span>
 </button>

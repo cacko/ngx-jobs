@@ -9,6 +9,7 @@ import {
   JobStatus,
   LocationEntity,
   LocationType,
+  SkillGroup,
   Source,
 } from '../entity/jobs.entity';
 import { JobEventModel } from './jobEvent.model';
@@ -34,7 +35,11 @@ export class JobModel implements JobEntity {
     Object.assign(this, original);
     this.last_modified = moment(this.last_modified);
     this.events = this.events.map((ev) => new JobEventModel(ev));
-    this.skills = this.skills.map((sk) => new SkillModel(sk));
+    this.skills = this.skills
+      .filter((sk) =>
+        [SkillGroup.TECHNICAL, SkillGroup.TECHNOLOGY].includes(sk.group)
+      )
+      .map((sk) => new SkillModel(sk));
   }
 
   get applied(): JobEventEntity | undefined {

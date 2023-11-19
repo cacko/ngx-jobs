@@ -33,7 +33,9 @@ export const DEVICONS: IconsInterface = {
   git: 'devicon-git-plain colored',
   go: 'devicon-go-original-wordmark colored',
   ionic: 'devicon-ionic-original colored',
-  java: 'devicon-java-plain colored'
+  java: 'devicon-java-plain colored',
+  perl: 'devicon-perl-plain colored',
+  base: 'devicon-bash-plain colored'
 };
 
 export interface StylesEntity {
