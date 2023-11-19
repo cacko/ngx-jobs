@@ -15,13 +15,13 @@ export class JobstatusComponent implements OnInit {
   ngOnInit(): void {
       switch (this.status) {
         case JobStatus.PENDING:
-          this.icon = "typWatch";
+          this.icon = "hourglass";
           break;
         case JobStatus.IN_PROGRESS:
-          this.icon = "typFlash";
+          this.icon = "sync";
           break;
         case JobStatus.REJECTED:
-          this.icon = "typThumbsDown";
+          this.icon = "thumb_down";
           break;
       }
   }

@@ -46,33 +46,6 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { JobdetailsComponent } from './components/jobdetails/jobdetails.component';
 import { CvimageComponent } from './components/cvimage/cvimage.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { simpleMicrosoftexcel, simpleLinkedin } from '@ng-icons/simple-icons';
-import {
-  lucideMailWarning,
-  lucideKeyboard,
-  lucideLink,
-  lucideBuilding,
-  lucideCopy,
-  lucideWrench,
-  lucideLogOut,
-  lucideLogIn,
-  lucidePlane,
-} from '@ng-icons/lucide';
-import {
-  typLink,
-  typThumbsDown,
-  typWatch,
-  typFlash,
-  typChevronLeftOutline,
-  typEyeOutline,
-  typFlag,
-  typMicrophone,
-  typMail,
-  typDocumentText,
-  typDelete,
-  typLocation,
-} from '@ng-icons/typicons';
-import { NgIconsModule } from '@ng-icons/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CvViewComponent } from './components/cv-view/cv-view.component';
@@ -107,31 +80,6 @@ const MaterialModules = [
   LayoutModule,
 ];
 
-const Icons = {
-  lucideMailWarning,
-  lucideKeyboard,
-  lucideLink,
-  typThumbsDown,
-  typLink,
-  typWatch,
-  typFlash,
-  simpleMicrosoftexcel,
-  lucideLogOut,
-  typChevronLeftOutline,
-  lucideBuilding,
-  simpleLinkedin,
-  typFlag,
-  typMicrophone,
-  typMail,
-  typDocumentText,
-  lucideLogIn,
-  typEyeOutline,
-  typDelete,
-  typLocation,
-  lucidePlane,
-  lucideCopy,
-  lucideWrench,
-};
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,12 +101,11 @@ const Icons = {
     CvViewComponent,
     FlyingIconComponent,
     JobskillsComponent,
-    SimpleIconComponent
+    SimpleIconComponent,
   ],
   imports: [
     JobsiteComponent,
     BrowserModule,
-    NgIconsModule.withIcons(Icons),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

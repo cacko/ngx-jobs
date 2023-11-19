@@ -14,8 +14,7 @@ import {
 } from './entity/icons.entity';
 import { AnimationService } from './service/animation.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import type { SimpleIcon } from 'simple-icons';
-import { siAbletonlive, siAmazonroute53 , siPython} from 'simple-icons';
+import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,7 +29,6 @@ export class AppComponent implements OnInit {
   styleSubjects: StyleSubjects = {};
   styleObservers: StyleObservers = {};
   $isDesktop?: Observable<boolean>;
-  icon = siPython;
 
   constructor(
     private loaderService: LoaderService,
@@ -39,7 +37,8 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private animationService: AnimationService,
-    private breakpoints: BreakpointObserver
+    private breakpoints: BreakpointObserver,
+    private iconRegistry: MatIconRegistry
   ) {
     this.userService.user.subscribe((res) => {
       this.user = res;
@@ -49,6 +48,8 @@ export class AppComponent implements OnInit {
       this.styleSubjects[id] = new Subject<StylesEntity>();
       this.styleObservers[id] = this.getStyleSubject(id).asObservable();
     });
+    this.iconRegistry.registerFontClassAlias("ms", 'material-symbols-outlined');
+    this.iconRegistry.setDefaultFontSetClass('material-symbols-outlined');
   }
   ngOnInit(): void {
     if (this.swUpdate.isEnabled) {

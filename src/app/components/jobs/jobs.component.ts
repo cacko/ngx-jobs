@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
+import { siMicrosoftexcel } from 'simple-icons';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -21,6 +22,7 @@ interface RouteDataEntity {
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
+  excelIcon = siMicrosoftexcel;
 
   displayedColumns = [
     'company',

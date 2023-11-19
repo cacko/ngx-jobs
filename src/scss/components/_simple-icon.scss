@@ -9,10 +9,13 @@ app-simple-icon {
   }
 }
 
-app-job {
-  h1 {
-    app-simple-icon {
-      height: 32px;
-    }
+h1 {
+  app-simple-icon {
+    height: 32px;
+  }
+}
+[button-with-icon] {
+  app-simple-icon {
+    height: 1rem;
   }
 }

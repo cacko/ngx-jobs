@@ -118,7 +118,7 @@ $theme-primary: mat.define-palette(mat.$blue-grey-palette, 700);
 $theme-accent: mat.define-palette(mat.$blue-grey-palette, 300);
 $theme-warn: mat.define-palette(mat.$red-palette, 500);
 $custom-typography: mat.define-typography-config(
-  $font-family:"Roboto Mono",
+  $font-family:"Share Tech Mono",
 );
 $background-palette: (
   status-bar: black,
@@ -145,7 +145,7 @@ $my-theme: mat.define-dark-theme(
       warn: $theme-warn
     ),
     typography: $custom-typography,
-    density: 1
+    density: 0
   )
 );
 
@@ -172,12 +172,12 @@ $my-theme: mat.define-dark-theme(
 @include myerrors.apply-errors-theme($my-theme, $background-palette);
 @import "./scss/components/toolbar";
 @import "./scss/components/logo";
-@import "./scss/components/ngicon";
 @import "./scss/components/button";
 @import "./scss/components/spacer";
 @import "./scss/components/cvview";
 @import "./scss/components/fly-icon";
 @import "./scss/components/simple-icon";
+@import "./scss/components/mat-icon";
 @import "animate.css/animate";
 
 html {

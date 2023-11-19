@@ -17,13 +17,13 @@ export class TimelineComponent {
   getIcon(ev: JobEventModel): string {
     switch (ev.event) {
       case JobEvent.APPLIED:
-        return 'typFlag';
+        return 'sports_score';
       case JobEvent.INTERVIEW:
-        return 'typMicrophone';
+        return 'mic';
       case JobEvent.REJECT:
-        return 'typThumbsDown';
+        return 'thumb_down';
       case JobEvent.RESPONSE:
-        return 'typMail';
+        return 'mail';
     }
   }
 

@@ -1,8 +1,7 @@
 <div>{{company.name}}</div>
-<!-- <ng-icon *ngIf="company.url" name="typLink"></ng-icon> -->
 <span class="spacer" *ngIf="mode==modes.FULL"></span>
-<a mat-flat-button  button-with-icon *ngIf="mode==modes.FULL && company.url" href="{{company.url}}" target="_blank"
+<a mat-flat-button button-with-icon *ngIf="mode==modes.FULL && company.url" href="{{company.url}}" target="_blank"
   rel="noopener" color="primary">
-  <ng-icon name="typLink"></ng-icon>
+  <mat-icon fontSet="ms">link</mat-icon>
   <span>website</span>
 </a>

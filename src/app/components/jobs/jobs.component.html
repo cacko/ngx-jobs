@@ -4,11 +4,11 @@
   <span class="spacer"></span>
   <button mat-icon-button aria-label="Export liste to XLSX" (click)="onExport()" class="on-mobile no-desktop"
     [disabled]="exportDisabled">
-    <ng-icon name="simpleMicrosoftexcel"></ng-icon>
+    <app-simple-icon [icon]="excelIcon"></app-simple-icon>
   </button>
   <button mat-button button-with-icon aria-label="Export liste to XLSX" (click)="onExport()" [disabled]="exportDisabled"
     class="on-desktop no-mobile">
-    <ng-icon name="simpleMicrosoftexcel"></ng-icon>
+    <app-simple-icon [icon]="excelIcon"></app-simple-icon>
     <span>Export</span>
   </button>
 </div>
@@ -22,13 +22,15 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Position">Position</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      sortActionDescription="Sort by Position">Position</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <app-jobposition [position]="element.position"></app-jobposition>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="location">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Location">Location</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      sortActionDescription="Sort by Location">Location</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <app-joblocation [location]="element.location"></app-joblocation>
     </mat-cell>
@@ -38,12 +40,12 @@
     <mat-cell *matCellDef="let element">
       <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">
         {{element.applied.timestamp|amTimeAgo}}
-
       </span>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="last_modified">
-    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Last action">Last Action</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Last action">Last
+      Action</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">
         {{element.last_modified|amTimeAgo}}

@@ -26,8 +26,14 @@
         opacity: 0.5;
         background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
       }
-      app-simple-icon {
-        height: 1rem;
+      mat-cell {
+        font-size: 16px;
+        app-simple-icon {
+          height: 1rem;
+        }
+        mat-icon {
+          font-size: 1rem;
+        }
       }
     }
 

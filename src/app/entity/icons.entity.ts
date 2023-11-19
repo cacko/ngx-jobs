@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { SimpleIcon, siAmazonaws, siAndroid, siAngular, siBootstrap, siDjango, siDocker, siFacebook, siFastapi, siFirebase, siFlask, siGit, siGithub, siGo, siIonic, siJavascript, siKotlin, siLinkedin, siLinux, siMicrosoftazure, siMysql, siPhp, siPostgresql, siPython, siShell, siSwift, siTypescript } from 'simple-icons';
+import { SimpleIcon, siAmazonaws, siAndroid, siAngular, siAnsible, siBootstrap, siCss3, siDatadog, siDjango, siDocker, siFacebook, siFastapi, siFirebase, siFlask, siGit, siGithub, siGitlab, siGo, siGrafana, siIonic, siJavascript, siJquery, siKotlin, siKubernetes, siLaravel, siLinkedin, siLinux, siMicrosoftazure, siMongodb, siMysql, siPercy, siPerl, siPhp, siPostgresql, siPython, siRabbitmq, siRuby, siRust, siSass, siShell, siSololearn, siSwift, siTypescript, siWindows11 } from 'simple-icons';
 
 export interface IconsInterface {
   [key: string]: SimpleIcon;
@@ -33,9 +33,24 @@ export const DEVICONS: IconsInterface = {
   git: siGit,
   go: siGo,
   ionic: siIonic,
-  java: siKotlin,
+  kotlin: siKotlin,
   swift: siSwift,
-  bash: siShell
+  bash: siShell,
+  mongo: siMongodb,
+  css: siCss3,
+  windows: siWindows11,
+  laravel: siLaravel,
+  jquery: siJquery,
+  sass: siSass,
+  rabbitmq: siRabbitmq,
+  kubernetes: siKubernetes,
+  grafana: siGrafana,
+  perl: siPerl,
+  datadog: siDatadog,
+  ansible: siAnsible,
+  ruby: siRuby,
+  rust: siRust,
+  gitlab: siGitlab,
 };
 
 export interface StylesEntity {
