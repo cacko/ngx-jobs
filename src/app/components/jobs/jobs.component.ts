@@ -49,7 +49,6 @@ export class JobsComponent implements OnInit, AfterViewInit {
 
   private sortData(data: JobModel[], sort: Sort): JobModel[] {
     return data.sort((a, b) => {
-      console.log(a, b);
       const d = sort.direction === 'asc' ? 1 : -1;
       switch (sort.active) {
         case 'company':
@@ -79,7 +78,9 @@ export class JobsComponent implements OnInit, AfterViewInit {
           ['last_modified'],
           ['desc']
         );
-        this.jobs = jobs.map((data) => new JobModel(data));
+        this.jobs = jobs
+          .filter((je) => !je.deleted)
+          .map((data) => new JobModel(data));
         this.dataSource.data = this.jobs;
       },
     });
