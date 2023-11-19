@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   private loginWithPassword(email: string, password: string) {
+    this.loader.show();
     this.user
       .login(email, password)
       .then((user) => {
