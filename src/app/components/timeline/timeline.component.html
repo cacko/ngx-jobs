@@ -1,11 +1,11 @@
 <div class="timeline">
   <div *ngFor="let ev of job.events" class="timeline-container {{ev.event}}">
     <div class="timeline-icon">
-      <mat-icon fontSet="ms">{{getIcon(ev)}}</mat-icon>
+      <mat-icon >{{getIcon(ev)}}</mat-icon>
     </div>
     <div class="timeline-body">
       <button copy-content  mat-icon-button [cdkCopyToClipboard]="ev.description" (cdkCopyToClipboardCopied)="onCopied($event)">
-        <mat-icon fontSet="ms">content_copy</mat-icon>
+        <mat-icon >content_copy</mat-icon>
       </button>
       <p description>{{ev.description}}</p>
       <p class="timeline-subtitle">

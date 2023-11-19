@@ -1,9 +1,21 @@
 mat-row {
-  .mat-icon.material-symbols-outlined {
-    width: 1rem;
+  .mat-icon.material-symbols-sharp {
+    width: 28px;
     height: 1rem;
     aspect-ratio: 1;
-    font-size: 1rem;
+    font-size: 28px;
+  }
+}
+[label] {
+  .mat-icon.material-symbols-sharp {
+    width: 28px;
+    height: 28px;
+    aspect-ratio: 1;
+    font-size: 28px;
   }
 }
 
+.material-symbols-sharp {
+  font-variant: unset;
+  text-transform: unset;
+}

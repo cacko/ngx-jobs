@@ -2,7 +2,7 @@
   <h1>Hello {{ user.displayName }}!</h1>
   <div>
     <button mat-flat-button color="primary" (click)="logout()">
-      <mat-icon fontSet="ms">logout</mat-icon>
+      <mat-icon >logout</mat-icon>
       Logout
     </button>
   </div>
@@ -27,18 +27,18 @@
             [required]="loginMode == modeName.PASSWORD">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
-            <mat-icon fontSet="ms">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
         <mat-button-toggle-group (change)="onLoginMode($event)">
           <mat-button-toggle [checked]="loginMode==modeName.PASSWORD" button-with-icon value="{{modeName.PASSWORD}}"
             aria-label="Text align left">
-            <mat-icon fontSet="ms">password</mat-icon>
+            <mat-icon >password</mat-icon>
             <span>Password</span>
           </mat-button-toggle>
           <mat-button-toggle [checked]="loginMode==modeName.MAGIC" button-with-icon value="{{modeName.MAGIC}}"
             aria-label="Text align center">
-            <mat-icon fontSet="ms">mail_lock</mat-icon>
+            <mat-icon >mail_lock</mat-icon>
             <span>MagicLink</span>
           </mat-button-toggle>
         </mat-button-toggle-group>
@@ -48,7 +48,7 @@
           </div>
           <div>
             <button mat-raised-button button-with-icon type="submit" color="primary">
-              <mat-icon fontSet="ms">login</mat-icon>
+              <mat-icon >login</mat-icon>
               <div  *ngIf="loginMode == modeName.MAGIC">Continue</div>
               <div  *ngIf="loginMode == modeName.PASSWORD">Login</div>
             </button>

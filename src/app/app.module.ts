@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { ApiService } from './service/api.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -148,4 +148,10 @@ const MaterialModules = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(iconRegiester: MatIconRegistry) {
+    iconRegiester.setDefaultFontSetClass('material-symbols-sharp');
+  }
+
+}
