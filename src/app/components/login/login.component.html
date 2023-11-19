@@ -11,8 +11,12 @@
   <mat-card appearance="raised">
     <mat-card-content>
       <app-logo></app-logo>
+      <p *ngIf="loginMode == modeName.MAGIC">
+        Type your email and you will receive and login link
+      </p>
       <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()"
         *ngIf="!waitForLink">
+
         <mat-form-field appearance="fill" *ngIf="loginMode">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="emailInput" [required]="true">
@@ -45,7 +49,8 @@
           <div>
             <button mat-raised-button button-with-icon type="submit" color="primary">
               <ng-icon name="remixLoginCircleLine"></ng-icon>
-              <div>Login</div>
+              <div  *ngIf="loginMode == modeName.MAGIC">Continue</div>
+              <div  *ngIf="loginMode == modeName.PASSWORD">Login</div>
             </button>
           </div>
         </div>

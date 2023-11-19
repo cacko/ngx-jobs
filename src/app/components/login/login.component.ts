@@ -93,6 +93,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loader.hide();
     this.loginMode = LOGIN_MODE.MAGIC;
     this.activatedRoute.queryParams.subscribe((qp: any) => {
       if (this.user.isEmailLinkSigning()) {
