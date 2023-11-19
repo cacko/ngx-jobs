@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LocationEntity } from 'src/app/entity/jobs.entity';
+import { LocationEntity, LocationType } from 'src/app/entity/jobs.entity';
 import {
   getEmojiFlag,
   ICountryData,
@@ -20,14 +20,24 @@ export enum LocationModes {
 export class JoblocationComponent implements OnInit {
 
   @Input() location !: LocationEntity;
-  data !: ICountryData;
+  city !: string;
+  country !: string;
   flag !: string;
   @Input() mode : string = "brief";
   modes = LocationModes;
 
   ngOnInit(): void {
-    this.data = getCountryData(this.location.country_iso as TCountryCode);
-    this.flag = getEmojiFlag(this.location.country_iso as TCountryCode);
+    this.city = this.location.city || LocationType.REMOTE;
+    switch (this.city) {
+      case LocationType.REMOTE:
+        this.city = this.city.toUpperCase();
+        this.country = "N/A";
+        this.flag = "🇺🇳";
+        break;
+      default:
+        this.country = getCountryData(this.location.country_iso as TCountryCode)?.name;
+        this.flag = getEmojiFlag(this.location.country_iso as TCountryCode);
+    }
   }
 
 }
