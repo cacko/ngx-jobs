@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, interval } from 'rxjs';
-import { random, shuffle, chain, take } from 'lodash-es';
+import { random, shuffle, isUndefined, remove, pull } from 'lodash-es';
 import { IconPosition, StylesEntity } from '../entity/icons.entity';
-
 
 
 @Injectable({
@@ -11,14 +10,28 @@ import { IconPosition, StylesEntity } from '../entity/icons.entity';
 export class AnimationService {
   private classSubjects: Subject<string>[] = [];
   private positions: IconPosition[] = [];
+  private choices: number[] = [];
 
-  constructor() {}
+  private readonly SIZE = 200;
 
-  register(classes: Subject<string>): IconPosition {
+  constructor() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    this.choices = [...Array(Math.floor(screenHeight / this.SIZE) * Math.floor(screenWidth / this.SIZE)).keys()];
+
+  }
+
+  register(classes: Subject<string>): IconPosition | null {
     this.classSubjects.push(classes);
+    const pos = shuffle(this.choices).pop();
+    this.choices = this.choices.filter(a => a !== pos);
+    if (isUndefined(pos)) {
+      return null;
+    }
+    const numRows =  Math.floor(window.innerWidth /  this.SIZE);
     const position = {
-      x: random(2,95),
-      y: random(2,95),
+      x: (pos % numRows ) * this.SIZE + random(10, this.SIZE/2),
+      y: Math.floor(pos / numRows) * this.SIZE + random(10, this.SIZE/2),
     };
     this.positions.push(position);
     return position;

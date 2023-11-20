@@ -8,6 +8,10 @@ app-simple-icon {
     height: 100%;
     user-select: none;
   }
+  transition: all 500ms ease-in-out;
+  &:hover {
+    transform: scale3d(3, 3, 3);
+  }
 }
 
 h1 {

@@ -24,9 +24,12 @@ export class FlyingIconComponent {
   ngOnInit(): void {
     this.siIcon = DEVICONS[this.icon];
     const position = this.animService.register(this.classSubject);
+    if (!position) {
+      return;
+    }
     const nativeEl = this.elementRef.nativeElement;
-    nativeEl.style.top = `${position.y}vh`;
-    nativeEl.style.left = `${position.x}vw`;
+    nativeEl.style.top = `${position.y}px`;
+    nativeEl.style.left = `${position.x}px`;
 
   }
 

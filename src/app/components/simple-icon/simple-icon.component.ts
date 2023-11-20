@@ -16,6 +16,5 @@ export class SimpleIconComponent implements OnInit {
     const nativeElement = this.elementRef.nativeElement;
     nativeElement.innerHTML = this.icon.svg;
     nativeElement.style.fill = `#${this.icon.hex}`;
-    console.log(this.icon);
   }
 }

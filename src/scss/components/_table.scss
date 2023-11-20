@@ -45,7 +45,6 @@
 
   [table-grid] {
     border: none;
-    font-size: 120%;
     display: none;
     width: 100%;
     align-items: center;
@@ -60,6 +59,7 @@
       font-variant: small-caps;
       text-transform: uppercase;
       text-align: right;
+      font-weight: 100;
     }
     [content] {
       background-color: mat.get-color-from-palette($background-palette, card);

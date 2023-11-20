@@ -18,15 +18,18 @@ import {
   siGithub,
   siGitlab,
   siGo,
+  siGoogleclassroom,
   siGrafana,
   siIonic,
   siJavascript,
+  siJenkins,
   siJquery,
   siKotlin,
   siKubernetes,
   siLaravel,
   siLinkedin,
   siLinux,
+  siMariadb,
   siMicrosoftazure,
   siMongodb,
   siMysql,
@@ -43,6 +46,7 @@ import {
   siSololearn,
   siSwift,
   siTypescript,
+  siUbuntu,
   siWindows11,
 } from 'simple-icons';
 
@@ -96,6 +100,10 @@ export const DEVICONS: IconsInterface = {
   ruby: siRuby,
   rust: siRust,
   gitlab: siGitlab,
+  jenkins: siJenkins,
+  mariadb: siMariadb,
+  gcp: siGoogleclassroom,
+  ubuntu: siUbuntu,
 };
 
 export interface StylesEntity {
