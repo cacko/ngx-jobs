@@ -3,6 +3,8 @@
 @use "./scss/components/details" as mydetails;
 @use "./scss/components/timeline" as mytimeline;
 @use "./scss/components/errors" as myerrors;
+@use "./scss/components/logo" as mylogo;
+
 @use "sass:map";
 @include mat.core();
 
@@ -176,8 +178,8 @@ $my-theme: mat.define-dark-theme(
 @include mydetails.apply-details-theme($my-theme, $background-palette);
 @include mytimeline.apply-timeline-theme($my-theme, $background-palette);
 @include myerrors.apply-errors-theme($my-theme, $background-palette);
+@include mylogo.apply-logo-theme($my-theme, $background-palette);
 @import "./scss/components/toolbar";
-@import "./scss/components/logo";
 @import "./scss/components/button";
 @import "./scss/components/spacer";
 @import "./scss/components/cvview";
