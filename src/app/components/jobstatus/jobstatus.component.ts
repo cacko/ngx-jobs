@@ -22,7 +22,7 @@ export class JobstatusComponent implements OnInit {
         this.icon = "hourglass";
         break;
       case JobStatus.IN_PROGRESS:
-        this.label = "In Progres"
+        this.label = "In Progress"
         this.icon = "sync";
         break;
       case JobStatus.REJECTED:
