@@ -12,7 +12,7 @@ export class AnimationService {
   private positions: IconPosition[] = [];
   private choices: number[] = [];
 
-  private readonly SIZE = 200;
+  private readonly SIZE = 150;
 
   constructor() {
     const screenWidth = window.innerWidth;

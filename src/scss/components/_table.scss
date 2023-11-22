@@ -5,87 +5,114 @@
 @mixin apply-table-theme($theme, $background-palette) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
+  $accent: map.get($color-config, accent);
   $warn: map.get($color-config, warn);
-  mat-table {
-    display: none;
-    font-size: 120%;
-    mat-header-row {
-      flex-wrap: wrap;
-      mat-header-cell {
-        font-variant: small-caps;
-        text-transform: uppercase;
-        font-weight: bold !important;
-        background: darken(mat.get-color-from-palette($background-palette, card), 10%) !important;
-      }
-    }
 
-    mat-row {
-      flex-wrap: wrap;
+  $events: (
+    in_progress: fade-out(mat.get-color-from-palette($accent), 0.9),
+    rejected: fade-out(mat.get-color-from-palette($warn), 0.9),
+  );
 
-      &[status="rejected"] {
-        opacity: 0.5;
-        background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
-      }
-      mat-cell {
-        app-simple-icon {
-          height: 24px;
-        }
-        mat-icon {
-          font-size: 1em;
-          line-height: 28px;
-        }
-      }
-    }
+mat-table {
+  display: none;
+  font-size: 120%;
 
-    mat-row:hover mat-cell {
-      background-color: mat.get-color-from-palette($palette);
-      cursor: pointer;
+  mat-header-row {
+    flex-wrap: wrap;
 
-    }
-  }
-
-  [table-grid] {
-    border: none;
-    display: none;
-    width: 100%;
-    align-items: center;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 0.5rem;
-    background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
-    border-bottom: 1rem solid mat.get-color-from-palette($background-palette, app-bar);
-    &:first-of-type {
-      border-top: 0;
-    }
-    [label] {
+    mat-header-cell {
       font-variant: small-caps;
       text-transform: uppercase;
-      text-align: right;
-      font-weight: 100;
+      font-weight: bold !important;
+      background: darken(mat.get-color-from-palette($background-palette, card), 10%) !important;
     }
-    [content] {
-      background-color: mat.get-color-from-palette($background-palette, card);
-      padding: 0.5rem;
-      font-weight: 400;
+  }
+
+  mat-row {
+    flex-wrap: wrap;
+
+    mat-cell {
+      app-simple-icon {
+        height: 24px;
+      }
+
+      mat-icon {
+        font-size: 1em;
+        line-height: 28px;
+      }
     }
-    &[status="rejected"] {
-      background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
+  }
+
+  mat-row:hover mat-cell {
+    background-color: mat.get-color-from-palette($palette);
+    cursor: pointer;
+
+  }
+}
+
+[table-grid] {
+  border: none;
+  display: none;
+  width: 100%;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 0.5rem;
+  background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
+  border-bottom: 1rem solid mat.get-color-from-palette($background-palette, app-bar);
+
+  &:first-of-type {
+    border-top: 0;
+  }
+
+  [label] {
+    font-variant: small-caps;
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 100;
+  }
+
+  [content] {
+    background-color: mat.get-color-from-palette($background-palette, card);
+    padding: 0.5rem;
+    font-weight: 400;
+  }
+
+}
+
+@each $event, $color in $events {
+  mat-table {
+    mat-row {
+      &[status="#{$event}"] {
+        background-color: $color;
+      }
+    }
+  }
+  [table-grid] {
+    &[status="#{$event}"] {
+      background-color: $color;
+
+  
       [content] {
-        background-color: fade-out(mat.get-color-from-palette($warn), 0.9);
-        opacity: 0.5;
+        background-color: $color;
       }
     }
   }
-  @media screen and (max-width: 960px) {
-    app-jobs [table-grid] {
-      display: grid;
-      user-select: none;
-      [label] {
-        font-size: 90%;
-        opacity: 0.6;
-      }
-    }
-    app-jobs mat-table {
-      display: none;
+
+}
+
+@media screen and (max-width: 960px) {
+  app-jobs [table-grid] {
+    display: grid;
+    user-select: none;
+
+    [label] {
+      font-size: 90%;
+      opacity: 0.6;
     }
   }
+
+  app-jobs mat-table {
+    display: none;
+  }
+}
 }
