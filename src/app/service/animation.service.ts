@@ -84,7 +84,7 @@ export class AnimationService {
     interval(2000 + random(3000, 5000)).subscribe(() => {
       const subject = shuffle(Object.values(this.classSubjects))[0];
       const rand_anim = shuffle(this.ANIMATIONS)[0];
-      subject.next(`no-opacity animate__animated animate__repeat-5 animate__fast ${rand_anim}`);
+      subject.next(`no-opacity animate__animated animate__slow ${rand_anim}`);
     });
   }
 }
