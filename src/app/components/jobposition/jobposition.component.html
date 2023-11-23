@@ -1,4 +1,5 @@
 <section>
-    <app-simple-icon [icon]="icon"  *ngIf="icon">{{icon}}</app-simple-icon>
-    <div [truncate]="truncate" [matTooltip]="position">{{position}}</div>
+    <div [truncate]="truncate" [matTooltip]="position"> <app-simple-icon [icon]="icon"
+            *ngIf="icon">{{icon}}</app-simple-icon>
+        {{position}}</div>
 </section>
