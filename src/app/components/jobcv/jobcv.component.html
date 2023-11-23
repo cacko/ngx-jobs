@@ -1,7 +1,7 @@
 <app-cvimage [cv]="cv"></app-cvimage>
-<div>{{cv.name}}</div>
+<div>{{ cv.name }}</div>
 <span class="spacer"></span>
-<button mat-flat-button  button-with-icon (click)="openDialog($event)" color="primary">
-  <mat-icon >mystery</mat-icon>
+<button mat-button button-with-icon (click)="openDialog($event)">
+  <mat-icon>mystery</mat-icon>
   <span>preview</span>
 </button>
