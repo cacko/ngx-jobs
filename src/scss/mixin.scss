@@ -32,3 +32,43 @@ $blue: mat.define-palette(mat.$green-palette);
     }
   }
 }
+
+@function event-colors($theme) {
+  $color-config: mat.get-color-config($theme);
+  $palette: map.get($color-config, primary);
+  $accent: map.get($color-config, accent);
+  $warn: map.get($color-config, warn);
+  $theme-orange: mat.define-palette(mat.$orange-palette, 800);
+
+  $reject: mat.get-color-from-palette($warn);
+  $interview: mat.get-color-from-palette($theme-orange);
+  $applied: mat.get-color-from-palette($palette);
+  $response: darken(mat.get-color-from-palette($accent), 10%);
+
+  $events: (
+    applied: $applied,
+    interview: $interview,
+    reject: $reject,
+    response: $response
+  );
+
+  @return $events;
+
+}
+
+@function status-colors($theme) {
+  $color-config: mat.get-color-config($theme);
+  $palette: map.get($color-config, primary);
+  $accent: map.get($color-config, accent);
+  $warn: map.get($color-config, warn);
+  $theme-orange: mat.define-palette(mat.$orange-palette, 800);
+
+  $events: (
+    in_progress: fade-out(mat.get-color-from-palette($accent), 0.9),
+    rejected: fade-out(mat.get-color-from-palette($warn), 0.9),
+  );
+
+  @return $events;
+
+}
+

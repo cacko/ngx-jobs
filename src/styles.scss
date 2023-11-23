@@ -117,7 +117,7 @@
 //     ),
 
 $theme-primary: mat.define-palette(mat.$blue-grey-palette, 700);
-$theme-accent: mat.define-palette(mat.$teal-palette, 500);
+$theme-accent: mat.define-palette(mat.$light-blue-palette, 500);
 $theme-warn: mat.define-palette(mat.$red-palette, 500);
 $custom-typography: mat.define-typography-config(
   $font-family:"Sono",
@@ -145,12 +145,15 @@ $background-palette: (
   tooltip: map.get($theme-primary, 700)
 );
 
+
 $my-theme: mat.define-dark-theme(
   (
     color: (
       primary: $theme-primary,
       accent: $theme-accent,
-      warn: $theme-warn
+      warn: $theme-warn,
+      background: $background-palette,
+      foreground: mat.$dark-theme-foreground-palette,
     ),
     typography: $custom-typography,
     density: 0
@@ -174,11 +177,11 @@ $my-theme: mat.define-dark-theme(
 );
 @include mat.all-component-typographies($my-theme);
 
-@include mytable.apply-table-theme($my-theme, $background-palette);
-@include mydetails.apply-details-theme($my-theme, $background-palette);
-@include mytimeline.apply-timeline-theme($my-theme, $background-palette);
-@include myerrors.apply-errors-theme($my-theme, $background-palette);
-@include mylogo.apply-logo-theme($my-theme, $background-palette);
+@include mytable.apply-table-theme($my-theme);
+@include mydetails.apply-details-theme($my-theme);
+@include mytimeline.apply-timeline-theme($my-theme);
+@include myerrors.apply-errors-theme($my-theme);
+@include mylogo.apply-logo-theme($my-theme);
 @import "./scss/components/toolbar";
 @import "./scss/components/button";
 @import "./scss/components/spacer";
@@ -189,14 +192,6 @@ $my-theme: mat.define-dark-theme(
 @import "./scss/components/truncate";
 @import "./scss/components/spin";
 @import "animate.css/animate";
-// @import "animate.css/source/vars";
-// @import "animate.css/source/attention_seekers/bounce";
-// @import "animate.css/source/attention_seekers/shakeY";
-// @import "animate.css/source/attention_seekers/wobble";
-// @import "animate.css/source/attention_seekers/jello";
-// @import "animate.css/source/attention_seekers/swing";
-// @import "animate.css/source/flippers/flip";
-// @import "animate.css/source/rotating_entrances/rotateIn";
 
 html {
   box-sizing: border-box;

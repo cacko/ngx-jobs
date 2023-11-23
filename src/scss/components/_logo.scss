@@ -2,7 +2,7 @@
 @use "@angular/material" as mat;
 @use "../mixin.scss";
 
-@mixin apply-logo-theme($theme, $background-palette) {
+@mixin apply-logo-theme($theme) {
   $color-config: mat.get-color-config($theme);
   $foreground: map.get($color-config, foreground);
 

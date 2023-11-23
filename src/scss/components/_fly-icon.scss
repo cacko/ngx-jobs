@@ -15,7 +15,7 @@ app-flying-icon {
     font-size: 2rem;
   }
   transition: opacity 500ms ease-in-out;
-
+  pointer-events: none;
   &:hover {
     opacity: 0;
   }

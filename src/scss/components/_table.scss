@@ -1,30 +1,36 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../mixin.scss";
+@use "../mixin";
 
-@mixin apply-table-theme($theme, $background-palette) {
+@mixin apply-table-theme($theme) {
   $color-config: mat.get-color-config($theme);
   $palette: map.get($color-config, primary);
   $accent: map.get($color-config, accent);
   $warn: map.get($color-config, warn);
+  $background-palette: map-get($map: $color-config, $key: background);
 
-  $events: (
-    in_progress: fade-out(mat.get-color-from-palette($accent), 0.9),
-    rejected: fade-out(mat.get-color-from-palette($warn), 0.9),
-  );
 
 mat-table {
   display: none;
   font-size: 120%;
+  border-radius: 1rem;
 
   mat-header-row {
     flex-wrap: wrap;
+    border-radius: 1rem;
 
     mat-header-cell {
       font-variant: small-caps;
       text-transform: uppercase;
       font-weight: bold !important;
       background: darken(mat.get-color-from-palette($background-palette, card), 10%) !important;
+
+      &:first-of-type {
+        border-top-left-radius: 1rem;
+      }
+      &:last-of-type {
+        border-top-right-radius: 1rem;
+      }
     }
   }
 
@@ -41,11 +47,22 @@ mat-table {
         line-height: 28px;
       }
     }
+
+    &:last-of-type {
+      border-radius: 1rem;
+      mat-cell {
+        &:first-of-type {
+          border-bottom-left-radius: 1rem;
+        }
+        &:last-of-type {
+          border-bottom-right-radius: 1rem;
+        }
+      }
+    }
   }
 
   mat-row:hover mat-cell {
-    background-color: mat.get-color-from-palette($palette);
-    cursor: pointer;
+    background-color: mat.get-color-from-palette($palette);    cursor: pointer;
 
   }
 }
@@ -79,7 +96,7 @@ mat-table {
 
 }
 
-@each $event, $color in $events {
+@each $event, $color in mixin.status-colors($theme) {
   mat-table {
     mat-row {
       &[status="#{$event}"] {
