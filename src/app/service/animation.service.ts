@@ -44,6 +44,7 @@ export class AnimationService {
     const choice = this.positionToChoice(position);
     this.choices.push(choice);
     delete this.classSubjects[position.id];
+    return true;
   }
 
   register(classes: Subject<string>): Position | null {
@@ -61,8 +62,18 @@ export class AnimationService {
     return position;
   }
 
-  unregister(position: Position) {
+  unregister(position: Position): boolean {
     return this.removePosition(position);
+  }
+
+  hide(position:Position) {
+    const subject = this.classSubjects[position.id];
+    subject?.next(`no-opacity animate__animated animate__fast animate__fadeOut`)
+  }
+
+  show(position:Position) {
+    const subject = this.classSubjects[position.id];
+    subject?.next(`no-opacity animate__animated animate__fast animate__fadeIn`)
   }
 
   readonly ANIMATIONS = [

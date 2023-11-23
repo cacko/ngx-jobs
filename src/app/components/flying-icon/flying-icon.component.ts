@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { AnimationService } from 'src/app/service/animation.service';
 import { DEVICONS } from 'src/app/entity/icons.entity';
 import { Subject } from 'rxjs';
@@ -35,10 +35,20 @@ export class FlyingIconComponent {
     const nativeEl = this.elementRef.nativeElement;
     nativeEl.style.top = `${this.position.y}px`;
     nativeEl.style.left = `${this.position.x}px`;
-    nativeEl.addEventListener('animationend', () => {
-      this.position && this.animService.unregister(this.position);
-      this.register();
-    }, {once: true});
+    this.animService.show(this.position);
+  }
+
+  @HostListener('animationend', ['$event'])
+  onAnimationEnd($ev: AnimationEvent) {    
+    switch($ev.animationName) {
+        case "fadeOut":
+          this.position && this.animService.unregister(this.position) && this.register();
+          break;
+        case "fadeIn":
+          break;
+        default:
+          this.position && this.animService.hide(this.position);
+    }
   }
 
   @Input() icon!: string;
