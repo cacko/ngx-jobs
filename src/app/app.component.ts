@@ -1,5 +1,5 @@
 import { LoaderService } from './service/loader.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { Observable, Subject, interval, map } from 'rxjs';
@@ -93,5 +93,15 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userService.logout().then(() => this.router.navigateByUrl('/login'));
+  }
+
+  @HostListener('window:blur')
+  onBlur() {
+    this.animationService.stop();
+  }
+
+  @HostListener('window:focus')
+  onFocus() {
+    this.animationService.resume();
   }
 }

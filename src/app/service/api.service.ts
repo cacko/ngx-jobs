@@ -27,7 +27,7 @@ import {
   find,
 } from 'lodash-es';
 import { LoaderService } from './loader.service';
-import { SHA1 } from 'crypto-js';
+
 interface CacheEntry {
   timestamp: moment.Moment;
   data: any;

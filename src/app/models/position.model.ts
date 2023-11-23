@@ -1,5 +1,5 @@
 import { PositionEntity } from "../entity/icons.entity";
-import { sha1 } from 'object-hash';
+import { SHA1 } from 'crypto-js';
 
 
 
@@ -9,8 +9,8 @@ export class Position implements PositionEntity {
     y !: number;
     id !: string;
 
-    constructor(original: Object) {
-        this.id = sha1(original);
+    constructor(original: PositionEntity) {
+        this.id = SHA1(`${original.x}_${original.y}`).toString();
         Object.assign(this, original);
     }
 
