@@ -10,8 +10,7 @@ import { SimpleIcon } from 'simple-icons';
 export class JobpositionComponent implements OnInit {
   ngOnInit(): void {
     const iconName = Object.keys(DEVICONS).reduce(
-      (res, lng) =>
-        this.position.toLowerCase().indexOf(lng) > -1 ? lng : res,
+      (res, lng) => (this.position.toLowerCase().indexOf(lng) > -1 ? lng : res),
       ''
     );
     this.icon = DEVICONS[iconName];

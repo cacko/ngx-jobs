@@ -10,5 +10,5 @@ export class TruncateDirective {
     return this.truncate ? 'app-truncate' : null;
   }
 
-  constructor() {}
+  constructor() { }
 }

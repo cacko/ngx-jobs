@@ -2,7 +2,7 @@
   <h1>Hello {{ user.displayName }}!</h1>
   <div>
     <button mat-flat-button color="primary" (click)="logout()">
-      <mat-icon >logout</mat-icon>
+      <mat-icon>logout</mat-icon>
       Logout
     </button>
   </div>
@@ -14,49 +14,83 @@
       <p *ngIf="loginMode == modeName.MAGIC">
         Type your email and you will receive and login link
       </p>
-      <form #triggerForm [formGroup]="form" (keydown.enter)="triggerSubmit($event)" (ngSubmit)="submitForm()"
-        *ngIf="!waitForLink">
-
+      <form
+        #triggerForm
+        [formGroup]="form"
+        (keydown.enter)="triggerSubmit($event)"
+        (ngSubmit)="submitForm()"
+        *ngIf="!waitForLink"
+      >
         <mat-form-field appearance="fill" *ngIf="loginMode">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="emailInput" [required]="true">
+          <input
+            matInput
+            type="email"
+            formControlName="emailInput"
+            [required]="true"
+          />
         </mat-form-field>
-        <mat-form-field appearance="fill" *ngIf="loginMode == modeName.PASSWORD">
+        <mat-form-field
+          appearance="fill"
+          *ngIf="loginMode == modeName.PASSWORD"
+        >
           <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordInput"
-            [required]="loginMode == modeName.PASSWORD">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="passwordInput"
+            [required]="loginMode == modeName.PASSWORD"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </mat-form-field>
         <mat-button-toggle-group (change)="onLoginMode($event)">
-          <mat-button-toggle [checked]="loginMode==modeName.PASSWORD" button-with-icon value="{{modeName.PASSWORD}}"
-            aria-label="Text align left">
-            <mat-icon >password</mat-icon>
+          <mat-button-toggle
+            [checked]="loginMode == modeName.PASSWORD"
+            button-with-icon
+            value="{{ modeName.PASSWORD }}"
+            aria-label="Text align left"
+          >
+            <mat-icon>password</mat-icon>
             <span>Password</span>
           </mat-button-toggle>
-          <mat-button-toggle [checked]="loginMode==modeName.MAGIC" button-with-icon value="{{modeName.MAGIC}}"
-            aria-label="Text align center">
-            <mat-icon >mail_lock</mat-icon>
+          <mat-button-toggle
+            [checked]="loginMode == modeName.MAGIC"
+            button-with-icon
+            value="{{ modeName.MAGIC }}"
+            aria-label="Text align center"
+          >
+            <mat-icon>mail_lock</mat-icon>
             <span>MagicLink</span>
           </mat-button-toggle>
         </mat-button-toggle-group>
         <div buttons>
           <div *ngIf="errorMessage">
-            <p errors>{{errorMessage}}</p>
+            <p errors>{{ errorMessage }}</p>
           </div>
           <div>
-            <button mat-raised-button button-with-icon type="submit" color="primary">
-              <mat-icon >login</mat-icon>
-              <div  *ngIf="loginMode == modeName.MAGIC">Continue</div>
-              <div  *ngIf="loginMode == modeName.PASSWORD">Login</div>
+            <button
+              mat-raised-button
+              button-with-icon
+              type="submit"
+              color="primary"
+            >
+              <mat-icon>login</mat-icon>
+              <div *ngIf="loginMode == modeName.MAGIC">Continue</div>
+              <div *ngIf="loginMode == modeName.PASSWORD">Login</div>
             </button>
           </div>
         </div>
       </form>
       <p *ngIf="waitForLink">
-        Check your email at {{waitForLink}} for login link
+        Check your email at {{ waitForLink }} for login link
       </p>
     </mat-card-content>
   </mat-card>

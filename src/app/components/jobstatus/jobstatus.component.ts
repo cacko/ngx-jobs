@@ -13,6 +13,8 @@ export class JobstatusComponent implements OnInit {
 
   icon: string = '';
   label: string = '';
+  classes: string = '';
+  color: string = '';
 
   ngOnInit(): void {
 
@@ -24,10 +26,13 @@ export class JobstatusComponent implements OnInit {
       case JobStatus.IN_PROGRESS:
         this.label = "In Progress"
         this.icon = "sync";
+        this.classes = "is-spinning"
+        this.color = 'accent';
         break;
       case JobStatus.REJECTED:
         this.label = "Rejected";
         this.icon = "thumb_down";
+        this.color = 'warn'
         break;
       default:
         this.label = this.status;

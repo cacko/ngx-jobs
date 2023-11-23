@@ -75,7 +75,6 @@ export class AnimationService {
     'animate__rotateIn',
     'animate__swing'
   ];
-  // classes = 'animate__animated';\
   classes: string[] = [];
 
   start() {

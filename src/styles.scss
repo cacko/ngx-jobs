@@ -187,7 +187,16 @@ $my-theme: mat.define-dark-theme(
 @import "./scss/components/simple-icon";
 @import "./scss/components/mat-icon";
 @import "./scss/components/truncate";
+@import "./scss/components/spin";
 @import "animate.css/animate";
+// @import "animate.css/source/vars";
+// @import "animate.css/source/attention_seekers/bounce";
+// @import "animate.css/source/attention_seekers/shakeY";
+// @import "animate.css/source/attention_seekers/wobble";
+// @import "animate.css/source/attention_seekers/jello";
+// @import "animate.css/source/attention_seekers/swing";
+// @import "animate.css/source/flippers/flip";
+// @import "animate.css/source/rotating_entrances/rotateIn";
 
 html {
   box-sizing: border-box;

@@ -6,11 +6,15 @@ mat-toolbar {
   span {
     font-family: 'Bebas Neue';
     font-variant: small-caps;
+    font-size: 1.5rem;
     text-transform: uppercase;
   }
   @media screen and (max-width: 960px) {
     &.mat-toolbar.mat-toolbar-single-row {
-      padding: 1.4rem 0;
+      padding: 1.4rem 0.3rem;
+    }
+    span {
+      font-size: unset;
     }
   }
 }
