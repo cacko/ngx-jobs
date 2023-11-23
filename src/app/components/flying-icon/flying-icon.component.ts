@@ -1,9 +1,9 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { AnimationService } from 'src/app/service/animation.service';
-import { DEVICONS, IconPosition, StylesEntity } from 'src/app/entity/icons.entity';
+import { DEVICONS } from 'src/app/entity/icons.entity';
 import { Subject } from 'rxjs';
-import { SHA1 } from 'crypto-js';
 import { SimpleIcon } from 'simple-icons';
+import { Position } from 'src/app/models/position.model';
 @Component({
   selector: 'app-flying-icon',
   templateUrl: './flying-icon.component.html',
@@ -13,7 +13,7 @@ export class FlyingIconComponent {
   private classSubject = new Subject<string>();
   classes = this.classSubject.asObservable();
 
-  private position: IconPosition | null = null;
+  private position: Position | null = null;
 
   constructor(
     private animService: AnimationService,

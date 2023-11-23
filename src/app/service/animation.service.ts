@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject, interval } from 'rxjs';
 import { random, shuffle, isUndefined, remove, pull } from 'lodash-es';
-import { IconPosition, StylesEntity } from '../entity/icons.entity';
-import { SHA1 } from 'crypto-js';
+import { PositionEntity, StylesEntity } from '../entity/icons.entity';
+import { Position } from '../models/position.model';
 
 interface Subjects {
   [key:string]: Subject<string>;
@@ -13,57 +13,52 @@ interface Subjects {
 })
 export class AnimationService {
   private classSubjects: Subjects = {};
-  private positions: IconPosition[] = [];
   private choices: number[] = [];
 
   private readonly SIZE = 150;
+  private readonly OFFSET = 60;
 
   constructor() {
     this.choices = [...Array(Math.floor(this.height / this.SIZE) * Math.floor(this.width / this.SIZE)).keys()];
   }
 
   get width(): number {
-    return window.screen.width;
+    return window.screen.width - this.OFFSET;
   }
 
   get height(): number {
-    return window.screen.height;
+    return window.screen.height - this.OFFSET;
   }
 
-  private positionToChoice(position: IconPosition): number {
+  private positionToChoice(position: Position): number {
     const row = Math.floor(this.height / this.SIZE);
     const col = Math.floor(this.width / this.SIZE);
     const numCols =  Math.floor(this.width /  this.SIZE);
     return (row * numCols) + col;
   }
 
-  private removePosition(position: IconPosition) {
+  private removePosition(position: Position) {
     const choice = this.positionToChoice(position);
     this.choices.push(choice);
-    delete this.classSubjects[this.positionHash(position)];
+    delete this.classSubjects[position.id];
   }
 
-  private positionHash(position: IconPosition): string {
-    return SHA1(`${position.x}_${position.y}`).toString();
-  }
-
-  register(classes: Subject<string>): IconPosition | null {
+  register(classes: Subject<string>): Position | null {
     const pos = shuffle(this.choices).pop();
     this.choices = this.choices.filter(a => a !== pos);
     if (isUndefined(pos)) {
       return null;
     }
     const numCols =  Math.floor(this.width/  this.SIZE);
-    const position = {
+    const position = new Position({
       x: (pos % numCols ) * this.SIZE + random(10, this.SIZE/2),
       y: Math.floor(pos / numCols) * this.SIZE + random(10, this.SIZE/2),
-    };
-    this.classSubjects[this.positionHash(position)] = classes;
-    this.positions.push(position);
+    });
+    this.classSubjects[position.id] = classes;
     return position;
   }
 
-  unregister(position: IconPosition) {
+  unregister(position: Position) {
     return this.removePosition(position);
   }
 

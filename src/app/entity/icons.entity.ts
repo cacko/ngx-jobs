@@ -54,7 +54,7 @@ export interface IconsInterface {
   [key: string]: SimpleIcon;
 }
 
-export interface IconPosition {
+export interface PositionEntity {
   x: number;
   y: number;
 }
