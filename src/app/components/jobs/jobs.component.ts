@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { clamp, orderBy, sortBy } from 'lodash-es';
-import { JobEntity } from 'src/app/entity/jobs.entity';
+import { JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
 import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
@@ -10,6 +10,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { siMicrosoftexcel } from 'simple-icons';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -23,6 +24,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
   excelIcon = siMicrosoftexcel;
+  hideRejected = false;
 
   displayedColumns = [
     'company',
@@ -40,11 +42,16 @@ export class JobsComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiService: ApiService
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
+    this.dataSource.filterPredicate = this.filterData;
+  }
+
+  private filterData(data: JobModel, filter: string): boolean {
+    return !filter || data.status != filter;
   }
 
   private sortData(data: JobModel[], sort: Sort): JobModel[] {
@@ -105,5 +112,9 @@ export class JobsComponent implements OnInit, AfterViewInit {
     ${ApiConfig.BASE_URI}/${ApiType.JOBS_EXPORT}`,
       'jobs.xlsx'
     );
+  }
+
+  onHideRejected(change: MatSlideToggleChange) {
+    this.dataSource.filter = change.checked ? JobStatus.REJECTED : "";
   }
 }

@@ -64,6 +64,7 @@
   <div content>{{job.applied?.timestamp|amTimeAgo}}</div>
 </div>
 <div header>
+  <mat-slide-toggle  class="no-mobile" (change)="onHideRejected($event)">Hide Rejected</mat-slide-toggle>
   <span class="spacer"></span>
   <button mat-button button-with-icon aria-label="Export liste to XLSX" (click)="onExport()" [disabled]="exportDisabled">
     <app-simple-icon [icon]="excelIcon"></app-simple-icon>
