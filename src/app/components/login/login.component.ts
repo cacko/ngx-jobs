@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   public loginMode?: LOGIN_MODE;
   public modeName = LOGIN_MODE;
   public waitForLink?: string;
+  public magicDisabled = true;
 
   constructor(
     private api: ApiService,
@@ -95,7 +96,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.hide();
-    this.loginMode = LOGIN_MODE.MAGIC;
+    this.loginMode = this.magicDisabled ?LOGIN_MODE.PASSWORD  : LOGIN_MODE.MAGIC;
     this.activatedRoute.queryParams.subscribe((qp: any) => {
       if (this.user.isEmailLinkSigning()) {
         this.loader.show();

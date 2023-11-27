@@ -19,6 +19,13 @@
       flex-direction: column;
       padding: 2rem;
       row-gap: 3rem;
+
+      app-logo {
+        width: 80%;
+        height: auto;
+        align-self: center;
+        padding: 1rem;
+      }
     }
 
     form {
@@ -29,11 +36,7 @@
         margin-bottom: 1rem;
       }
 
-      app-logo {
-        width: 80%;
-        align-self: center;
-        padding: 1rem;
-      }
+
     }
 
     [buttons] {
