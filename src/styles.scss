@@ -190,6 +190,7 @@ $my-theme: mat.define-dark-theme(
 @import "./scss/components/mat-icon";
 @import "./scss/components/truncate";
 @import "./scss/components/spin";
+@import "./scss/components/paginator";
 @import "animate.css/animate";
 
 html {

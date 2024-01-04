@@ -48,17 +48,17 @@ mat-table {
       }
     }
 
-    &:last-of-type {
-      border-radius: 1rem;
-      mat-cell {
-        &:first-of-type {
-          border-bottom-left-radius: 1rem;
-        }
-        &:last-of-type {
-          border-bottom-right-radius: 1rem;
-        }
-      }
-    }
+    // &:last-of-type {
+    //   border-radius: 1rem;
+    //   mat-cell {
+    //     &:first-of-type {
+    //       border-bottom-left-radius: 1rem;
+    //     }
+    //     &:last-of-type {
+    //       border-bottom-right-radius: 1rem;
+    //     }
+    //   }
+    // }
   }
 
   mat-row:hover mat-cell {

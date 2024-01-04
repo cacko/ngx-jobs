@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { siMicrosoftexcel } from 'simple-icons';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatPaginator } from '@angular/material/paginator';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -37,6 +38,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort | null = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +47,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
     this.dataSource.filterPredicate = this.filterData;

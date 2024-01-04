@@ -1,0 +1,7 @@
+.mat-mdc-paginator {
+  width: 100%;
+  @media screen and (min-width: 960px) {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+}

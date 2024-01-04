@@ -59,6 +59,7 @@ import { JobskillsComponent } from './components/jobskills/jobskills.component';
 import { SimpleIconComponent } from './components/simple-icon/simple-icon.component';
 import { TruncateDirective } from './directive/truncate.directive';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
 const MaterialModules = [
   MatButtonModule,
   MatIconModule,
@@ -80,7 +81,8 @@ const MaterialModules = [
   ClipboardModule,
   MatChipsModule,
   LayoutModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatPaginatorModule
 ];
 
 @NgModule({
