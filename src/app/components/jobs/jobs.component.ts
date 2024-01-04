@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { siMicrosoftexcel } from 'simple-icons';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatPaginator } from '@angular/material/paginator';
+import { StorageService } from 'src/app/service/storage.service';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -43,7 +44,8 @@ export class JobsComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public storage: StorageService
   ) { }
 
   ngAfterViewInit(): void {
@@ -51,6 +53,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
     this.dataSource.filterPredicate = this.filterData;
+    this.dataSource.filter = this.storage.hide_rejected ? JobStatus.REJECTED : "";
   }
 
   private filterData(data: JobModel, filter: string): boolean {
@@ -118,6 +121,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   onHideRejected(change: MatSlideToggleChange) {
+    this.storage.hide_rejected = change.checked;
     this.dataSource.filter = change.checked ? JobStatus.REJECTED : "";
   }
 }

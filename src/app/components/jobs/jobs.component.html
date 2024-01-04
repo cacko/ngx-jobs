@@ -1,6 +1,7 @@
 <div header>
     <mat-slide-toggle
         class="no-mobile"
+        [checked]="storage.hide_rejected"
         (change)="onHideRejected($event)"
     >
         Hide Rejected
