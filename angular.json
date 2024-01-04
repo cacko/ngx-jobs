@@ -38,7 +38,8 @@
             "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": [
               "moment",
-              "file-saver"
+              "file-saver",
+              "crypto-js"
             ]
           },
           "configurations": {
