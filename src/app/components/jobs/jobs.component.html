@@ -1,6 +1,5 @@
 <div header>
     <mat-slide-toggle
-        class="no-mobile"
         [checked]="storage.hide_rejected"
         (change)="onHideRejected($event)"
     >
@@ -52,7 +51,7 @@
         >
             Position
         </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-cell *matCellDef="let element" data-label="Position">
             <app-jobposition
                 [truncate]="true"
                 [position]="element.position"
@@ -67,7 +66,7 @@
         >
             Location
         </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-cell *matCellDef="let element" data-label="Location">
             <app-joblocation
                 [truncate]="true"
                 [location]="element.location"
@@ -82,7 +81,7 @@
         >
             Applied
         </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-cell *matCellDef="let element" data-label="Applied">
             <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">{{element.applied.timestamp|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
@@ -95,7 +94,7 @@
             Last
       Action
         </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-cell *matCellDef="let element" data-label="Last Action">
             <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">{{element.last_modified|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
@@ -107,7 +106,7 @@
         >
             Status
         </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-cell *matCellDef="let element" data-label="Status">
             <app-jobstatus
                 [truncate]="true"
                 [status]="element.status"
@@ -121,34 +120,6 @@
         [attr.status]="row.status"
     ></mat-row>
 </mat-table>
-<div
-    ngxLongPress2
-    table-grid
-    *ngFor="let job of jobs"
-    [attr.status]="job.status"
-    (onLongPress)="onClick($event, job)"
->
-    <div label>Company</div>
-    <div content>
-        <app-jobcompany [company]="job.company"></app-jobcompany>
-    </div>
-    <div label>Position</div>
-    <div content>
-        <app-jobposition [position]="job.position"></app-jobposition>
-    </div>
-    <div label>Location</div>
-    <div content>
-        <app-joblocation [location]="job.location"></app-joblocation>
-    </div>
-    <div label>Status</div>
-    <div content>
-        <app-jobstatus [status]="job.status"></app-jobstatus>
-    </div>
-    <div label>Last Action</div>
-    <div content>{{job?.last_modified|amTimeAgo}}</div>
-    <div label>Applied</div>
-    <div content>{{job.applied?.timestamp|amTimeAgo}}</div>
-</div>
 <mat-paginator
     pageSize="20"
     showFirstLastButtons
