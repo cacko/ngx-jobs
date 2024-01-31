@@ -1,7 +1,6 @@
-import { HostListener, Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, interval } from 'rxjs';
-import { random, shuffle, isUndefined, remove, pull } from 'lodash-es';
-import { PositionEntity, StylesEntity } from '../entity/icons.entity';
+import { Injectable } from '@angular/core';
+import { Subject, Subscription, interval } from 'rxjs';
+import { random, isEmpty, shuffle, isUndefined } from 'lodash-es';
 import { Position } from '../models/position.model';
 
 interface Subjects {
@@ -66,12 +65,12 @@ export class AnimationService {
     return this.removePosition(position);
   }
 
-  hide(position:Position) {
+  hide(position: Position) {
     const subject = this.classSubjects[position.id];
     subject?.next(`no-opacity animate__animated animate__fast animate__fadeOut`)
   }
 
-  show(position:Position) {
+  show(position: Position) {
     const subject = this.classSubjects[position.id];
     subject?.next(`no-opacity animate__animated animate__fast animate__fadeIn`)
   }
@@ -90,6 +89,9 @@ export class AnimationService {
 
   start() {
     this.interval = interval(2000 + random(3000, 5000)).subscribe(() => {
+      if (isEmpty(this.classSubjects)) {
+        return;
+      }
       const subject = shuffle(Object.values(this.classSubjects))[0];
       const rand_anim = shuffle(this.ANIMATIONS)[0];
       subject.next(`no-opacity animate__animated animate__slow ${rand_anim}`);
