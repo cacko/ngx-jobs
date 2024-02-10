@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of, tap } from 'rxjs';
+import { EMPTY, Observable, Subject, delay, expand, of, reduce, tap } from 'rxjs';
 import { ApiConfig, ApiType, WSLoading } from '../entity/api.entity';
 import {
   HttpClient,
@@ -25,6 +25,8 @@ import {
   isUndefined,
   isNumber,
   find,
+  isArrayLike,
+  concat
 } from 'lodash-es';
 import { LoaderService } from './loader.service';
 
@@ -43,7 +45,7 @@ export class ApiService implements HttpInterceptor {
   constructor(
     private httpClient: HttpClient,
     private loaderService: LoaderService
-  ) {}
+  ) { }
 
   intercept(
     req: HttpRequest<any>,
@@ -79,7 +81,26 @@ export class ApiService implements HttpInterceptor {
         .get(`${ApiConfig.BASE_URI}/${type}/${id}`, {
           headers: { 'X-User-Token': this.userToken },
           params: omitBy(params, isUndefined),
+          observe: 'response',
         })
+        .pipe(
+          expand((res) => {
+            const nextPage = res.headers.get('x-pagination-next');
+            const pageNo = parseInt(String(res.headers.get('x-pagination-page')));
+            return nextPage
+              ? this.httpClient.get(nextPage, {
+                headers: { 'X-User-Token': this.userToken },
+                observe: 'response',
+              }).pipe(delay(pageNo * 200))
+              : EMPTY;
+          }),
+          reduce((acc, current): any => {
+            const data = current.body || {};
+            console.log(data);
+            const pageNo = parseInt(String(current.headers.get('x-pagination-page')));
+            return isArrayLike(data) ? concat(acc, data) : data;
+          }, [])
+        )
         .subscribe({
           next: (data: any) => {
             subscriber.next(data);
