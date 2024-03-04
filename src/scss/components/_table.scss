@@ -123,63 +123,63 @@
     }
   }
 
-  @media screen and (max-width: 960px) {
-    mat-table {
-      border: 0;
-      vertical-align: middle;
-      border-radius: 0;
+  // @media screen and (max-width: 960px) {
+  //   mat-table {
+  //     border: 0;
+  //     vertical-align: middle;
+  //     border-radius: 0;
 
-      mat-header-row {
-        display: none;
+  //     mat-header-row {
+  //       display: none;
 
-        mat-header-cell  {
+  //       mat-header-cell  {
 
-          &:first-of-type {
-            border-top-left-radius: 0;
-          }
-          &:last-of-type {
-            border-top-right-radius: 0;
-          }
-        }
+  //         &:first-of-type {
+  //           border-top-left-radius: 0;
+  //         }
+  //         &:last-of-type {
+  //           border-top-right-radius: 0;
+  //         }
+  //       }
 
-      }
+  //     }
 
-      mat-row {
-        border-bottom: 5px solid darken(
-          mat.get-color-from-palette($background-palette, card),
-          10%
-        ) !important;
-        display: block;
-      }
+  //     mat-row {
+  //       border-bottom: 5px solid darken(
+  //         mat.get-color-from-palette($background-palette, card),
+  //         10%
+  //       ) !important;
+  //       display: block;
+  //     }
 
-      mat-cell {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: 1em;
-        text-align: right;
-        font-weight: bold;
-        height: 30px;
-        margin-bottom: 4%;
+  //     mat-cell {
+  //       border-bottom: 1px solid #ddd;
+  //       display: block;
+  //       font-size: 1em;
+  //       text-align: right;
+  //       font-weight: bold;
+  //       height: 30px;
+  //       margin-bottom: 4%;
 
-        &:before {
+  //       &:before {
 
-          content: attr(data-label);
-          float: right;
-          text-transform: uppercase;
-          font-weight: normal;
+  //         content: attr(data-label);
+  //         float: right;
+  //         text-transform: uppercase;
+  //         font-weight: normal;
     
-          font-size: 0.85em;
-        }
+  //         font-size: 0.85em;
+  //       }
 
-        &:last-child {
-          border-bottom: 0 !important;
-        }
+  //       &:last-child {
+  //         border-bottom: 0 !important;
+  //       }
 
-        &:first-child {
-          margin-top: 4%;
-        }
-      }
+  //       &:first-child {
+  //         margin-top: 4%;
+  //       }
+  //     }
 
-    }
-  }
+  //   }
+  // }
 }

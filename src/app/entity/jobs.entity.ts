@@ -80,3 +80,23 @@ export interface JobEntity {
   events?: JobEventEntity[];
   skills?: SkillEntity[];
 }
+
+interface DC {
+  desktop: string[];
+  mobile: string[];
+};
+
+export const DeviceColumns: DC = {
+  desktop: [
+    'company',
+    'position',
+    'location',
+    'status',
+    'last_modified',
+    'applied',
+  ],
+  mobile: [
+    'company',
+    'position'
+  ]
+}

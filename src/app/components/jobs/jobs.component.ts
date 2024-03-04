@@ -1,18 +1,18 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { clamp, orderBy, sortBy } from 'lodash-es';
-import { JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
+import { DeviceColumns, JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
 import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
 import { ApiService } from 'src/app/service/api.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as moment from 'moment';
 import { siMicrosoftexcel } from 'simple-icons';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatPaginator } from '@angular/material/paginator';
 import { StorageService } from 'src/app/service/storage.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -28,14 +28,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   excelIcon = siMicrosoftexcel;
   hideRejected = false;
 
-  displayedColumns = [
-    'company',
-    'position',
-    'location',
-    'status',
-    'last_modified',
-    'applied',
-  ];
+  displayedColumns: string[] = DeviceColumns.desktop;
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -45,8 +38,19 @@ export class JobsComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiService: ApiService,
-    public storage: StorageService
-  ) { }
+    public storage: StorageService,
+    private breakpointObserver: BreakpointObserver
+  ) { 
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait,
+      Breakpoints.Small
+    ]).subscribe(result => {
+      this.displayedColumns = result.matches ? DeviceColumns.mobile : DeviceColumns.desktop;
+    });
+
+
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
