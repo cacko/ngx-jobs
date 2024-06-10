@@ -10,6 +10,7 @@ export enum JobStatus {
   PENDING = 'pending',
   REJECTED = 'rejected',
   IN_PROGRESS = 'in_progress',
+  EXPIRED = "expired",
 }
 
 export enum JobEvent {
@@ -17,6 +18,7 @@ export enum JobEvent {
   INTERVIEW = 'interview',
   RESPONSE = 'response',
   REJECT = 'reject',
+  EXPIRED = "expired"
 }
 
 export enum Source {

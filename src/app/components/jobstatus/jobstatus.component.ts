@@ -34,6 +34,11 @@ export class JobstatusComponent implements OnInit {
         this.icon = "thumb_down";
         this.color = 'warn'
         break;
+      case JobStatus.EXPIRED:
+        this.label = "Expired";
+        this.icon = "history_off";
+        this.color = "warn";
+        break;
       default:
         this.label = this.status;
     }

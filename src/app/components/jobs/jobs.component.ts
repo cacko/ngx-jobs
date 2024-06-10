@@ -26,7 +26,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
   excelIcon = siMicrosoftexcel;
-  hideRejected = false;
+  hideExpired = this.storage.hide_expired;
 
   displayedColumns: string[] = DeviceColumns.desktop;
 
@@ -57,7 +57,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
     this.dataSource.filterPredicate = this.filterData;
-    this.dataSource.filter = this.storage.hide_rejected ? JobStatus.REJECTED : "";
+    this.dataSource.filter = this.storage.hide_expired ? JobStatus.EXPIRED : "";
   }
 
   private filterData(data: JobModel, filter: string): boolean {
@@ -124,8 +124,8 @@ export class JobsComponent implements OnInit, AfterViewInit {
     );
   }
 
-  onHideRejected(change: MatSlideToggleChange) {
-    this.storage.hide_rejected = change.checked;
-    this.dataSource.filter = change.checked ? JobStatus.REJECTED : "";
+  onHideExpired(change: MatSlideToggleChange) {
+    this.storage.hide_expired = change.checked;
+    this.dataSource.filter = change.checked ? JobStatus.EXPIRED : "";
   }
 }

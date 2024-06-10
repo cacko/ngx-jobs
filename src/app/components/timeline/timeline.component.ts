@@ -24,6 +24,8 @@ export class TimelineComponent {
         return 'thumb_down';
       case JobEvent.RESPONSE:
         return 'mail';
+      case JobEvent.EXPIRED:
+        return 'history_off';
     }
   }
 

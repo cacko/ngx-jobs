@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StorageService {
 
-  readonly KEY_HIDE_REJECTED = "hide_rejected";
+  readonly KEY_HIDE_EXPIRED = "hide_expired";
 
   private backgroundSrc ?: string
 
@@ -23,12 +23,12 @@ export class StorageService {
     return data !== null ? JSON.parse(data) : def;
   }
 
-  set hide_rejected(value: boolean) {
-    this.store(value, this.KEY_HIDE_REJECTED);
+  set hide_expired(value: boolean) {
+    this.store(value, this.KEY_HIDE_EXPIRED);
   }
 
-  get hide_rejected(): boolean {
-    return this.fetch(this.KEY_HIDE_REJECTED, false);
+  get hide_expired(): boolean {
+    return this.fetch(this.KEY_HIDE_EXPIRED, false);
   }
 
 
