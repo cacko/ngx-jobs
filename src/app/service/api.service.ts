@@ -96,7 +96,6 @@ export class ApiService implements HttpInterceptor {
           }),
           reduce((acc, current): any => {
             const data = current.body || {};
-            console.log(data);
             const pageNo = parseInt(String(current.headers.get('x-pagination-page')));
             return isArrayLike(data) ? concat(acc, data) : data;
           }, [])

@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
       interval(10000).subscribe(() => {
         this.swUpdate.checkForUpdate();
       });
+      this.swUpdate.checkForUpdate();
     }
 
     this.$isDesktop = this.breakpoints
