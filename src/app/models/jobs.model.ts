@@ -33,7 +33,6 @@ export class JobModel implements JobEntity {
 
   constructor(original: Object) {
     Object.assign(this, original);
-    this.last_modified = moment(this.last_modified);
     this.events = this.events
       .map((ev) => new JobEventModel(ev))
       .sort((a, b) => b.timestamp.diff(a.timestamp));
@@ -42,6 +41,7 @@ export class JobModel implements JobEntity {
         [SkillGroup.TECHNICAL, SkillGroup.TECHNOLOGY].includes(sk.group)
       )
       .map((sk) => new SkillModel(sk));
+    this.last_modified = moment(find(this.events, (o) => o.event != JobEvent.EXPIRED)?.timestamp);
   }
 
   get applied(): JobEventEntity | undefined {
