@@ -1,11 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { SimpleIcon, siLinkedin, siPaddypower } from 'simple-icons';
 import { Source } from 'src/app/entity/jobs.entity';
+import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 
 @Component({
   selector: 'app-jobsource',
   templateUrl: './jobsource.component.html',
   styleUrl: './jobsource.component.scss',
+  standalone: true,
+  imports: [
+    CommonModule,
+    SimpleIconComponent
+  ]
 })
 export class JobsourceComponent implements OnInit {
   @Input() source!: Source;

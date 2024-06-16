@@ -1,18 +1,31 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MomentModule } from 'ngx-moment';
 import { JobEvent } from 'src/app/entity/jobs.entity';
 import { JobEventModel } from 'src/app/models/jobEvent.model';
 import { JobModel } from 'src/app/models/jobs.model';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MomentModule,
+    MatIconModule,
+    MatTooltipModule,    
+    ClipboardModule
+  ]
 })
 export class TimelineComponent {
   @Input() job!: JobModel;
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) { }
 
   getIcon(ev: JobEventModel): string {
     switch (ev.event) {

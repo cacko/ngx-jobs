@@ -3,7 +3,7 @@
 @use "../mixin";
 
 @mixin apply-table-theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $palette: map.get($color-config, primary);
   $accent: map.get($color-config, accent);
   $warn: map.get($color-config, warn);
@@ -26,7 +26,7 @@
         text-transform: uppercase;
         font-weight: bold !important;
         background: darken(
-          mat.get-color-from-palette($background-palette, card),
+          mat.m2-get-color-from-palette($background-palette, card),
           10%
         ) !important;
 
@@ -67,7 +67,7 @@
     }
 
     mat-row:hover mat-cell {
-      background-color: mat.get-color-from-palette($palette);
+      background-color: mat.m2-get-color-from-palette($palette);
       cursor: pointer;
     }
   }
@@ -80,11 +80,11 @@
     grid-template-columns: 1fr 2fr;
     column-gap: 0.5rem;
     background-color: darken(
-      mat.get-color-from-palette($background-palette, card),
+      mat.m2-get-color-from-palette($background-palette, card),
       10%
     );
     border-bottom: 1rem solid
-      mat.get-color-from-palette($background-palette, app-bar);
+      mat.m2-get-color-from-palette($background-palette, app-bar);
 
     &:first-of-type {
       border-top: 0;
@@ -98,7 +98,7 @@
     }
 
     [content] {
-      background-color: mat.get-color-from-palette($background-palette, card);
+      background-color: mat.m2-get-color-from-palette($background-palette, card);
       padding: 0.5rem;
       font-weight: 400;
     }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ActivatedRouteSnapshot,RouterStateSnapshot  } from '@angular/router';
+import { RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {
   AuthGuard,
   redirectUnauthorizedTo,
@@ -32,7 +32,7 @@ const redirectLoggedInToPreviousPage = (next: ActivatedRouteSnapshot, state: Rou
   return redirectLoggedInTo(redirectUrl);
 };
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: JobsComponent,
@@ -62,10 +62,3 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

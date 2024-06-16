@@ -8,124 +8,17 @@
 @use "sass:map";
 @include mat.core();
 
-// $styles: set-styles_(
-//   $base,
-//   (
-//     headline1: (
-//       font-size: px-to-rem(96px),
-//       line-height: px-to-rem(96px),
-//       font-weight: map.get($font-weight-values, light),
-//       letter-spacing: get-letter-spacing_(-1.5, 6),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     headline2: (
-//       font-size: px-to-rem(60px),
-//       line-height: px-to-rem(60px),
-//       font-weight: map.get($font-weight-values, light),
-//       letter-spacing: get-letter-spacing_(-0.5, 3.75),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     headline3: (
-//       font-size: px-to-rem(48px),
-//       line-height: px-to-rem(50px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: normal,
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     headline4: (
-//       font-size: px-to-rem(34px),
-//       line-height: px-to-rem(40px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: get-letter-spacing_(0.25, 2.125),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     headline5: (
-//       font-size: px-to-rem(24px),
-//       line-height: px-to-rem(32px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: normal,
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     headline6: (
-//       font-size: px-to-rem(20px),
-//       line-height: px-to-rem(32px),
-//       font-weight: map.get($font-weight-values, medium),
-//       letter-spacing: get-letter-spacing_(0.25, 1.25),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     subtitle1: (
-//       font-size: px-to-rem(16px),
-//       line-height: px-to-rem(28px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: get-letter-spacing_(0.15, 1),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     subtitle2: (
-//       font-size: px-to-rem(14px),
-//       line-height: px-to-rem(22px),
-//       font-weight: map.get($font-weight-values, medium),
-//       letter-spacing: get-letter-spacing_(0.1, 0.875),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     body1: (
-//       font-size: px-to-rem(16px),
-//       line-height: px-to-rem(24px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: get-letter-spacing_(0.5, 1),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     body2: (
-//       font-size: px-to-rem(14px),
-//       line-height: px-to-rem(20px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: get-letter-spacing_(0.25, 0.875),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     caption: (
-//       font-size: px-to-rem(12px),
-//       line-height: px-to-rem(20px),
-//       font-weight: map.get($font-weight-values, regular),
-//       letter-spacing: get-letter-spacing_(0.4, 0.75),
-//       text-decoration: inherit,
-//       text-transform: inherit,
-//     ),
-//     button: (
-//       font-size: px-to-rem(14px),
-//       line-height: px-to-rem(36px),
-//       font-weight: map.get($font-weight-values, medium),
-//       letter-spacing: get-letter-spacing_(1.25, 0.875),
-//       text-decoration: none,
-//       text-transform: uppercase,
-//     ),
-//     overline: (
-//       font-size: px-to-rem(12px),
-//       line-height: px-to-rem(32px),
-//       font-weight: map.get($font-weight-values, medium),
-//       letter-spacing: get-letter-spacing_(2, 0.75),
-//       text-decoration: none,
-//       text-transform: uppercase,
-//     ),
 
-$theme-primary: mat.define-palette(mat.$blue-grey-palette, 700);
-$theme-accent: mat.define-palette(mat.$light-blue-palette, 500);
-$theme-warn: mat.define-palette(mat.$red-palette, 500);
-$custom-typography: mat.define-typography-config(
+$theme-primary: mat.m2-define-palette(mat.$m2-blue-grey-palette, 700);
+$theme-accent: mat.m2-define-palette(mat.$m2-light-blue-palette, 500);
+$theme-warn: mat.m2-define-palette(mat.$m2-red-palette, 500);
+$custom-typography: mat.m2-define-typography-config(
   $font-family:"Sono",
-  $subtitle-1: mat.define-typography-level(18px, 30px, 600),
-  $subtitle-2: mat.define-typography-level(17px, 24px, 400),
-  $body-1: mat.define-typography-level(18px, 28px, 600),
-  $body-2: mat.define-typography-level(17px, 24px, 400),
-  $button: mat.define-typography-level(18px, 36px, 400),
+  $subtitle-1: mat.m2-define-typography-level(18px, 30px, 600),
+  $subtitle-2: mat.m2-define-typography-level(17px, 24px, 400),
+  $body-1: mat.m2-define-typography-level(18px, 28px, 600),
+  $body-2: mat.m2-define-typography-level(17px, 24px, 400),
+  $button: mat.m2-define-typography-level(18px, 36px, 400),
 );
 $background-palette: (
   status-bar: black,
@@ -145,14 +38,14 @@ $background-palette: (
 );
 
 
-$my-theme: mat.define-dark-theme(
+$my-theme: mat.m2-define-dark-theme(
   (
     color: (
       primary: $theme-primary,
       accent: $theme-accent,
       warn: $theme-warn,
       background: $background-palette,
-      foreground: mat.$dark-theme-foreground-palette,
+      foreground: mat.$m2-dark-theme-foreground-palette,
     ),
     typography: $custom-typography,
     density: 0
@@ -168,7 +61,7 @@ $my-theme: mat.define-dark-theme(
       primary: $theme-primary,
       accent: $theme-accent,
       warn: $theme-warn,
-      foreground: mat.$dark-theme-foreground-palette,
+      foreground: mat.$m2-dark-theme-foreground-palette,
       background: $background-palette,
       is-dark: true
     )

@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobEntity } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
+import { JobpositionComponent } from '../jobposition/jobposition.component';
+import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
+import { TimelineComponent } from '../timeline/timeline.component';
 
 interface RouteDataEntity {
   data?: JobEntity;
@@ -11,6 +15,13 @@ interface RouteDataEntity {
   selector: 'app-job',
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    JobpositionComponent,
+    JobdetailsComponent,
+    TimelineComponent
+  ]
 })
 export class JobComponent implements OnInit {
 

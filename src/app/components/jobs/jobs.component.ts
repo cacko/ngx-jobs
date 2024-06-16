@@ -7,12 +7,23 @@ import { saveAs } from 'file-saver';
 import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
 import { ApiService } from 'src/app/service/api.service';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { siMicrosoftexcel } from 'simple-icons';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { StorageService } from 'src/app/service/storage.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
+import { JobcompanyComponent } from '../jobcompany/jobcompany.component';
+import { JobpositionComponent } from '../jobposition/jobposition.component';
+import { JoblocationComponent } from '../joblocation/joblocation.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MomentModule } from 'ngx-moment';
+import { JobstatusComponent } from '../jobstatus/jobstatus.component';
+import { TruncateDirective } from 'src/app/directive/truncate.directive';
+import { LoaderService } from 'src/app/service/loader.service';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -21,6 +32,22 @@ interface RouteDataEntity {
   selector: 'app-jobs',
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    SimpleIconComponent,
+    MatSlideToggleModule,
+    MatTableModule,
+    JobcompanyComponent,
+    JobpositionComponent,
+    JoblocationComponent,
+    MatTooltipModule,
+    MomentModule,
+    JobstatusComponent,
+    TruncateDirective,
+    MatPaginatorModule
+  ]
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
@@ -37,10 +64,10 @@ export class JobsComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService,
+    private loader: LoaderService,
     public storage: StorageService,
     private breakpointObserver: BreakpointObserver
-  ) { 
+  ) {
     this.breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
       Breakpoints.HandsetPortrait,
@@ -99,6 +126,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
           .filter((je) => !je.deleted)
           .map((data) => new JobModel(data));
         this.dataSource.data = this.jobs;
+        this.loader.hide()
       },
     });
   }

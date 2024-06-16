@@ -3,7 +3,7 @@
 @use "../mixin.scss";
 
 @mixin apply-details-theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $palette: map.get($color-config, primary);
   $warn: map.get($color-config, warn);
   $background-palette: map-get($map: $color-config, $key: background);
@@ -13,7 +13,7 @@
     align-items: center;
     row-gap: 0;
     grid-template-columns: max-content 1fr;
-    background-color: darken(mat.get-color-from-palette($background-palette, card), 10%);
+    background-color: darken(mat.m2-get-color-from-palette($background-palette, card), 10%);
 
     [label] {
       font-variant: small-caps;
@@ -26,11 +26,11 @@
       align-self: flex-start;
     }
     [content] {
-      border-bottom: 1px solid darken(mat.get-color-from-palette($background-palette, card), 10%);
+      border-bottom: 1px solid darken(mat.m2-get-color-from-palette($background-palette, card), 10%);
       font-weight: 400;
       padding: 0.7rem;
       height: 100%;
-      background-color: mat.get-color-from-palette($background-palette, card);
+      background-color: mat.m2-get-color-from-palette($background-palette, card);
     }
     @media screen and (max-width: 960px) {
       width: 100%;

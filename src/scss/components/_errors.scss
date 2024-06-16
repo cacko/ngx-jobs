@@ -3,11 +3,11 @@
 @use "../mixin.scss";
 
 @mixin apply-errors-theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $palette: map.get($color-config, primary);
   $warn: map.get($color-config, warn);
   [errors] {
-    color: mat.get-color-from-palette($warn);
+    color: mat.m2-get-color-from-palette($warn);
 
     @media screen and (max-width: 960px) {
     }

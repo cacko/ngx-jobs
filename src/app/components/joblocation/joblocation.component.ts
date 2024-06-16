@@ -6,6 +6,9 @@ import {
   getCountryData,
   TCountryCode,
 } from 'countries-list'
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TruncateDirective } from 'src/app/directive/truncate.directive';
 
 export enum LocationModes {
   BRIEF = "brief",
@@ -15,7 +18,13 @@ export enum LocationModes {
 @Component({
   selector: 'app-joblocation',
   templateUrl: './joblocation.component.html',
-  styleUrls: ['./joblocation.component.scss']
+  styleUrls: ['./joblocation.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    TruncateDirective
+  ]
 })
 export class JoblocationComponent implements OnInit {
 

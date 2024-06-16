@@ -4,10 +4,17 @@ import { DEVICONS } from 'src/app/entity/icons.entity';
 import { Subject } from 'rxjs';
 import { SimpleIcon } from 'simple-icons';
 import { Position } from 'src/app/models/position.model';
+import { CommonModule } from '@angular/common';
+import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 @Component({
   selector: 'app-flying-icon',
   templateUrl: './flying-icon.component.html',
   styleUrl: './flying-icon.component.scss',
+  standalone: true,
+  imports: [
+    CommonModule,
+    SimpleIconComponent
+  ]
 })
 export class FlyingIconComponent {
   private classSubject = new Subject<string>();

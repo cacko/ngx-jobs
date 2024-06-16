@@ -5,7 +5,7 @@ import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { Observable, Subject, interval, map } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import {
   DEVICONS,
   StylesEntity,
@@ -14,13 +14,36 @@ import {
 } from './entity/icons.entity';
 import { AnimationService } from './service/animation.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
+import { LoaderComponent } from './components/loader/loader.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgPipesModule } from 'ngx-pipes';
+
+
+
+
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    MatIconModule,
+    FlyingIconComponent,
+    RouterModule,
+    LoginComponent,
+    LogoComponent,
+    MatToolbarModule,
+    NgPipesModule
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  loading = false;
   user: User | null = null;
   useBackButton: boolean = false;
   flyIcons = DEVICONS;
@@ -70,10 +93,6 @@ export class AppComponent implements OnInit {
     this.$isDesktop = this.breakpoints
       .observe([Breakpoints.Large, Breakpoints.XLarge, Breakpoints.Medium])
       .pipe(map((state) => state.matches));
-
-    this.loaderService.visible.subscribe((res) => {
-      this.loading = res;
-    });
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {

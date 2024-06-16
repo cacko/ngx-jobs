@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { UserService } from 'src/app/service/user.service';
 import { FirebaseError } from '@angular/fire/app';
 import { LoaderService } from 'src/app/service/loader.service';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LogoComponent } from '../logo/logo.component';
 
 enum LOGIN_MODE {
   PASSWORD = 'password',
@@ -15,7 +20,18 @@ enum LOGIN_MODE {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss'], 
+  standalone: true, 
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LogoComponent
+  ]
 })
 export class LoginComponent implements OnInit {
   private redirectTo: string = '/';
@@ -96,7 +112,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.hide();
-    this.loginMode = this.magicDisabled ?LOGIN_MODE.PASSWORD  : LOGIN_MODE.MAGIC;
+    this.loginMode = this.magicDisabled ? LOGIN_MODE.PASSWORD : LOGIN_MODE.MAGIC;
     this.activatedRoute.queryParams.subscribe((qp: any) => {
       if (this.user.isEmailLinkSigning()) {
         this.loader.show();
