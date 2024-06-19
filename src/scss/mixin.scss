@@ -52,8 +52,9 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 
 @function status-colors($theme) {
   $events: (
-    in_progress: fade-out(mat.get-theme-color($theme, primary), 0.9),
-    rejected: fade-out(mat.get-theme-color($theme, on-error), 0.9),
+    in_progress: fade-out(mat.get-theme-color($theme, primary), 0.8),
+    rejected: fade-out(mat.get-theme-color($theme, on-error), 0.8),
+    expired: fade-out(mat.get-theme-color($theme, tertiary), 0.9),
   );
 
   @return $events;

@@ -12,7 +12,7 @@
       >
         <mat-icon>content_copy</mat-icon>
       </button>
-      <p description>{{ ev.description }}</p>
+      <code description>{{ ev.description }}</code>
       <p class="timeline-subtitle">
         <span matTooltip="{{ ev.timestamp | amDateFormat : 'LLL' }}">
           {{ ev.timestamp | amTimeAgo }}

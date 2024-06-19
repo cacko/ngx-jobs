@@ -1,21 +1,12 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, Subject, delay, expand, of, reduce, tap } from 'rxjs';
-import { ApiConfig, ApiType, WSLoading } from '../entity/api.entity';
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { EMPTY, Observable, Subject, delay, expand, reduce } from 'rxjs';
+import { ApiConfig, ApiType } from '../entity/api.entity';
+import { HttpClient} from '@angular/common/http';
 import * as moment from 'moment';
 import { Params } from '@angular/router';
 import {
   omitBy,
-  orderBy,
-  head,
-  isObject,
-  findIndex,
-  isArray,
-  filter,
-  map,
   isUndefined,
-  isNumber,
-  find,
   isArrayLike,
   concat
 } from 'lodash-es';
@@ -29,7 +20,7 @@ interface CacheEntry {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService implements HttpInterceptor {
+export class ApiService {
   errorSubject = new Subject<string>();
   error = this.errorSubject.asObservable();
   userToken = '';
@@ -38,28 +29,6 @@ export class ApiService implements HttpInterceptor {
     private loaderService: LoaderService
   ) { }
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    this.loaderService.show();
-    return next.handle(req).pipe(
-      tap(
-        (event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-            this.onEnd();
-          }
-        },
-        (err: HttpErrorResponse) => {
-          this.onEnd();
-          this.errorSubject.next(err.message);
-        }
-      )
-    );
-  }
-  private onEnd(): void {
-    this.loaderService.hide();
-  }
 
   fetch(
     type: ApiType,
@@ -69,6 +38,7 @@ export class ApiService implements HttpInterceptor {
     return new Observable((subscriber: any) => {
       let id = query;
       const path = [type, id].filter(x => x.length);
+      this.loaderService.show();
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
           headers: { 'X-User-Token': this.userToken },

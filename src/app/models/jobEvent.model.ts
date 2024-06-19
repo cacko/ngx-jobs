@@ -8,5 +8,7 @@ export class JobEventModel implements JobEventEntity {
   constructor(original: Object) {
     Object.assign(this, original);
     this.timestamp = moment(this.timestamp);
+    this.description = this.description.replace(/[\r\n]{3,}/g, "\n");
+
   }
 }
