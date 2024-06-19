@@ -8,18 +8,19 @@ import { JobEventModel } from 'src/app/models/jobEvent.model';
 import { JobModel } from 'src/app/models/jobs.model';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrl: './timeline.component.scss',
   standalone: true,
   imports: [
     CommonModule,
     MomentModule,
     MatIconModule,
     MatTooltipModule,    
-    ClipboardModule
+    ClipboardModule,
+    MatButtonModule
   ]
 })
 export class TimelineComponent {

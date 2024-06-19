@@ -6,6 +6,7 @@ import { JobModel } from 'src/app/models/jobs.model';
 import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
 import { TimelineComponent } from '../timeline/timeline.component';
+import { LoaderService } from 'src/app/service/loader.service';
 
 interface RouteDataEntity {
   data?: JobEntity;
@@ -14,7 +15,6 @@ interface RouteDataEntity {
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
-  styleUrls: ['./job.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -27,11 +27,12 @@ export class JobComponent implements OnInit {
 
   job !: JobModel;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private loader: LoaderService) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe({
       next: (data: RouteDataEntity) => {
+        this.loader.hide();
         const job = new JobModel(data.data as JobEntity);
         this.job = job;
       },

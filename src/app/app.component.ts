@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -38,7 +39,8 @@ import { NgPipesModule } from 'ngx-pipes';
     LoginComponent,
     LogoComponent,
     MatToolbarModule,
-    NgPipesModule
+    NgPipesModule,
+    MatButtonModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -62,7 +64,7 @@ export class AppComponent implements OnInit {
     private breakpoints: BreakpointObserver,
     private iconRegister: MatIconRegistry
   ) {
-    this.iconRegister.setDefaultFontSetClass('material-symbols-rounded');
+    this.iconRegister.setDefaultFontSetClass('material-symbols-sharp');
 
     this.userService.user.subscribe((res) => {
       this.user = res;

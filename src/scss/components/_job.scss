@@ -1,20 +1,16 @@
-:host {
+app-job {
   display: flex;
   flex-direction: column;
   padding: 3em;
   height: 100%;
   align-items: center;
-  h1,
-  h2 {
-    display: flex;
-    align-items: center;
-    position: relative;
-    text-align: center;
-  }
-
-  h1 {
+  app-jobposition {
+    transform: scale(2);
     font-variant: small-caps;
     text-transform: uppercase;
+    font-family: "Bebas Neue";
+    padding: 1rem;
+
   }
   @media screen and (max-width: 960px) {
     padding: 1rem 0;

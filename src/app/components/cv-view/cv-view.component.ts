@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { CVModel } from 'src/app/models/cv.model';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-cv-view',
@@ -13,7 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   styleUrl: './cv-view.component.scss'
 })

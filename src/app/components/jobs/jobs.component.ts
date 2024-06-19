@@ -1,12 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { clamp, orderBy, sortBy } from 'lodash-es';
+import { clamp, orderBy } from 'lodash-es';
 import { DeviceColumns, JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
 import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
-import { ApiService } from 'src/app/service/api.service';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { siMicrosoftexcel } from 'simple-icons';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -24,6 +23,7 @@ import { MomentModule } from 'ngx-moment';
 import { JobstatusComponent } from '../jobstatus/jobstatus.component';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { LoaderService } from 'src/app/service/loader.service';
+import { MatButtonModule } from '@angular/material/button';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -46,7 +46,9 @@ interface RouteDataEntity {
     MomentModule,
     JobstatusComponent,
     TruncateDirective,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
   ]
 })
 export class JobsComponent implements OnInit, AfterViewInit {

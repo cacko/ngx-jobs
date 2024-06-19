@@ -8,7 +8,6 @@ import { JobStatus } from 'src/app/entity/jobs.entity';
 @Component({
   selector: 'app-jobstatus',
   templateUrl: './jobstatus.component.html',
-  styleUrls: ['./jobstatus.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -43,7 +42,7 @@ export class JobstatusComponent implements OnInit {
       case JobStatus.REJECTED:
         this.label = "Rejected";
         this.icon = "thumb_down";
-        this.color = 'warn'
+        this.color = 'error'
         break;
       case JobStatus.EXPIRED:
         this.label = "Expired";

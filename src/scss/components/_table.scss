@@ -4,7 +4,7 @@
 
 @mixin apply-theme($theme) {
   mat-table {
-    display: none;
+    // display: none;
     font-size: 120%;
     border-radius: 1rem;
 
@@ -43,7 +43,7 @@
     }
 
     mat-row:hover mat-cell {
-      background-color: mat.get-theme-color($theme, tertiary, 80);
+      background-color: mat.get-theme-color($theme, surface-dim);
 
       cursor: pointer;
     }

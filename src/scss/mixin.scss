@@ -34,10 +34,10 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 }
 
 @function event-colors($theme) {
-  $reject: mat.get-theme-color($theme, on-error);
+  $reject: darken(mat.get-theme-color($theme, on-error), 50%);
   $interview: mat.get-theme-color($theme, secondary);
-  $applied: mat.get-theme-color($theme, primary);
-  $response: darken(get-theme-color($theme, tertiary));
+  $applied: darken(mat.get-theme-color($theme, primary), 30%);
+  $response: darken(mat.get-theme-color($theme, tertiary), 20%);
 
   $events: (
     applied: $applied,

@@ -13,7 +13,6 @@ import { JobsiteComponent } from '../jobsite/jobsite.component';
 @Component({
   selector: 'app-jobdetails',
   templateUrl: './jobdetails.component.html',
-  styleUrl: './jobdetails.component.scss',
   standalone: true,
   imports: [
     CommonModule,

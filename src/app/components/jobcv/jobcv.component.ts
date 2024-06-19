@@ -6,6 +6,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { CvimageComponent } from '../cvimage/cvimage.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-jobcv',
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CvimageComponent,
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class JobcvComponent {

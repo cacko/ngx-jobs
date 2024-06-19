@@ -21,8 +21,8 @@
     *ngIf="dataSource"
     [dataSource]="dataSource"
     matSort
+    class="mat-elevation-z8"
 >
-    class="mat-elevation-z8">
     <ng-container matColumnDef="company">
         <mat-header-cell
             *matHeaderCellDef
@@ -51,7 +51,10 @@
         >
             Position
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Position">
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Position"
+        >
             <app-jobposition
                 [truncate]="true"
                 [position]="element.position"
@@ -66,7 +69,10 @@
         >
             Location
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Location">
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Location"
+        >
             <app-joblocation
                 [truncate]="true"
                 [location]="element.location"
@@ -81,7 +87,10 @@
         >
             Applied
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Applied">
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Applied"
+        >
             <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">{{element.applied.timestamp|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
@@ -94,7 +103,10 @@
             Last
       Action
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Last Action">
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Last Action"
+        >
             <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">{{element.last_modified|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
@@ -106,11 +118,11 @@
         >
             Status
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Status">
-            <app-jobstatus
-                [truncate]="true"
-                [status]="element.status"
-            ></app-jobstatus>
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Status"
+        >
+            <app-jobstatus [status]="element.status"></app-jobstatus>
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
