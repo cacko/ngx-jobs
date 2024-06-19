@@ -2,19 +2,14 @@
 @use "@angular/material" as mat;
 @use "../mixin.scss";
 
-@mixin apply-details-theme($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  $palette: map.get($color-config, primary);
-  $warn: map.get($color-config, warn);
-  $background-palette: map-get($map: $color-config, $key: background);
+@mixin apply-theme($theme) {
   app-jobdetails {
     border: none;
     display: grid;
     align-items: center;
     row-gap: 0;
     grid-template-columns: max-content 1fr;
-    background-color: darken(mat.m2-get-color-from-palette($background-palette, card), 10%);
-
+    background-color:mat.get-theme-color($theme, neutral);
     [label] {
       font-variant: small-caps;
       text-transform: uppercase;
@@ -26,11 +21,12 @@
       align-self: flex-start;
     }
     [content] {
-      border-bottom: 1px solid darken(mat.m2-get-color-from-palette($background-palette, card), 10%);
+      border-bottom: 1px solid
+        darken(mat.get-theme-color($theme, neutral), 10%);
       font-weight: 400;
       padding: 0.7rem;
       height: 100%;
-      background-color: mat.m2-get-color-from-palette($background-palette, card);
+      background-color: mat.get-theme-color($theme, surtface-dim);
     }
     @media screen and (max-width: 960px) {
       width: 100%;

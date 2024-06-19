@@ -28,22 +28,16 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 @mixin color-modifiers($prefix, $attribute: "background-color") {
   @for $i from 1 through 70 {
     [#{$prefix}="#{$i}"] {
-      #{$attribute}: change-color(mat.m2-get-color-from-palette($blue, 500), $alpha: $i * 0.01);
+      #{$attribute}: change-color(mat.get-theme-color($theme, primary, 500), $alpha: $i * 0.01);
     }
   }
 }
 
 @function event-colors($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  $palette: map.get($color-config, primary);
-  $accent: map.get($color-config, accent);
-  $warn: map.get($color-config, warn);
-  $theme-orange: mat.m2-define-palette(mat.$m2-orange-palette, 800);
-
-  $reject: mat.m2-get-color-from-palette($warn);
-  $interview: mat.m2-get-color-from-palette($theme-orange);
-  $applied: mat.m2-get-color-from-palette($palette);
-  $response: darken(mat.m2-get-color-from-palette($accent), 10%);
+  $reject: mat.get-theme-color($theme, on-error);
+  $interview: mat.get-theme-color($theme, secondary);
+  $applied: mat.get-theme-color($theme, primary);
+  $response: darken(get-theme-color($theme, tertiary));
 
   $events: (
     applied: $applied,
@@ -57,15 +51,9 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 }
 
 @function status-colors($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  $palette: map.get($color-config, primary);
-  $accent: map.get($color-config, accent);
-  $warn: map.get($color-config, warn);
-  $theme-orange: mat.m2-define-palette(mat.$m2-orange-palette, 800);
-
   $events: (
-    in_progress: fade-out(mat.m2-get-color-from-palette($accent), 0.9),
-    rejected: fade-out(mat.m2-get-color-from-palette($warn), 0.9),
+    in_progress: fade-out(mat.get-theme-color($theme, primary), 0.9),
+    rejected: fade-out(mat.get-theme-color($theme, on-error), 0.9),
   );
 
   @return $events;

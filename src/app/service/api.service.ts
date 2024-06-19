@@ -68,8 +68,9 @@ export class ApiService implements HttpInterceptor {
   ): Observable<any> {
     return new Observable((subscriber: any) => {
       let id = query;
+      const path = [type, id].filter(x => x.length);
       this.httpClient
-        .get(`${ApiConfig.BASE_URI}/${type}/${id}`, {
+        .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
           headers: { 'X-User-Token': this.userToken },
           params: omitBy(params, isUndefined),
           observe: 'response',

@@ -2,16 +2,7 @@
 @use "@angular/material" as mat;
 @use "../mixin";
 
-@mixin apply-table-theme($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  $palette: map.get($color-config, primary);
-  $accent: map.get($color-config, accent);
-  $warn: map.get($color-config, warn);
-  $background-palette: map-get(
-    $map: $color-config,
-    $key: background,
-  );
-
+@mixin apply-theme($theme) {
   mat-table {
     display: none;
     font-size: 120%;
@@ -25,10 +16,7 @@
         font-variant: small-caps;
         text-transform: uppercase;
         font-weight: bold !important;
-        background: darken(
-          mat.m2-get-color-from-palette($background-palette, card),
-          10%
-        ) !important;
+        background: mat.get-theme-color($theme, neutral, 80);
 
         &:first-of-type {
           border-top-left-radius: 1rem;
@@ -52,22 +40,11 @@
           line-height: 28px;
         }
       }
-
-      // &:last-of-type {
-      //   border-radius: 1rem;
-      //   mat-cell {
-      //     &:first-of-type {
-      //       border-bottom-left-radius: 1rem;
-      //     }
-      //     &:last-of-type {
-      //       border-bottom-right-radius: 1rem;
-      //     }
-      //   }
-      // }
     }
 
     mat-row:hover mat-cell {
-      background-color: mat.m2-get-color-from-palette($palette);
+      background-color: mat.get-theme-color($theme, tertiary, 80);
+
       cursor: pointer;
     }
   }
@@ -79,12 +56,8 @@
     align-items: center;
     grid-template-columns: 1fr 2fr;
     column-gap: 0.5rem;
-    background-color: darken(
-      mat.m2-get-color-from-palette($background-palette, card),
-      10%
-    );
-    border-bottom: 1rem solid
-      mat.m2-get-color-from-palette($background-palette, app-bar);
+    background-color: mat.get-theme-color($theme, tertiary, 80);
+    border-bottom: 1rem solid mat.get-theme-color($theme, tertiary, 80);
 
     &:first-of-type {
       border-top: 0;
@@ -98,7 +71,7 @@
     }
 
     [content] {
-      background-color: mat.m2-get-color-from-palette($background-palette, card);
+      background-color: mat.get-theme-color($theme, tertiary, 80);
       padding: 0.5rem;
       font-weight: 400;
     }
@@ -122,64 +95,4 @@
       }
     }
   }
-
-  // @media screen and (max-width: 960px) {
-  //   mat-table {
-  //     border: 0;
-  //     vertical-align: middle;
-  //     border-radius: 0;
-
-  //     mat-header-row {
-  //       display: none;
-
-  //       mat-header-cell  {
-
-  //         &:first-of-type {
-  //           border-top-left-radius: 0;
-  //         }
-  //         &:last-of-type {
-  //           border-top-right-radius: 0;
-  //         }
-  //       }
-
-  //     }
-
-  //     mat-row {
-  //       border-bottom: 5px solid darken(
-  //         mat.get-color-from-palette($background-palette, card),
-  //         10%
-  //       ) !important;
-  //       display: block;
-  //     }
-
-  //     mat-cell {
-  //       border-bottom: 1px solid #ddd;
-  //       display: block;
-  //       font-size: 1em;
-  //       text-align: right;
-  //       font-weight: bold;
-  //       height: 30px;
-  //       margin-bottom: 4%;
-
-  //       &:before {
-
-  //         content: attr(data-label);
-  //         float: right;
-  //         text-transform: uppercase;
-  //         font-weight: normal;
-    
-  //         font-size: 0.85em;
-  //       }
-
-  //       &:last-child {
-  //         border-bottom: 0 !important;
-  //       }
-
-  //       &:first-child {
-  //         margin-top: 4%;
-  //       }
-  //     }
-
-  //   }
-  // }
 }

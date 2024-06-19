@@ -16,7 +16,7 @@ import { AnimationService } from './service/animation.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './components/loader/loader.component';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -60,7 +60,10 @@ export class AppComponent implements OnInit {
     private router: Router,
     private animationService: AnimationService,
     private breakpoints: BreakpointObserver,
+    private iconRegister: MatIconRegistry
   ) {
+    this.iconRegister.setDefaultFontSetClass('material-symbols-rounded');
+
     this.userService.user.subscribe((res) => {
       this.user = res;
     });
