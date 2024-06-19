@@ -22,7 +22,6 @@ enum LOGIN_MODE {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'], 
   standalone: true, 
   imports: [
     CommonModule,
