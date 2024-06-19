@@ -11,19 +11,22 @@ app-login {
       text-align: center;
     }
   
-    mat-card {
+    mat-card.mdc-card {
       border-radius: 1rem;
   
       mat-card-content {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 2rem;
-        row-gap: 3rem;
+        row-gap: 1rem;
   
         app-logo {
           width: 80%;
           height: auto;
           align-self: center;
+          justify-self: center;
           padding: 1rem;
         }
       }
