@@ -54,20 +54,16 @@
         <mat-button-toggle-group (change)="onLoginMode($event)" *ngIf="!magicDisabled">
           <mat-button-toggle
             [checked]="loginMode == modeName.PASSWORD"
-            button-with-icon
             value="{{ modeName.PASSWORD }}"
             aria-label="Text align left"
           >
-            <mat-icon>password</mat-icon>
             <span>Password</span>
           </mat-button-toggle>
           <mat-button-toggle
             [checked]="loginMode == modeName.MAGIC"
-            button-with-icon
             value="{{ modeName.MAGIC }}"
             aria-label="Text align center"
           >
-            <mat-icon>mail_lock</mat-icon>
             <span>MagicLink</span>
           </mat-button-toggle>
         </mat-button-toggle-group>

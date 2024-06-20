@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   public loginMode?: LOGIN_MODE;
   public modeName = LOGIN_MODE;
   public waitForLink?: string;
-  public magicDisabled = true;
+  public magicDisabled = false;
 
   constructor(
     private api: ApiService,
