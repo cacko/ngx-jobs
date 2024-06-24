@@ -35,7 +35,6 @@
             *matCellDef="let element"
             (click)="onClickCompany($event, element)"
             data-label="company"
-            matTooltip="Open Company Website"
         >
             <app-jobcompany
                 [truncate]="true"
@@ -91,7 +90,7 @@
             *matCellDef="let element"
             data-label="Applied"
         >
-            <span matTooltip="{{element.applied.timestamp|amDateFormat:'LLL'}}">{{element.applied.timestamp|amTimeAgo}}</span>
+            <span>{{element.applied.timestamp|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="last_modified">
@@ -107,7 +106,7 @@
             *matCellDef="let element"
             data-label="Last Action"
         >
-            <span matTooltip="{{element.last_modified|amDateFormat:'LLL'}}">{{element.last_modified|amTimeAgo}}</span>
+            <span>{{element.last_modified|amTimeAgo}}</span>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">

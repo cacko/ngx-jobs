@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationType } from 'src/app/entity/jobs.entity';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-jobsite',
@@ -12,7 +11,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   imports: [
     CommonModule,
     TruncateDirective,
-    MatTooltipModule
   ]
 })
 export class JobsiteComponent {

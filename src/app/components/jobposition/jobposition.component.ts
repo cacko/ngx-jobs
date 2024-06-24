@@ -4,7 +4,6 @@ import { SimpleIcon } from 'simple-icons';
 import { CommonModule } from '@angular/common';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-jobposition',
@@ -15,7 +14,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CommonModule,
     TruncateDirective,
     SimpleIconComponent,
-    MatTooltipModule
   ]
 })
 export class JobpositionComponent implements OnInit {

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { JobStatus } from 'src/app/entity/jobs.entity';
 
@@ -11,7 +10,6 @@ import { JobStatus } from 'src/app/entity/jobs.entity';
   standalone: true,
   imports: [
     CommonModule,
-    MatTooltipModule,
     MatIconModule,
     TruncateDirective
   ]

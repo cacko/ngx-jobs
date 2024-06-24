@@ -1,12 +1,12 @@
 <section [ngSwitch]="mode">
   <ng-template [ngSwitchCase]="modes.BRIEF">
-    <div [matTooltip]="country">{{flag}}</div>
-    <div [truncate]="truncate" [matTooltip]="city">{{city}}</div>
+    <div>{{flag}}</div>
+    <div [truncate]="truncate">{{city}}</div>
   </ng-template>
   <ng-template [ngSwitchCase]="modes.FULL">
     <div>{{city}}</div>
     <span class="spacer"></span>
     <div>{{country}}</div>
-    <div [matTooltip]="country">{{flag}}</div>
+    <div>{{flag}}</div>
   </ng-template>
 </section>

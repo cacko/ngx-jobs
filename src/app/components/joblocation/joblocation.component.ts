@@ -2,12 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LocationEntity, LocationType } from 'src/app/entity/jobs.entity';
 import {
   getEmojiFlag,
-  ICountryData,
   getCountryData,
   TCountryCode,
 } from 'countries-list'
 import { CommonModule } from '@angular/common';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 
 export enum LocationModes {
@@ -22,7 +20,6 @@ export enum LocationModes {
   standalone: true,
   imports: [
     CommonModule,
-    MatTooltipModule,
     TruncateDirective
   ]
 })

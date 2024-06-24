@@ -18,7 +18,6 @@ import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 import { JobcompanyComponent } from '../jobcompany/jobcompany.component';
 import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JoblocationComponent } from '../joblocation/joblocation.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MomentModule } from 'ngx-moment';
 import { JobstatusComponent } from '../jobstatus/jobstatus.component';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
@@ -42,7 +41,6 @@ interface RouteDataEntity {
     JobcompanyComponent,
     JobpositionComponent,
     JoblocationComponent,
-    MatTooltipModule,
     MomentModule,
     JobstatusComponent,
     TruncateDirective,
