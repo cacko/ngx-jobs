@@ -71,7 +71,7 @@ export interface JobEntity {
   position: string;
   company: CompanyEntity;
   id: string;
-  last_modified: moment.Moment;
+  last_modified: moment.Moment | string;
   cv: CVEntity;
   deleted: boolean;
   status: JobStatus;

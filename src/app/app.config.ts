@@ -9,6 +9,8 @@ import { ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalyt
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideHttpClient } from '@angular/common/http';
+import { provideNgxLocalstorage } from 'ngx-localstorage';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideFirebaseApp(() => initializeApp({
@@ -27,6 +29,9 @@ export const appConfig: ApplicationConfig = {
   provideServiceWorker('ngsw-worker.js', {
     enabled: !isDevMode(),
     registrationStrategy: 'registerWhenStable:30000'
-  }),]
+  }),
+  provideNgxLocalstorage({
+    prefix: `jobs-${window.location.hostname}`
+  })]
 };
 

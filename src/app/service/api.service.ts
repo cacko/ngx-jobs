@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, Subject, delay, expand, reduce } from 'rxjs';
+import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
 import { ApiConfig, ApiType } from '../entity/api.entity';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
 import { Params } from '@angular/router';
 import {
@@ -11,6 +11,8 @@ import {
   concat
 } from 'lodash-es';
 import { LoaderService } from './loader.service';
+import { JobEntity } from '../entity/jobs.entity';
+import { StorageService } from './storage.service';
 
 interface CacheEntry {
   timestamp: moment.Moment;
@@ -26,7 +28,8 @@ export class ApiService {
   userToken = '';
   constructor(
     private httpClient: HttpClient,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private storage: StorageService
   ) { }
 
 
@@ -38,11 +41,14 @@ export class ApiService {
     return new Observable((subscriber: any) => {
       let id = query;
       const path = [type, id].filter(x => x.length);
+      const urlParams = new URLSearchParams(omitBy(params, isUndefined));
+      urlParams.set("last_modified", this.storage.last_modified.toISOString());
+
       this.loaderService.show();
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
           headers: { 'X-User-Token': this.userToken },
-          params: omitBy(params, isUndefined),
+          params: new HttpParams({ fromString: urlParams.toString() }),
           observe: 'response',
         })
         .pipe(
@@ -60,11 +66,26 @@ export class ApiService {
             const data = current.body || {};
             const pageNo = parseInt(String(current.headers.get('x-pagination-page')));
             return isArrayLike(data) ? concat(acc, data) : data;
-          }, [])
+          }, []),
+          tap((res) => {
+            if (isArrayLike(res)) {
+              const jobs = res as JobEntity[];
+              this.storage.addJobs(jobs);
+            } else {
+              const job = res as JobEntity;
+              this.storage.addJob(job);
+            }
+
+          })
         )
         .subscribe({
           next: (data: any) => {
-            subscriber.next(data);
+            if (isArrayLike(data)) {
+              subscriber.next(this.storage.jobs);
+            } else {
+              subscriber.next(this.storage.getJob(id));
+
+            }
           },
           error: (error: any) => console.debug(error),
         });
