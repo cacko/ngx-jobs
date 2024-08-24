@@ -35,7 +35,7 @@ export class ApiService {
 
   fetch(
     type: ApiType,
-    query: string = '',
+    query: string = '', 
     params: Params = {}
   ): Observable<any> {
     return new Observable((subscriber: any) => {
