@@ -24,6 +24,8 @@ export enum JobEvent {
 export enum Source {
   LINKEDIN = 'linkedin',
   DIRECT = 'direct',
+  DWP = 'dwp',
+  TOTALJOBS = 'totaljobs'
 }
 
 export enum SkillGroup {
