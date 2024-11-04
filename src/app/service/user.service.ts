@@ -59,7 +59,6 @@ export class UserService {
         const refresh = expiry.subtract(5 * 60, 'seconds')
         this.refreshSub && this.refreshSub?.unsubscribe();
         this.refreshSub = timer(refresh.toDate()).subscribe(() => {
-          console.debug("schedule token refresh");
           res.getIdToken(true);
         });
       });

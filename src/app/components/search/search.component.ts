@@ -4,6 +4,7 @@ import {
   Component,
   HostListener,
   Inject,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import {
@@ -34,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './search.component.html',
 })
-export class SearchComponent implements AfterViewInit {
+export class SearchComponent implements OnInit {
   form: FormGroup;
   filterInput = new FormControl('');
   @ViewChild(MatInput, { static: false }) matInput: MatInput | undefined;
@@ -60,13 +61,15 @@ export class SearchComponent implements AfterViewInit {
     this.dialogRef.close(input.trim());
   }
 
-  ngAfterViewInit(): void {
-    this.matInput?.focused || this.matInput?.focus();
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.matInput?.focused || this.matInput?.focus();
+    });
   }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscape() {
     this.filterInput.reset();
-    this.dialogRef.close();
+    this.dialogRef.close("");
   }
 }

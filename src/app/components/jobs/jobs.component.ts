@@ -212,6 +212,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
       // ],
       // backdropClass: 'search-backdrop',
       // hasBackdrop: true,
+      restoreFocus: true,
       autoFocus: 'dialog',
       maxWidth: this.platform.isBrowser ? '800px' : '100%',
       width: this.platform.isBrowser ? '80vw' : '100%',
@@ -219,9 +220,8 @@ export class JobsComponent implements OnInit, AfterViewInit {
       role: 'dialog',
     });
     dialogRef.afterClosed().subscribe((input) => {
-      if (input) {
-        this.query = input;
-      }
+      this.query = input || "";
+      this.updateFilter();
     });
 
     dialogRef.keydownEvents().subscribe(($event: KeyboardEvent) => {
@@ -232,7 +232,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
       }
       if (/^[\w ]$/.test($event.key)) {
         this.query += $event.key;
-        return this.updateFilter() 
+        return this.updateFilter()
       }
     });
   }
