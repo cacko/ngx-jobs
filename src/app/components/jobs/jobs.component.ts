@@ -1,14 +1,28 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  HostListener,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { clamp, orderBy } from 'lodash-es';
-import { DeviceColumns, JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
+import { clamp, orderBy, remove, words } from 'lodash-es';
+import {
+  DeviceColumns,
+  JobEntity,
+  JobStatus,
+} from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
 import { ApiConfig, ApiFetchType } from 'src/app/entity/api.entity';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { siMicrosoftexcel } from 'simple-icons';
-import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {
+  MatSlideToggleChange,
+  MatSlideToggleModule,
+} from '@angular/material/slide-toggle';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { StorageService } from 'src/app/service/storage.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -23,6 +37,10 @@ import { JobstatusComponent } from '../jobstatus/jobstatus.component';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { LoaderService } from 'src/app/service/loader.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Dialog } from '@angular/cdk/dialog';
+import { SearchComponent } from '../search/search.component';
+import { Platform } from '@angular/cdk/platform';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -47,14 +65,16 @@ interface RouteDataEntity {
     MatPaginatorModule,
     MatButtonModule,
     MatSortModule,
-  ]
+    MatDialogModule,
+  ],
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
   excelIcon = siMicrosoftexcel;
   hideExpired = this.storage.hide_expired;
-
+  query: string = '';
+  readonly dialog = inject(MatDialog);
   displayedColumns: string[] = DeviceColumns.desktop;
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
@@ -66,17 +86,20 @@ export class JobsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private loader: LoaderService,
     public storage: StorageService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private platform: Platform
   ) {
-    this.breakpointObserver.observe([
-      Breakpoints.HandsetLandscape,
-      Breakpoints.HandsetPortrait,
-      Breakpoints.Small
-    ]).subscribe(result => {
-      this.displayedColumns = result.matches ? DeviceColumns.mobile : DeviceColumns.desktop;
-    });
-
-
+    this.breakpointObserver
+      .observe([
+        Breakpoints.HandsetLandscape,
+        Breakpoints.HandsetPortrait,
+        Breakpoints.Small,
+      ])
+      .subscribe((result) => {
+        this.displayedColumns = result.matches
+          ? DeviceColumns.mobile
+          : DeviceColumns.desktop;
+      });
   }
 
   ngAfterViewInit(): void {
@@ -84,11 +107,26 @@ export class JobsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
     this.dataSource.filterPredicate = this.filterData;
-    this.dataSource.filter = this.storage.hide_expired ? JobStatus.EXPIRED : "";
+    this.updateFilter()
+  }
+
+  private updateFilter() {
+    this.dataSource.filter = [
+      this.query,
+      this.storage.hide_expired ? JobStatus.EXPIRED : '',
+    ]
+      .filter((t) => t.trim().length)
+      .join(' ');
   }
 
   private filterData(data: JobModel, filter: string): boolean {
-    return !filter || data.status != filter;
+    if (!filter) {
+      return true;
+    }
+    const parts = words(filter);
+    const statuses = Object.values(JobStatus) as string[];
+    const sts = remove(parts, (p) => statuses.includes(p));
+    return !sts.includes(data.status) && data.filter(parts);
   }
 
   private sortData(data: JobModel[], sort: Sort): JobModel[] {
@@ -126,7 +164,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
           .filter((je) => !je.deleted)
           .map((data) => new JobModel(data));
         this.dataSource.data = this.jobs;
-        this.loader.hide()
+        this.loader.hide();
       },
     });
   }
@@ -152,8 +190,58 @@ export class JobsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  onQuery() {
+    this.query = "";
+    this.updateFilter();
+  }
+
   onHideExpired(change: MatSlideToggleChange) {
     this.storage.hide_expired = change.checked;
-    this.dataSource.filter = change.checked ? JobStatus.EXPIRED : "";
+    this.updateFilter();
+  }
+
+  openSearchDialog() {
+    if (this.dialog.getDialogById('search-dialog') !== undefined) {
+      return;
+    }
+    const dialogRef = this.dialog.open(SearchComponent, {
+      id: 'search-dialog',
+      // panelClass: [
+      //   this.platform.isBrowser ? 'search-overlay-desktop' : 'search-overlay-mobile',
+      //   'is-active',
+      // ],
+      // backdropClass: 'search-backdrop',
+      // hasBackdrop: true,
+      autoFocus: 'dialog',
+      maxWidth: this.platform.isBrowser ? '800px' : '100%',
+      width: this.platform.isBrowser ? '80vw' : '100%',
+      data: this.query,
+      role: 'dialog',
+    });
+    dialogRef.afterClosed().subscribe((input) => {
+      if (input) {
+        this.query = input;
+      }
+    });
+
+    dialogRef.keydownEvents().subscribe(($event: KeyboardEvent) => {
+      switch ($event.key) {
+        case 'Backspace':
+          this.query = this.query.slice(0, -1);
+          return this.updateFilter();
+      }
+      if (/^[\w ]$/.test($event.key)) {
+        this.query += $event.key;
+        return this.updateFilter() 
+      }
+    });
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  goSearch(event: KeyboardEvent) {
+    if (event.key === '/') {
+      event.preventDefault();
+      this.openSearchDialog();
+    }
   }
 }

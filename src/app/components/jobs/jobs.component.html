@@ -5,6 +5,10 @@
     >
         Hide Expired
     </mat-slide-toggle>
+    <button mat-stroked-button *ngIf="query.length > 0" (click)="onQuery()">
+        <span>{{query}}</span>
+        <mat-icon iconPositionEnd>close</mat-icon>
+    </button>
     <span class="spacer"></span>
     <button
         mat-button

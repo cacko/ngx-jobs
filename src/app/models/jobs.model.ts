@@ -41,10 +41,21 @@ export class JobModel implements JobEntity {
         [SkillGroup.TECHNICAL, SkillGroup.TECHNOLOGY].includes(sk.group)
       )
       .map((sk) => new SkillModel(sk));
-    this.last_modified = moment(find(this.events, (o) => o.event != JobEvent.EXPIRED)?.timestamp);
+    this.last_modified = moment(
+      find(this.events, (o) => o.event != JobEvent.EXPIRED)?.timestamp
+    );
   }
 
   get applied(): JobEventEntity | undefined {
     return find(this.events, (ev) => ev.event == JobEvent.APPLIED);
+  }
+
+  filter(words: string[]): boolean {
+    return words.length === 0  || (
+      words.filter(
+        (w) =>
+          [this.company.name, this.position].join(' ').toLowerCase().indexOf(w) > -1
+      ).length > 0
+    );
   }
 }

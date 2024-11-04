@@ -43,8 +43,7 @@
     }
 
     mat-row:hover mat-cell {
-      background-color: mat.get-theme-color($theme, surface-dim);
-
+      background-color: mat.get-theme-color($theme, surface-bright);
       cursor: pointer;
     }
   }

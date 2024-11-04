@@ -1,0 +1,9 @@
+<mat-dialog-content>
+    <form #triggerForm [formGroup]="form" ((ngSubmit)="submitForm()" class="mat-display-large">
+        <mat-form-field query appearance="fill" >
+          <mat-label>search</mat-label>
+          <input matInput [formControl]="filterInput" spellcheck="false" autofocus>
+          <mat-icon matSuffix (click)="submitForm()">gavel</mat-icon>
+        </mat-form-field>
+      </form>
+</mat-dialog-content>

@@ -5,6 +5,7 @@
 @use "./scss/components/errors" as Errors;
 @use "./scss/components/logo" as Logo;
 @use "./scss/components/loader" as Loader;
+@use "./scss/components/search" as Search;
 @use "./scss/theme" as Theme;
 @use "sass:map";
 @include mat.core();
@@ -23,6 +24,7 @@ html {
   @include Errors.apply-theme(Theme.$theme);
   @include Logo.apply-theme(Theme.$theme);
   @include Loader.apply-theme(Theme.$theme);
+  @include Search.apply-theme(Theme.$theme);
   @import "./scss/components/toolbar";
   @import "./scss/components/button";
   @import "./scss/components/spacer";

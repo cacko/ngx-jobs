@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../mixin.scss";
+
+@mixin apply-theme($theme) {
+//   .search-overlay-desktop {
+//     flex-grow: 1;
+//     justify-content: center;
+//     align-items: center;
+
+//     form {
+//       display: flex;
+//       flex-grow: 1;
+//       align-items: center;
+//       justify-content: center;
+
+//       mat-form-field[query] {
+//         input {
+//           font-size: 2em;
+//           text-transform: lowercase;
+//           font-variant: small-caps;
+//         }
+//       }
+//     }
+//   }
+
+//   .search-overlay-mobile {
+//     width: 100%;
+
+//     app-chat-input {
+//       display: flex;
+//       flex-direction: column;
+
+//       form {
+//         display: flex;
+//         flex-grow: 1;
+
+//         mat-form-field[query] {
+//           width: 100%;
+
+//           input {
+//             font-size: 2em;
+//             text-transform: lowercase;
+//             font-variant: small-caps;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+  app-search {
+    mat-form-field {
+      width: 100%;
+    }
+      [matSuffix] {
+        cursor: pointer;
+      }
+    }
+}
