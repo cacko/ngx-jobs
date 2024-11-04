@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   Auth,
   EmailAuthProvider,
@@ -11,9 +11,11 @@ import {
   isSignInWithEmailLink,
   onIdTokenChanged
 } from '@angular/fire/auth';
-import { EMPTY, Observable, Subscription, timer } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, Subscription, timer } from 'rxjs';
 import { ApiService } from './api.service';
 import * as moment from 'moment';
+import { Database, objectVal, ref } from '@angular/fire/database';
+import { Admins } from '../entity/api.entity';
 
 
 @Injectable({
@@ -21,19 +23,37 @@ import * as moment from 'moment';
 })
 export class UserService {
   public readonly user: Observable<User | null> = EMPTY;
-  private refreshSub ?: Subscription;
+  private userData: User | null = null;
+  private refreshSub?: Subscription;
 
-  constructor(private auth: Auth, private api: ApiService) {
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
+  public readonly $isAdmin = this.isAdminSubject.asObservable();
+
+  private admins: Admins = {};
+
+  constructor(
+    private auth: Auth,
+    private api: ApiService,
+    private db: Database = inject(Database)
+  ) {
     this.user = authState(this.auth);
+    const path = `access/admin`;
+    const accessRef = ref(this.db, path);
+    objectVal(accessRef).subscribe({
+      next: (data: any) => {
+        this.admins = (data || {}) as Admins;
+        this.updateAdmin();
+      }
+    });
   }
 
   init() {
-    // this.user.subscribe((res) => {
-    //   console.debug("user sign in");
-    // });
+
+
     onIdTokenChanged(this.auth, (res) => {
+      this.userData = res;
+      this.updateAdmin();
       res?.getIdTokenResult().then((tokenResult) => {
-        console.debug(tokenResult);
         this.api.userToken = tokenResult.token;
         const expiry = moment(tokenResult.expirationTime);
         const refresh = expiry.subtract(5 * 60, 'seconds')
@@ -48,7 +68,6 @@ export class UserService {
 
   async login(email: string, password: string) {
     const authCredential = EmailAuthProvider.credential(email, password);
-    console.debug(email, password);
     return await signInWithCredential(this.auth, authCredential);
   }
 
@@ -60,7 +79,7 @@ export class UserService {
     return sendSignInLinkToEmail(this.auth, email, actionCodeSettings);
   }
 
-  async loginWithLink(email: string, link: string)  {
+  async loginWithLink(email: string, link: string) {
     return await signInWithEmailLink(this.auth, email, link);
   }
 
@@ -70,5 +89,9 @@ export class UserService {
 
   isEmailLinkSigning() {
     return isSignInWithEmailLink(this.auth, window.location.href);
+  }
+
+  private updateAdmin() {
+    this.isAdminSubject.next((this.userData?.uid || "") in this.admins)
   }
 }

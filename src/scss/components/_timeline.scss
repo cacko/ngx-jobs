@@ -19,6 +19,12 @@
     @media screen and (max-width: 960px) {
       padding: 0 0.3rem;
     }
+    [admin-buttons] {
+      display: flex;
+      padding-bottom: 1rem;
+      align-items: center;
+      justify-content: flex-end;
+    }
     .timeline {
       position: relative;
       padding-left: 4rem;

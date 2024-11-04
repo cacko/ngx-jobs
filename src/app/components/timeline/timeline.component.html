@@ -1,23 +1,30 @@
+<div *ngIf="$isAdmin | async" admin-buttons>
+    <button mat-stroked-button>
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Add Entry</span>
+    </button>
+</div>
 <div class="timeline">
-  <div *ngFor="let ev of job.events" class="timeline-container {{ ev.event }}">
-    <div class="timeline-icon">
-      <mat-icon>{{ getIcon(ev) }}</mat-icon>
+    <div
+        *ngFor="let ev of job.events"
+        class="timeline-container {{ ev.event }}"
+    >
+        <div class="timeline-icon">
+            <mat-icon>{{ getIcon(ev) }}</mat-icon>
+        </div>
+        <div class="timeline-body">
+            <button
+                copy-content
+                mat-icon-button
+                [cdkCopyToClipboard]="ev.description"
+                (cdkCopyToClipboardCopied)="onCopied($event)"
+            >
+                <mat-icon>content_copy</mat-icon>
+            </button>
+            <code description>{{ ev.description }}</code>
+            <p class="timeline-subtitle">
+                <span>{{ ev.timestamp | amTimeAgo }}</span>
+            </p>
+        </div>
     </div>
-    <div class="timeline-body">
-      <button
-        copy-content
-        mat-icon-button
-        [cdkCopyToClipboard]="ev.description"
-        (cdkCopyToClipboardCopied)="onCopied($event)"
-      >
-        <mat-icon>content_copy</mat-icon>
-      </button>
-      <code description>{{ ev.description }}</code>
-      <p class="timeline-subtitle">
-        <span>
-          {{ ev.timestamp | amTimeAgo }}
-        </span>
-      </p>
-    </div>
-  </div>
 </div>

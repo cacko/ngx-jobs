@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
-import { ApiConfig, ApiType } from '../entity/api.entity';
+import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
 import { Params } from '@angular/router';
@@ -26,6 +26,7 @@ export class ApiService {
   errorSubject = new Subject<string>();
   error = this.errorSubject.asObservable();
   userToken = '';
+  uid = '';
   constructor(
     private httpClient: HttpClient,
     private loaderService: LoaderService,
@@ -33,9 +34,10 @@ export class ApiService {
   ) { }
 
 
+
   fetch(
-    type: ApiType,
-    query: string = '', 
+    type: ApiFetchType,
+    query: string = '',
     params: Params = {}
   ): Observable<any> {
     return new Observable((subscriber: any) => {
@@ -86,6 +88,45 @@ export class ApiService {
               subscriber.next(this.storage.getJob(id));
 
             }
+          },
+          error: (error: any) => console.debug(error),
+        });
+    });
+  }
+
+
+  put(
+    type: ApiPutType,
+    payload: object = {}
+  ): Observable<any> {
+    return new Observable((subscriber: any) => {
+      const path = [type];
+      this.loaderService.show();
+      this.httpClient
+        .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
+          headers: { 'X-User-Token': this.userToken },
+        })
+        .pipe(
+          tap((res) => {
+            // if (isArrayLike(res)) {
+            //   const jobs = res as JobEntity[];
+            //   this.storage.addJobs(jobs);
+            // } else {
+            //   const job = res as JobEntity;
+            //   this.storage.addJob(job);
+            // }
+
+          })
+        )
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            // if (isArrayLike(data)) {
+            //   subscriber.next(this.storage.jobs);
+            // } else {
+            //   subscriber.next(this.storage.getJob(id));
+
+            // }
           },
           error: (error: any) => console.debug(error),
         });

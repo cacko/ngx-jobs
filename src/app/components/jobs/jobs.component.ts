@@ -4,7 +4,7 @@ import { clamp, orderBy } from 'lodash-es';
 import { DeviceColumns, JobEntity, JobStatus } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
-import { ApiConfig, ApiType } from 'src/app/entity/api.entity';
+import { ApiConfig, ApiFetchType } from 'src/app/entity/api.entity';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { siMicrosoftexcel } from 'simple-icons';
@@ -147,7 +147,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   onExport() {
     saveAs(
       `
-    ${ApiConfig.BASE_URI}/${ApiType.JOBS_EXPORT}`,
+    ${ApiConfig.BASE_URI}/${ApiFetchType.JOBS_EXPORT}`,
       'jobs.xlsx'
     );
   }

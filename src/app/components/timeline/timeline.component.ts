@@ -8,6 +8,7 @@ import { JobEventModel } from 'src/app/models/jobEvent.model';
 import { JobModel } from 'src/app/models/jobs.model';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-timeline',
@@ -24,7 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 export class TimelineComponent {
   @Input() job!: JobModel;
 
-  constructor(private snackBar: MatSnackBar) { }
+  $isAdmin = this.userService.$isAdmin;
+
+  constructor(private snackBar: MatSnackBar, private userService: UserService) { }
 
   getIcon(ev: JobEventModel): string {
     switch (ev.event) {

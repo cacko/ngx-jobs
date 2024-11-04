@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { ApiType } from '../entity/api.entity';
+import { ApiFetchType } from '../entity/api.entity';
 import { JobEntity } from '../entity/jobs.entity';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { RouterStateSnapshot } from '@angular/router';
@@ -14,11 +14,11 @@ export class JobsService {
   constructor(private api: ApiService) { }
 
   getJobs(): any {
-    return this.api.fetch(ApiType.JOBS);
+    return this.api.fetch(ApiFetchType.JOBS);
   }
 
   getExport(): any {
-    return  this.api.fetch(ApiType.JOBS_EXPORT);
+    return  this.api.fetch(ApiFetchType.JOBS_EXPORT);
   }
 }
 

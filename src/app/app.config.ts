@@ -20,7 +20,8 @@ export const appConfig: ApplicationConfig = {
     apiKey: 'AIzaSyB64rCG0ZvQ8NWRDf_FHLxAL-0MY3hNPeU',
     authDomain: 'jobs-c273f.firebaseapp.com',
     messagingSenderId: '889989614380',
-    measurementId: 'G-VHKD2CWXNY'
+    measurementId: 'G-VHKD2CWXNY',
+    databaseURL: 'https://jobs-c273f-default-rtdb.europe-west1.firebasedatabase.app/'
   })), provideAuth(() => getAuth()),
   provideAnalytics(() => getAnalytics()),
     ScreenTrackingService, UserTrackingService, provideDatabase(() => getDatabase()),
