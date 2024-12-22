@@ -18,7 +18,7 @@ import { saveAs } from 'file-saver';
 import { ApiConfig, ApiFetchType } from 'src/app/entity/api.entity';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { siMicrosoftexcel } from 'simple-icons';
+import { siGooglesheets } from 'simple-icons';
 import {
   MatSlideToggleChange,
   MatSlideToggleModule,
@@ -71,7 +71,7 @@ interface RouteDataEntity {
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
   exportDisabled = false;
-  excelIcon = siMicrosoftexcel;
+  excelIcon = siGooglesheets;
   hideExpired = this.storage.hide_expired;
   query: string = '';
   readonly dialog = inject(MatDialog);

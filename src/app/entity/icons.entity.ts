@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import {
   SimpleIcon,
-  siAmazonaws,
+  siAmazonwebservices,
   siAndroid,
   siAngular,
   siAnsible,
@@ -10,7 +10,6 @@ import {
   siDatadog,
   siDjango,
   siDocker,
-  siFacebook,
   siFastapi,
   siFirebase,
   siFlask,
@@ -30,10 +29,8 @@ import {
   siLinkedin,
   siLinux,
   siMariadb,
-  siMicrosoftazure,
   siMongodb,
   siMysql,
-  siPercy,
   siPerl,
   siPhp,
   siPostgresql,
@@ -43,12 +40,12 @@ import {
   siRust,
   siSass,
   siShell,
-  siSololearn,
   siSwift,
   siTypescript,
   siUbuntu,
-  siWindows11,
-  siIndeed
+  siIndeed,
+  siIos,
+  siHtml5
 } from 'simple-icons';
 
 export interface IconsInterface {
@@ -72,13 +69,12 @@ export const DEVICONS: IconsInterface = {
   android: siAndroid,
   linkedin: siLinkedin,
   angular: siAngular,
-  azure: siMicrosoftazure,
   docker: siDocker,
   github: siGithub,
   javascript: siJavascript,
   mysql: siMysql,
   postgresql: siPostgresql,
-  aws: siAmazonaws,
+  aws: siAmazonwebservices,
   bootstrap: siBootstrap,
   git: siGit,
   go: siGo,
@@ -88,7 +84,6 @@ export const DEVICONS: IconsInterface = {
   bash: siShell,
   mongo: siMongodb,
   css: siCss3,
-  windows: siWindows11,
   laravel: siLaravel,
   jquery: siJquery,
   sass: siSass,
@@ -105,7 +100,9 @@ export const DEVICONS: IconsInterface = {
   mariadb: siMariadb,
   gcp: siGoogleclassroom,
   ubuntu: siUbuntu,
-  indeed: siIndeed
+  indeed: siIndeed,
+  ios: siIos,
+  html: siHtml5,
 };
 
 export interface StylesEntity {
