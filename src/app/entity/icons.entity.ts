@@ -48,6 +48,7 @@ import {
   siTypescript,
   siUbuntu,
   siWindows11,
+  siIndeed
 } from 'simple-icons';
 
 export interface IconsInterface {
@@ -104,6 +105,7 @@ export const DEVICONS: IconsInterface = {
   mariadb: siMariadb,
   gcp: siGoogleclassroom,
   ubuntu: siUbuntu,
+  indeed: siIndeed
 };
 
 export interface StylesEntity {

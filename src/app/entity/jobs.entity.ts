@@ -25,7 +25,8 @@ export enum Source {
   LINKEDIN = 'linkedin',
   DIRECT = 'direct',
   DWP = 'dwp',
-  TOTALJOBS = 'totaljobs'
+  TOTALJOBS = 'totaljobs',
+  INDEED = 'indeed'
 }
 
 export enum SkillGroup {

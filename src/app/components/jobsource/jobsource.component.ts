@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { SimpleIcon, siLinkedin, siPaddypower } from 'simple-icons';
+import { SimpleIcon, siIndeed, siLinkedin, siPaddypower } from 'simple-icons';
 import { Source } from 'src/app/entity/jobs.entity';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 
@@ -26,6 +26,11 @@ export class JobsourceComponent implements OnInit {
         break;
       case Source.DIRECT:
         this.icon = siPaddypower;
+        break;
+      case Source.INDEED:
+        console.log(siIndeed);
+        this.icon = siIndeed;
+        break;
     }
   }
 }
