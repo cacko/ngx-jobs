@@ -111,9 +111,10 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   private updateFilter() {
+    const statuses = Object.values(JobStatus) as string[];
     this.dataSource.filter = [
       this.query,
-      this.storage.hide_expired ? JobStatus.EXPIRED : '',
+      statuses.filter((s) => !this.storage.hide_expired || s !== JobStatus.EXPIRED).join(" "),
     ]
       .filter((t) => t.trim().length)
       .join(' ');
@@ -126,7 +127,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
     const parts = words(filter);
     const statuses = Object.values(JobStatus) as string[];
     const sts = remove(parts, (p) => statuses.includes(p));
-    return !sts.includes(data.status) && data.filter(parts);
+    return sts.includes(data.status) && data.filter(parts);
   }
 
   private sortData(data: JobModel[], sort: Sort): JobModel[] {

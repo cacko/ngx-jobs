@@ -19,6 +19,13 @@
 <div content>
   <app-jobcv [cv]="job.cv"></app-jobcv>
 </div>
+<div label *ngIf="job.cover_letter != null">
+  <mat-icon >assignment</mat-icon>
+  <span>Cover Letter</span>
+</div>
+<div content *ngIf="job.cover_letter != null">
+  <app-jobcl [cl]="job.cover_letter"></app-jobcl>
+</div>
 <div label>
   <mat-icon >description</mat-icon>
   <span>Job Url</span>

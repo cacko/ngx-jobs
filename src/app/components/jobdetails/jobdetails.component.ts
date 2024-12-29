@@ -9,6 +9,7 @@ import { JoblocationComponent } from '../joblocation/joblocation.component';
 import { JobcvComponent } from '../jobcv/jobcv.component';
 import { JoburlComponent } from '../joburl/joburl.component';
 import { JobsiteComponent } from '../jobsite/jobsite.component';
+import { JobclComponent } from '../jobcl/jobcl.component';
 
 @Component({
   selector: 'app-jobdetails',
@@ -24,7 +25,8 @@ import { JobsiteComponent } from '../jobsite/jobsite.component';
     JobcvComponent,
     JoburlComponent,
     JobsiteComponent,
-    JobcompanyComponent
+    JobcompanyComponent,
+    JobclComponent
   ]
 })
 export class JobdetailsComponent {

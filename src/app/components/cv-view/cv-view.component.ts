@@ -7,6 +7,7 @@ import { CVModel } from 'src/app/models/cv.model';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CoverLetterModel } from 'src/app/models/cover_letter.model';
 
 @Component({
   selector: 'app-cv-view',
@@ -27,7 +28,7 @@ export class CvViewComponent {
     private snackbar: MatSnackBar,
     private router: Router,
     @Inject(DIALOG_DATA)
-    public data: CVModel
+    public data: CVModel|CoverLetterModel
   ) {
 
   }

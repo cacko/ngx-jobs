@@ -3,6 +3,7 @@ import { find } from 'lodash-es';
 import {
   CVEntity,
   CompanyEntity,
+  CoverLetterEntity,
   JobEntity,
   JobEvent,
   JobEventEntity,
@@ -28,6 +29,7 @@ export class JobModel implements JobEntity {
   onsite!: LocationType;
   source!: Source;
   url!: string;
+  cover_letter?: CoverLetterEntity | undefined;
   events: JobEventModel[] = [];
   skills: SkillModel[] = [];
 

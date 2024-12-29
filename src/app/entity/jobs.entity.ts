@@ -55,6 +55,12 @@ export interface CVEntity {
   image: ImageEntity;
 }
 
+export interface CoverLetterEntity {
+  slug: string;
+  name: string;
+  image: ImageEntity;
+}
+
 export interface LocationEntity {
   country_iso: string;
   city: string;
@@ -82,6 +88,7 @@ export interface JobEntity {
   onsite: LocationType;
   source: Source;
   url: string;
+  cover_letter?: CoverLetterEntity;
   events?: JobEventEntity[];
   skills?: SkillEntity[];
 }
