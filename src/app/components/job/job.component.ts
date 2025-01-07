@@ -7,7 +7,7 @@ import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { LoaderService } from 'src/app/service/loader.service';
-
+import {ClipboardModule} from '@angular/cdk/clipboard'; 
 interface RouteDataEntity {
   data?: JobEntity;
 }
@@ -20,7 +20,8 @@ interface RouteDataEntity {
     CommonModule,
     JobpositionComponent,
     JobdetailsComponent,
-    TimelineComponent
+    TimelineComponent,
+    ClipboardModule
   ]
 })
 export class JobComponent implements OnInit {

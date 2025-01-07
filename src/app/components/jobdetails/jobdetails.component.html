@@ -1,56 +1,72 @@
 <div label>
-  <mat-icon >payments</mat-icon>
-  <span>Company</span>
+    <mat-icon>payments</mat-icon>
+    <span>Company</span>
 </div>
 <div content>
-  <app-jobcompany [company]="job.company" [mode]="companyModes.FULL"></app-jobcompany>
+    <app-jobcompany
+        [company]="job.company"
+        [mode]="companyModes.FULL"
+        [cdkCopyToClipboard]="job.company.name"
+    ></app-jobcompany>
 </div>
 <div label>
-  <mat-icon >map</mat-icon>
-  <span>Location</span>
+    <mat-icon>map</mat-icon>
+    <span>Location</span>
 </div>
 <div content>
-  <app-joblocation [location]="job.location" mode="full"></app-joblocation>
+    <app-joblocation
+        [location]="job.location"
+        mode="full"
+    ></app-joblocation>
 </div>
 <div label>
-  <mat-icon >assignment_ind</mat-icon>
-  <span>Applied CV</span>
+    <mat-icon>assignment_ind</mat-icon>
+    <span>Applied CV</span>
 </div>
 <div content>
-  <app-jobcv [cv]="job.cv"></app-jobcv>
+    <app-jobcv [cv]="job.cv"></app-jobcv>
 </div>
-<div label *ngIf="job.cover_letter != null">
-  <mat-icon >assignment</mat-icon>
-  <span>Cover Letter</span>
+<div
+    label
+    *ngIf="job.cover_letter != null"
+>
+    <mat-icon>assignment</mat-icon>
+    <span>Cover Letter</span>
 </div>
-<div content *ngIf="job.cover_letter != null">
-  <app-jobcl [cl]="job.cover_letter"></app-jobcl>
+<div
+    content
+    *ngIf="job.cover_letter != null"
+>
+    <app-jobcl [cl]="job.cover_letter"></app-jobcl>
 </div>
 <div label>
-  <mat-icon >description</mat-icon>
-  <span>Job Url</span>
+    <mat-icon>description</mat-icon>
+    <span>Job Url</span>
 </div>
 <div content>
-  <app-joburl [url]="job.url" [truncate]="true"></app-joburl>
+    <app-joburl
+        [url]="job.url"
+        [truncate]="true"
+    ></app-joburl>
 </div>
 <div label>
-  <mat-icon >home_work</mat-icon>
-  <span>Workplace</span>
+    <mat-icon>home_work</mat-icon>
+    <span>Workplace</span>
 </div>
 <div content>
-  <app-jobsite [onsite]="job.onsite"></app-jobsite>
+    <app-jobsite [onsite]="job.onsite"></app-jobsite>
 </div>
 <div label>
-  <mat-icon >crowdsource</mat-icon>
-  <span>Source</span>
+    <mat-icon>crowdsource</mat-icon>
+    <span>Source</span>
 </div>
 <div content>
-  <app-jobsource [source]="job.source"></app-jobsource>
+    <app-jobsource [source]="job.source"></app-jobsource>
 </div>
 <div label>
-  <mat-icon >build</mat-icon>
-  <span>Skills</span>
+    <mat-icon>build</mat-icon>
+    <span>Skills</span>
 </div>
 <div content>
-  <app-jobskills [skills]="job.skills"></app-jobskills>
+    <app-jobskills [skills]="job.skills"></app-jobskills>
 </div>

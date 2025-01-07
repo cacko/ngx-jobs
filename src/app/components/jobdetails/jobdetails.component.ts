@@ -10,7 +10,7 @@ import { JobcvComponent } from '../jobcv/jobcv.component';
 import { JoburlComponent } from '../joburl/joburl.component';
 import { JobsiteComponent } from '../jobsite/jobsite.component';
 import { JobclComponent } from '../jobcl/jobcl.component';
-
+import {ClipboardModule} from '@angular/cdk/clipboard'; 
 @Component({
   selector: 'app-jobdetails',
   templateUrl: './jobdetails.component.html',
@@ -26,7 +26,8 @@ import { JobclComponent } from '../jobcl/jobcl.component';
     JoburlComponent,
     JobsiteComponent,
     JobcompanyComponent,
-    JobclComponent
+    JobclComponent,
+    ClipboardModule
   ]
 })
 export class JobdetailsComponent {
