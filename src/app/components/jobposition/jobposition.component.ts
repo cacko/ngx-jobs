@@ -35,6 +35,7 @@ export class JobpositionComponent implements OnInit {
 
   @Input() position!: string;
   @Input() truncate: boolean = false;
+  @Input() clipclick: boolean = false;
 
   icon?: SimpleIcon;
 

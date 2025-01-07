@@ -5,5 +5,17 @@
     >
         {{ icon }}
     </app-simple-icon>
-    <div name (click)="onNameClick($event)">{{ position }}</div>
+    <div
+        name
+        (click)="onNameClick($event)"
+        *ngIf="clipclick"
+    >
+        {{ position }}
+    </div>
+    <div
+        name
+        *ngIf="!clipclick"
+    >
+        {{ position }}
+    </div>
 </div>

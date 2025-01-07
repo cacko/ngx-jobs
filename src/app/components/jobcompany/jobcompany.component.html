@@ -1,13 +1,31 @@
-<div [truncate]="truncate" name (click)="onNameClick($event)">{{ company.name }}</div>
-<span class="spacer" *ngIf="mode == modes.FULL"></span>
-<a
-  mat-button
-  button-with-icon
-  *ngIf="mode == modes.FULL && company.url"
-  href="{{ company.url }}"
-  target="_blank"
-  rel="noopener"
+<div
+    [truncate]="truncate"
+    name
+    (click)="onNameClick($event)"
+    *ngIf="clipclick"
 >
-  <mat-icon>link</mat-icon>
-  <span>website</span>
+    {{ company.name }}
+</div>
+<div
+    [truncate]="truncate"
+    name
+    (click)="onNameClick($event)"
+    *ngIf="!clipclick"
+>
+    {{ company.name }}
+</div>
+<span
+    class="spacer"
+    *ngIf="mode == modes.FULL"
+></span>
+<a
+    mat-button
+    button-with-icon
+    *ngIf="mode == modes.FULL && company.url"
+    href="{{ company.url }}"
+    target="_blank"
+    rel="noopener"
+>
+    <mat-icon>link</mat-icon>
+    <span>website</span>
 </a>
