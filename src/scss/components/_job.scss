@@ -10,6 +10,9 @@ app-job {
     text-transform: uppercase;
     font-family: "Bebas Neue";
     padding: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
 
   }
   @media screen and (max-width: 960px) {

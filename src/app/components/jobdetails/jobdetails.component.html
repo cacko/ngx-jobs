@@ -6,7 +6,7 @@
     <app-jobcompany
         [company]="job.company"
         [mode]="companyModes.FULL"
-        [cdkCopyToClipboard]="job.company.name"
+        [cdkCopyToClipboard]="onJobCompany()"
     ></app-jobcompany>
 </div>
 <div label>

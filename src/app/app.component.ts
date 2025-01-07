@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { FlyingIconComponent } from './components/flying-icon/flying-icon.component';
-import { LoginComponent } from './components/login/login.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
@@ -36,7 +35,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     FlyingIconComponent,
     RouterModule,
-    LoginComponent,
     LogoComponent,
     MatToolbarModule,
     NgPipesModule,
