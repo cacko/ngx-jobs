@@ -121,6 +121,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   private filterData(data: JobModel, filter: string): boolean {
+    return true;
     if (!filter) {
       return true;
     }
