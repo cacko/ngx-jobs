@@ -1,6 +1,9 @@
 <div [truncate]="truncate">
-  <app-simple-icon [icon]="icon" *ngIf="icon">
-    {{ icon }}
-  </app-simple-icon>
-  {{ position }}
+    <app-simple-icon
+        [icon]="icon"
+        *ngIf="icon"
+    >
+        {{ icon }}
+    </app-simple-icon>
+    <div name (click)="onNameClick($event)">{{ position }}</div>
 </div>

@@ -1,4 +1,4 @@
-<div [truncate]="truncate">{{ company.name }}</div>
+<div [truncate]="truncate" name (click)="onNameClick($event)">{{ company.name }}</div>
 <span class="spacer" *ngIf="mode == modes.FULL"></span>
 <a
   mat-button

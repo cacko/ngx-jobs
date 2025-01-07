@@ -7,7 +7,6 @@ import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { LoaderService } from 'src/app/service/loader.service';
-import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface RouteDataEntity {
@@ -22,8 +21,7 @@ interface RouteDataEntity {
     CommonModule,
     JobpositionComponent,
     JobdetailsComponent,
-    TimelineComponent,
-    ClipboardModule
+    TimelineComponent
   ]
 })
 export class JobComponent implements OnInit {
@@ -49,11 +47,5 @@ export class JobComponent implements OnInit {
 
   async onBack() {
     await this.router.navigateByUrl("/");
-  }
-
-  onJobPosition() {
-    this.snackBar
-      .open('Jobposition copied to clipboad', 'OK', { duration: 2000 });
-    return this.job.position;
   }
 }
