@@ -120,7 +120,6 @@ export class ApiService {
         )
         .subscribe({
           next: (data: any) => {
-            console.log(data);
             // if (isArrayLike(data)) {
             //   subscriber.next(this.storage.jobs);
             // } else {

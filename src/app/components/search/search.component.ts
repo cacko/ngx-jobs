@@ -23,17 +23,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-search',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './search.component.html',
+    selector: 'app-search',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
+    templateUrl: './search.component.html'
 })
 export class SearchComponent implements OnInit {
   form: FormGroup;

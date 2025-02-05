@@ -27,21 +27,20 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    LoaderComponent,
-    MatIconModule,
-    FlyingIconComponent,
-    RouterModule,
-    LogoComponent,
-    MatToolbarModule,
-    NgPipesModule,
-    MatButtonModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        LoaderComponent,
+        MatIconModule,
+        FlyingIconComponent,
+        RouterModule,
+        LogoComponent,
+        MatToolbarModule,
+        NgPipesModule,
+        MatButtonModule
+    ],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   user: User | null = null;

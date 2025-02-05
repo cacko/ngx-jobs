@@ -14,15 +14,14 @@ interface RouteDataEntity {
 }
 
 @Component({
-  selector: 'app-job',
-  templateUrl: './job.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    JobpositionComponent,
-    JobdetailsComponent,
-    TimelineComponent
-  ]
+    selector: 'app-job',
+    templateUrl: './job.component.html',
+    imports: [
+        CommonModule,
+        JobpositionComponent,
+        JobdetailsComponent,
+        TimelineComponent
+    ]
 })
 export class JobComponent implements OnInit {
 

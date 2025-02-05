@@ -13,15 +13,14 @@ export enum CompanyMode {
 }
 
 @Component({
-  selector: 'app-jobcompany',
-  templateUrl: './jobcompany.component.html',
-  styleUrls: ['./jobcompany.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    TruncateDirective
-  ]
+    selector: 'app-jobcompany',
+    templateUrl: './jobcompany.component.html',
+    styleUrls: ['./jobcompany.component.scss'],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        TruncateDirective
+    ]
 })
 export class JobcompanyComponent {
 

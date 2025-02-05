@@ -10,15 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { CoverLetterModel } from 'src/app/models/cover_letter.model';
 
 @Component({
-  selector: 'app-cv-view',
-  templateUrl: './cv-view.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-  styleUrl: './cv-view.component.scss'
+    selector: 'app-cv-view',
+    templateUrl: './cv-view.component.html',
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    styleUrl: './cv-view.component.scss'
 })
 export class CvViewComponent {
 

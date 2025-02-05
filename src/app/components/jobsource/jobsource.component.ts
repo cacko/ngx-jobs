@@ -5,14 +5,13 @@ import { Source } from 'src/app/entity/jobs.entity';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 
 @Component({
-  selector: 'app-jobsource',
-  templateUrl: './jobsource.component.html',
-  styleUrl: './jobsource.component.scss',
-  standalone: true,
-  imports: [
-    CommonModule,
-    SimpleIconComponent
-  ]
+    selector: 'app-jobsource',
+    templateUrl: './jobsource.component.html',
+    styleUrl: './jobsource.component.scss',
+    imports: [
+        CommonModule,
+        SimpleIconComponent
+    ]
 })
 export class JobsourceComponent implements OnInit {
   @Input() source!: Source;
@@ -28,7 +27,6 @@ export class JobsourceComponent implements OnInit {
         this.icon = siPaddypower;
         break;
       case Source.INDEED:
-        console.log(siIndeed);
         this.icon = siIndeed;
         break;
     }

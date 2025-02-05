@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { LocalStorageService } from 'ngx-localstorage';
 import { JobEntity } from '../entity/jobs.entity';
 import { findIndex, find } from 'lodash-es';
-import * as moment from 'moment';
+import moment, { Moment } from 'moment';
 
 @Injectable({
   providedIn: 'root'

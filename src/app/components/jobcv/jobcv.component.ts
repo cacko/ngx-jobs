@@ -9,16 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-jobcv',
-  templateUrl: './jobcv.component.html',
-  styleUrls: ['./jobcv.component.scss'],
-  standalone: true,
-  imports: [
-    CvimageComponent,
-    CommonModule,
-    MatIconModule,
-    MatButtonModule
-  ]
+    selector: 'app-jobcv',
+    templateUrl: './jobcv.component.html',
+    styleUrls: ['./jobcv.component.scss'],
+    imports: [
+        CvimageComponent,
+        CommonModule,
+        MatIconModule,
+        MatButtonModule
+    ]
 })
 export class JobcvComponent {
   @Input() cv!: CVEntity;

@@ -6,15 +6,14 @@ import {MatChipsModule} from '@angular/material/chips';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 
 @Component({
-  selector: 'app-jobskills',
-  templateUrl: './jobskills.component.html',
-  styleUrl: './jobskills.component.scss',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatChipsModule,
-    SimpleIconComponent
-  ]
+    selector: 'app-jobskills',
+    templateUrl: './jobskills.component.html',
+    styleUrl: './jobskills.component.scss',
+    imports: [
+        CommonModule,
+        MatChipsModule,
+        SimpleIconComponent
+    ]
 })
 export class JobskillsComponent {
 

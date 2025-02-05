@@ -1,10 +1,10 @@
 <div header>
-    <!-- <mat-slide-toggle
+    <mat-slide-toggle
         [checked]="storage.hide_expired"
         (change)="onHideExpired($event)"
     >
         Hide Expired
-    </mat-slide-toggle> -->
+    </mat-slide-toggle>
     <button mat-stroked-button *ngIf="query.length > 0" (click)="onQuery()">
         <span>{{query}}</span>
         <mat-icon iconPositionEnd>close</mat-icon>

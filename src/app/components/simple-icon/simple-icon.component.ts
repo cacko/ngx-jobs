@@ -3,11 +3,10 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { SimpleIcon } from 'simple-icons';
 
 @Component({
-  selector: 'app-simple-icon',
-  templateUrl: './simple-icon.component.html',
-  standalone: true,
-  imports: [CommonModule],
-  styleUrl: './simple-icon.component.scss',
+    selector: 'app-simple-icon',
+    templateUrl: './simple-icon.component.html',
+    imports: [CommonModule],
+    styleUrl: './simple-icon.component.scss'
 })
 export class SimpleIconComponent implements OnInit {
   @Input() icon!: SimpleIcon;

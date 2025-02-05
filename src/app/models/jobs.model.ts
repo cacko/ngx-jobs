@@ -1,4 +1,3 @@
-import { Moment } from 'moment';
 import { find } from 'lodash-es';
 import {
   CVEntity,
@@ -14,7 +13,7 @@ import {
   Source,
 } from '../entity/jobs.entity';
 import { JobEventModel } from './jobEvent.model';
-import * as moment from 'moment';
+import moment, { Moment } from 'moment';
 import { SkillModel } from './skill.model';
 
 export class JobModel implements JobEntity {

@@ -46,27 +46,26 @@ interface RouteDataEntity {
 }
 
 @Component({
-  selector: 'app-jobs',
-  templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    SimpleIconComponent,
-    MatSlideToggleModule,
-    MatTableModule,
-    JobcompanyComponent,
-    JobpositionComponent,
-    JoblocationComponent,
-    MomentModule,
-    JobstatusComponent,
-    TruncateDirective,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSortModule,
-    MatDialogModule,
-  ],
+    selector: 'app-jobs',
+    templateUrl: './jobs.component.html',
+    styleUrls: ['./jobs.component.scss'],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        SimpleIconComponent,
+        MatSlideToggleModule,
+        MatTableModule,
+        JobcompanyComponent,
+        JobpositionComponent,
+        JoblocationComponent,
+        MomentModule,
+        JobstatusComponent,
+        TruncateDirective,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSortModule,
+        MatDialogModule,
+    ]
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
@@ -121,11 +120,10 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   private filterData(data: JobModel, filter: string): boolean {
-    return true;
     if (!filter) {
       return true;
     }
-    const parts = words(filter);
+    const parts = words(filter, /[^, ]+/g);
     const statuses = Object.values(JobStatus) as string[];
     const sts = remove(parts, (p) => statuses.includes(p));
     return sts.includes(data.status) && data.filter(parts);

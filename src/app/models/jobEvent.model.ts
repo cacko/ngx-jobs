@@ -1,5 +1,5 @@
 import { JobEvent, JobEventEntity } from '../entity/jobs.entity';
-import * as moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export class JobEventModel implements JobEventEntity {
   event!: JobEvent;

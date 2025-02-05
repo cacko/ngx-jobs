@@ -14,14 +14,13 @@ export enum LocationModes {
 }
 
 @Component({
-  selector: 'app-joblocation',
-  templateUrl: './joblocation.component.html',
-  styleUrls: ['./joblocation.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    TruncateDirective
-  ]
+    selector: 'app-joblocation',
+    templateUrl: './joblocation.component.html',
+    styleUrls: ['./joblocation.component.scss'],
+    imports: [
+        CommonModule,
+        TruncateDirective
+    ]
 })
 export class JoblocationComponent implements OnInit {
 

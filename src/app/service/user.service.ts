@@ -13,7 +13,7 @@ import {
 } from '@angular/fire/auth';
 import { BehaviorSubject, EMPTY, Observable, Subscription, timer } from 'rxjs';
 import { ApiService } from './api.service';
-import * as moment from 'moment';
+import moment, { Moment } from 'moment';
 import { Database, objectVal, ref } from '@angular/fire/database';
 import { Admins } from '../entity/api.entity';
 

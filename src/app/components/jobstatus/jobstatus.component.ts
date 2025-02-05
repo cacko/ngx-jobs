@@ -1,18 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { JobStatus } from 'src/app/entity/jobs.entity';
 
 @Component({
-  selector: 'app-jobstatus',
-  templateUrl: './jobstatus.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    TruncateDirective
-  ]
+    selector: 'app-jobstatus',
+    templateUrl: './jobstatus.component.html',
+    imports: [
+        CommonModule,
+        MatIconModule,
+    ]
 })
 export class JobstatusComponent implements OnInit {
 

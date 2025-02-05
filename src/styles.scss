@@ -8,14 +8,16 @@
 @use "./scss/components/search" as Search;
 @use "./scss/theme" as Theme;
 @use "sass:map";
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 
-  @include mat.core-theme(Theme.$theme);
+  @include mat.elevation-classes();
+  @include mat.app-background();
   @include mat.all-component-themes(Theme.$theme);
   @include mat.typography-hierarchy(Theme.$typography);
   @include Table.apply-theme(Theme.$theme);

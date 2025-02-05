@@ -8,16 +8,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClimageComponent } from '../climage/climage.component';
 import { CoverLetterModel } from 'src/app/models/cover_letter.model';
 @Component({
-  selector: 'app-jobcl',
-  standalone: true,
-  imports: [
-    ClimageComponent,
-    CommonModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-  templateUrl: './jobcl.component.html',
-  styleUrl: './jobcl.component.scss'
+    selector: 'app-jobcl',
+    imports: [
+        ClimageComponent,
+        CommonModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    templateUrl: './jobcl.component.html',
+    styleUrl: './jobcl.component.scss'
 })
 export class JobclComponent {
   @Input() cl!: CoverLetterEntity;

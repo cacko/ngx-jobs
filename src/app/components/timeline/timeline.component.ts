@@ -11,16 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-timeline',
-  templateUrl: './timeline.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MomentModule,
-    MatIconModule,
-    ClipboardModule,
-    MatButtonModule
-  ]
+    selector: 'app-timeline',
+    templateUrl: './timeline.component.html',
+    imports: [
+        CommonModule,
+        MomentModule,
+        MatIconModule,
+        ClipboardModule,
+        MatButtonModule
+    ]
 })
 export class TimelineComponent {
   @Input() job!: JobModel;

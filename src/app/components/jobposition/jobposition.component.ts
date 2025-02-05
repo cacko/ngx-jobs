@@ -8,15 +8,14 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-jobposition',
-  templateUrl: './jobposition.component.html',
-  styleUrls: ['./jobposition.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    TruncateDirective,
-    SimpleIconComponent,
-  ]
+    selector: 'app-jobposition',
+    templateUrl: './jobposition.component.html',
+    styleUrls: ['./jobposition.component.scss'],
+    imports: [
+        CommonModule,
+        TruncateDirective,
+        SimpleIconComponent,
+    ]
 })
 export class JobpositionComponent implements OnInit {
 

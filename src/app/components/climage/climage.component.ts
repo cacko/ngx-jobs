@@ -3,11 +3,10 @@ import { Component, Input } from '@angular/core';
 import { CoverLetterEntity } from 'src/app/entity/jobs.entity';
 
 @Component({
-  selector: 'app-climage',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './climage.component.html',
-  styleUrl: './climage.component.scss'
+    selector: 'app-climage',
+    imports: [CommonModule],
+    templateUrl: './climage.component.html',
+    styleUrl: './climage.component.scss'
 })
 export class ClimageComponent {
 

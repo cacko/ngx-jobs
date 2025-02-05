@@ -4,14 +4,13 @@ import { LocationType } from 'src/app/entity/jobs.entity';
 import { TruncateDirective } from 'src/app/directive/truncate.directive';
 
 @Component({
-  selector: 'app-jobsite',
-  templateUrl: './jobsite.component.html',
-  styleUrl: './jobsite.component.scss',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TruncateDirective,
-  ]
+    selector: 'app-jobsite',
+    templateUrl: './jobsite.component.html',
+    styleUrl: './jobsite.component.scss',
+    imports: [
+        CommonModule,
+        TruncateDirective,
+    ]
 })
 export class JobsiteComponent {
 

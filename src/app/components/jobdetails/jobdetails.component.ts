@@ -14,23 +14,22 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-jobdetails',
-  templateUrl: './jobdetails.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    JobsourceComponent,
-    JoblocationComponent,
-    JobskillsComponent,
-    JobsourceComponent,
-    JobcvComponent,
-    JoburlComponent,
-    JobsiteComponent,
-    JobcompanyComponent,
-    JobclComponent,
-    ClipboardModule
-  ]
+    selector: 'app-jobdetails',
+    templateUrl: './jobdetails.component.html',
+    imports: [
+        CommonModule,
+        MatIconModule,
+        JobsourceComponent,
+        JoblocationComponent,
+        JobskillsComponent,
+        JobsourceComponent,
+        JobcvComponent,
+        JoburlComponent,
+        JobsiteComponent,
+        JobcompanyComponent,
+        JobclComponent,
+        ClipboardModule
+    ]
 })
 export class JobdetailsComponent {
 
