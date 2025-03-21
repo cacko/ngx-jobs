@@ -5,7 +5,7 @@
 @mixin apply-theme($theme) {
   mat-table {
     // display: none;
-    font-size: 120%;
+    // font-size: 120%;
     border-radius: 1rem;
 
     mat-header-row {
@@ -13,9 +13,6 @@
       border-radius: 1rem;
 
       mat-header-cell {
-        font-variant: small-caps;
-        text-transform: uppercase;
-        font-weight: bold !important;
         background: mat.get-theme-color($theme, neutral, 80);
 
         &:first-of-type {
@@ -94,4 +91,11 @@
       }
     }
   }
+
+  @include mat.table-overrides(
+    (
+      header-headline-font: var(--mat-sys-title-large-font),
+      header-headline-size: var(--mat-sys-title-large-size)
+    )
+  );
 }

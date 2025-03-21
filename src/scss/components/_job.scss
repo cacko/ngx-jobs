@@ -1,21 +1,19 @@
-app-job {
-  display: flex;
-  flex-direction: column;
-  padding: 3em;
-  height: 100%;
-  align-items: center;
-  app-jobposition {
-    transform: scale(2);
-    font-variant: small-caps;
-    text-transform: uppercase;
-    font-family: "Bebas Neue";
-    padding: 1rem;
-    &:hover {
-      cursor: pointer;
+@mixin apply-theme($theme) {
+  app-job {
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    height: 100%;
+    align-items: center;
+    app-jobposition {
+      text-transform: uppercase;
+      padding: 1rem;
+      &:hover {
+        cursor: pointer;
+      }
     }
-
-  }
-  @media screen and (max-width: 960px) {
-    padding: 1rem 0;
+    @media screen and (max-width: 960px) {
+      padding: 1rem 0;
+    }
   }
 }

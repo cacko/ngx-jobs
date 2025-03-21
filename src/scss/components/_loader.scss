@@ -1,7 +1,3 @@
-@use "sass:map";
-@use "@angular/material" as mat;
-@use "../mixin.scss";
-
 @mixin apply-theme($theme) {
   app-loader {
     width: 100%;

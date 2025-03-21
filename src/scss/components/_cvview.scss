@@ -1,24 +1,27 @@
-@import "../mixin.scss";
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../mixin";
 
-.cv-zoom-backdrop {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.cv-zoom-panel {
-  overflow-y: auto !important;
-  padding: 0;
-  border-radius: 1em;
-  @include lightbox();
-}
-
-app-cv-view {
-  img {
-    width: 40rem;
-    max-width: 95vw;
-    border: none;
+@mixin apply-theme($theme) {
+  .cv-zoom-backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
-  @media screen and (max-width: 960px) {
+  .cv-zoom-panel {
+    overflow-y: auto !important;
+    padding: 0;
+    border-radius: 1em;
+    @include mixin.lightbox();
+  }
 
+  app-cv-view {
+    img {
+      width: 40rem;
+      max-width: 95vw;
+      border: none;
+    }
+
+    @media screen and (max-width: 960px) {
+    }
   }
 }

@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:math";
+@use "sass:color";
 @use "@angular/material" as mat;
 
 @mixin gradient($direction, $color, $base: 1) {

@@ -1,4 +1,5 @@
-app-login {
+@mixin apply-theme($theme) {
+  app-login {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -6,14 +7,14 @@ app-login {
     padding: 1em;
     flex-grow: 1;
     padding-bottom: 10vh;
-  
+
     p {
       text-align: center;
     }
-  
+
     mat-card.mdc-card {
       border-radius: 1rem;
-  
+
       mat-card-content {
         display: flex;
         flex-direction: column;
@@ -21,7 +22,7 @@ app-login {
         justify-content: center;
         padding: 2rem;
         row-gap: 1rem;
-  
+
         app-logo {
           width: 20vw;
           height: auto;
@@ -30,18 +31,16 @@ app-login {
           padding: 1rem;
         }
       }
-  
+
       form {
         display: flex;
         flex-direction: column;
-  
+
         mat-button-toggle-group {
           margin-bottom: 1rem;
         }
-  
-  
       }
-  
+
       [buttons] {
         display: flex;
         flex-direction: column;
@@ -56,4 +55,4 @@ app-login {
       }
     }
   }
-  
+}

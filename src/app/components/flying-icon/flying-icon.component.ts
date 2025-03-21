@@ -9,7 +9,6 @@ import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 @Component({
     selector: 'app-flying-icon',
     templateUrl: './flying-icon.component.html',
-    styleUrl: './flying-icon.component.scss',
     imports: [
         CommonModule,
         SimpleIconComponent

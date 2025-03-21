@@ -1,9 +1,11 @@
-app-jobstatus {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 0.3rem;
-  [status] {
-    text-transform: capitalize;
+@mixin apply-theme($theme) {
+  app-jobstatus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.3rem;
+    [status] {
+      text-transform: capitalize;
+    }
   }
 }

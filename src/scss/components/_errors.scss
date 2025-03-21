@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../mixin.scss";
 
 @mixin apply-theme($theme) {
   [errors] {

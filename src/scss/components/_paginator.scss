@@ -1,7 +1,12 @@
-.mat-mdc-paginator {
-  width: 100%;
-  @media screen and (min-width: 960px) {
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin apply-theme($theme) {
+  .mat-mdc-paginator {
+    width: 100%;
+    @media screen and (min-width: 960px) {
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
   }
 }

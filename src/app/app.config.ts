@@ -14,14 +14,14 @@ import { provideNgxLocalstorage } from 'ngx-localstorage';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideFirebaseApp(() => initializeApp({
-    projectId: 'jobs-c273f',
-    appId: '1:889989614380:web:d411b3943ef7c5da637a89',
-    storageBucket: 'jobs-c273f.appspot.com',
-    apiKey: 'AIzaSyB64rCG0ZvQ8NWRDf_FHLxAL-0MY3hNPeU',
-    authDomain: 'jobs-c273f.firebaseapp.com',
-    messagingSenderId: '889989614380',
-    measurementId: 'G-VHKD2CWXNY',
-    databaseURL: 'https://jobs-c273f-default-rtdb.europe-west1.firebasedatabase.app/'
+    apiKey: "AIzaSyAS4QJu9n_Ugu6At-kJwANyhAjDGTZL_P8",
+    authDomain: "jobs-c273f.firebaseapp.com",
+    databaseURL: "https://jobs-c273f-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "jobs-c273f",
+    storageBucket: "jobs-c273f.firebasestorage.app",
+    messagingSenderId: "889989614380",
+    appId: "1:889989614380:web:110bd51e021ce061637a89",
+    measurementId: "G-R89TNKYX13"  
   })), provideAuth(() => getAuth()),
   provideAnalytics(() => getAnalytics()),
     ScreenTrackingService, UserTrackingService, provideDatabase(() => getDatabase()),

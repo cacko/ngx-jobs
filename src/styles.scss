@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "sass:map";
 @use "./scss/components/table" as Table;
 @use "./scss/components/details" as Details;
 @use "./scss/components/timeline" as Timeline;
@@ -6,41 +7,82 @@
 @use "./scss/components/logo" as Logo;
 @use "./scss/components/loader" as Loader;
 @use "./scss/components/search" as Search;
-@use "./scss/theme" as Theme;
-@use "sass:map";
-@include mat.elevation-classes();
-@include mat.app-background();
+@use "./scss/components/toolbar" as Toolbar;
+@use "./scss/components/button" as Button;
+@use "./scss/components/cvview" as CVVView;
+@use "./scss/components/fly-icon" as FlyIcon;
+@use "./scss/components/simple-icon" as SimpleIcon;
+@use "./scss/components/mat-icon" as Icon;
+@use "./scss/components/truncate" as Truncate;
+@use "./scss/components/spin" as Spin;
+@use "./scss/components/paginator" as Paginator;
+@use "./scss/components/job_status" as JobStatus;
+@use "./scss/components/job" as Job;
+@use "./scss/components/login" as Login;
 
 html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 
+  $theme: mat.define-theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$azure-palette,
+        tertiary: mat.$orange-palette,
+      ),
+      typography: (
+        plain-family: "Share Tech Mono",
+        brand-family: "Luckiest Guy",
+        use-system-variables: true,
+      ),
+      density: (
+        scale: 0,
+      ),
+    )
+  );
+
+  @include mat.theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$azure-palette,
+        tertiary: mat.$orange-palette,
+      ),
+      typography: (
+        plain-family: "Share Tech Mono",
+        brand-family: "Luckiest Guy",
+        use-system-variables: true,
+      ),
+      density: (
+        scale: 0,
+      ),
+    )
+  );
   @include mat.elevation-classes();
   @include mat.app-background();
-  @include mat.all-component-themes(Theme.$theme);
-  @include mat.typography-hierarchy(Theme.$typography);
-  @include Table.apply-theme(Theme.$theme);
-  @include Details.apply-theme(Theme.$theme);
-  @include Timeline.apply-theme(Theme.$theme);
-  @include Errors.apply-theme(Theme.$theme);
-  @include Logo.apply-theme(Theme.$theme);
-  @include Loader.apply-theme(Theme.$theme);
-  @include Search.apply-theme(Theme.$theme);
-  @import "./scss/components/toolbar";
-  @import "./scss/components/button";
-  @import "./scss/components/spacer";
-  @import "./scss/components/cvview";
-  @import "./scss/components/fly-icon";
-  @import "./scss/components/simple-icon";
-  @import "./scss/components/mat-icon";
-  @import "./scss/components/truncate";
-  @import "./scss/components/spin";
-  @import "./scss/components/paginator";
-  @import "./scss/components/job_status";
-  @import "./scss/components/job";
-  @import "animate.css/animate";
-  @import "./scss/components/login";
+  @include mat.all-component-themes($theme);
+  // @include mat.all-component-typography(Theme.$typography);
+  @include Table.apply-theme($theme);
+  @include Details.apply-theme($theme);
+  @include Timeline.apply-theme($theme);
+  @include Errors.apply-theme($theme);
+  @include Logo.apply-theme($theme);
+  @include Loader.apply-theme($theme);
+  @include Search.apply-theme($theme);
+  @include Toolbar.apply-theme($theme);
+  @include Button.apply-theme($theme);
+  @include FlyIcon.apply-theme($theme);
+  @include CVVView.apply-theme($theme);
+  @include SimpleIcon.apply-theme($theme);
+  @include Icon.apply-theme($theme);
+  @include Truncate.apply-theme($theme);
+  @include Spin.apply-theme($theme);
+  @include Paginator.apply-theme($theme);
+  @include JobStatus.apply-theme($theme);
+  @include Job.apply-theme($theme);
+  @include Login.apply-theme($theme);
 }
 
 *,
@@ -103,4 +145,8 @@ body {
 a {
   color: inherit;
   text-transform: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
