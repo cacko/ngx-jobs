@@ -22,9 +22,11 @@
     </button>
 </div>
 <mat-table
+    mat-table
     *ngIf="dataSource"
     [dataSource]="dataSource"
     matSort
+    [matSortDisabled]="sortingDisabled"
     matSortActive="last_modified"
     matSortStart="desc"
     class="mat-elevation-z8"

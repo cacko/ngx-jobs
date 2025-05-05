@@ -75,6 +75,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   query: string = '';
   readonly dialog = inject(MatDialog);
   displayedColumns: string[] = DeviceColumns.desktop;
+  sortingDisabled = false;
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -98,6 +99,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
         this.displayedColumns = result.matches
           ? DeviceColumns.mobile
           : DeviceColumns.desktop;
+        this.sortingDisabled = result.matches ? true : false;
       });
   }
 
