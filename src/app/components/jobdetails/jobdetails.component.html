@@ -64,6 +64,20 @@
     <app-jobsource [source]="job.source"></app-jobsource>
 </div>
 <div label>
+    <mat-icon>app_registration</mat-icon>
+    <span>Applied</span>
+</div>
+<div content>
+    <span>{{job.applied?.timestamp | amCalendar}}</span>
+</div>
+<div label>
+    <mat-icon>update</mat-icon>
+    <span>Last Action</span>
+</div>
+<div content>
+    <span>{{job.last_modified | amCalendar}}</span>
+</div>
+<div label>
     <mat-icon>build</mat-icon>
     <span>Skills</span>
 </div>

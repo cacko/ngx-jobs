@@ -39,7 +39,7 @@
     }
 
     mat-row:hover mat-cell {
-      background-color: var(--mat-sys-surface);
+      background-color: var(--mat-sys-surface-variant);
       cursor: pointer;
     }
   }

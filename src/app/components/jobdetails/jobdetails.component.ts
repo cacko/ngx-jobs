@@ -12,6 +12,7 @@ import { JobsiteComponent } from '../jobsite/jobsite.component';
 import { JobclComponent } from '../jobcl/jobcl.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
+import { MomentModule } from 'ngx-moment';
 
 @Component({
     selector: 'app-jobdetails',
@@ -28,6 +29,7 @@ import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
         JobsiteComponent,
         JobcompanyComponent,
         JobclComponent,
+        MomentModule,
         ClipboardModule
     ]
 })
