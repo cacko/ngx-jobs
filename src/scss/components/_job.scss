@@ -15,5 +15,13 @@
     @media screen and (max-width: 960px) {
       padding: 1rem 0;
     }
+    app-jobposition {
+      font-size: 1.5rem;
+      font-weight: bold;
+      app-simple-icon {
+        height: 3rem !important;
+      }
+    }
+
   }
 }

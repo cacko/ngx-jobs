@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@angular/material" as mat;
 @use "../mixin";
-
 @mixin apply-theme($theme) {
   mat-table {
     // display: none;
@@ -13,7 +12,7 @@
       border-radius: 1rem;
 
       mat-header-cell {
-        background: mat.get-theme-color($theme, neutral, 80);
+        background: var(--mat-sys-surface);
 
         &:first-of-type {
           border-top-left-radius: 1rem;
@@ -40,7 +39,7 @@
     }
 
     mat-row:hover mat-cell {
-      background-color: mat.get-theme-color($theme, surface-bright);
+      background-color: var(--mat-sys-surface);
       cursor: pointer;
     }
   }
@@ -95,7 +94,7 @@
   @include mat.table-overrides(
     (
       header-headline-font: var(--mat-sys-title-large-font),
-      header-headline-size: var(--mat-sys-title-large-size)
+      header-headline-size: var(--mat-sys-title-medium-size),
     )
   );
 }

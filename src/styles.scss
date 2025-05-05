@@ -19,6 +19,7 @@
 @use "./scss/components/job_status" as JobStatus;
 @use "./scss/components/job" as Job;
 @use "./scss/components/login" as Login;
+@use "./scss/components/position";
 
 html {
   box-sizing: border-box;
@@ -83,6 +84,13 @@ html {
   @include JobStatus.apply-theme($theme);
   @include Job.apply-theme($theme);
   @include Login.apply-theme($theme);
+
+}
+
+:root {
+  @include mat.core-overrides((
+    app-background-color: #000,
+  ));
 }
 
 *,
@@ -106,13 +114,15 @@ body {
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  font-family: "Share Tech Mono";
   padding: 0;
   margin: 0;
-
   app-root {
     display: flex;
     flex-direction: column;
     height: 100%;
+
+
 
     @media screen and (min-width: 450px) {
       flex-direction: row;

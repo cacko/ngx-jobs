@@ -1,13 +1,15 @@
-:host {
+app-jobposition {
   display: flex;
   flex-direction: column;
   column-gap: 0.3rem;
   align-items: center;
+  flex-wrap: nowrap;
   > div {
     display: flex;
     flex-direction: row;
     column-gap: 0.3rem;
     align-items: center;
+    flex-wrap: nowrap;
     justify-content: center;
     [name]:hover {
       cursor: pointer;

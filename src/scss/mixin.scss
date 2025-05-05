@@ -35,10 +35,10 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 }
 
 @function event-colors($theme) {
-  $reject: darken(mat.get-theme-color($theme, on-error), 50%);
+  $reject: color.adjust(mat.get-theme-color($theme, on-error), $lightness: -50%);
   $interview: mat.get-theme-color($theme, secondary);
-  $applied: darken(mat.get-theme-color($theme, primary), 30%);
-  $response: darken(mat.get-theme-color($theme, tertiary), 20%);
+  $applied: color.adjust(mat.get-theme-color($theme, primary), $lightness: -30%);
+  $response: color.adjust(mat.get-theme-color($theme, tertiary), $lightness: -20%);
 
   $events: (
     applied: $applied,
@@ -53,9 +53,9 @@ $blue: mat.m2-define-palette(mat.$m2-green-palette);
 
 @function status-colors($theme) {
   $events: (
-    in_progress: fade-out(mat.get-theme-color($theme, primary), 0.8),
-    rejected: fade-out(mat.get-theme-color($theme, on-error), 0.8),
-    expired: fade-out(mat.get-theme-color($theme, tertiary), 0.9),
+    in_progress: color.adjust(mat.get-theme-color($theme, primary), $alpha: -80),
+    rejected: color.adjust(mat.get-theme-color($theme, on-error), $alpha: -80),
+    expired: color.adjust(mat.get-theme-color($theme, tertiary), $alpha: -90),
   );
 
   @return $events;

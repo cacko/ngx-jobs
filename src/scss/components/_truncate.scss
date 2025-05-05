@@ -1,8 +1,8 @@
 @mixin apply-theme($theme) {
   .app-truncate {
-    display: -webkit-box;
+    // display: -webkit-box;
     -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    // -webkit-box-orient: horizontal;
     overflow: hidden;
     word-break: break-all;
   }

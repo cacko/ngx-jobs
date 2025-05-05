@@ -38,7 +38,7 @@
     }
     [content] {
       border-bottom: 1px solid
-        darken(mat.get-theme-color($theme, surface-dim), 10%);
+      color.adjust(mat.get-theme-color($theme, surface-dim), $lightness: -10%);
       font-weight: 400;
       padding: 0.7rem;
       height: 100%;
