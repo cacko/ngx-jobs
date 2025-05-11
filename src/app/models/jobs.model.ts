@@ -1,4 +1,4 @@
-import { find } from 'lodash-es';
+import { find, head } from 'lodash-es';
 import {
   CVEntity,
   CompanyEntity,
@@ -47,8 +47,8 @@ export class JobModel implements JobEntity {
     );
   }
 
-  get applied(): JobEventEntity | undefined {
-    return find(this.events, (ev) => ev.event == JobEvent.APPLIED);
+  get applied(): JobEventEntity {
+    return find(this.events, (ev) => ev.event == JobEvent.APPLIED) as JobEventEntity;
   }
 
   filter(words: string[]): boolean {
