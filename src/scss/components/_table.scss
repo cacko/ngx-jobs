@@ -8,7 +8,7 @@
     border-radius: 1rem;
 
     mat-header-row {
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       border-radius: 1rem;
 
       mat-header-cell {
@@ -22,6 +22,29 @@
         }
       }
     }
+
+    .mat-column-position {
+      flex: 2;
+    }
+
+    .mat-column-company {
+      flex: 2;
+    }
+
+    // .mat-column-status {
+    //   flex: 0 0 150px;
+    // }
+
+    // .mat-column-last_modified {
+    //   flex: 0 0 150px;
+    // }
+
+    // .mat-column-applied {
+    //   flex: 0 0 150px;
+    // }
+    // .mat-column-location {
+    //   flex: 0 0 10rem;
+    // }
 
     mat-row {
       flex-wrap: wrap;
