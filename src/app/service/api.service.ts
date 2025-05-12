@@ -83,10 +83,9 @@ export class ApiService {
         .subscribe({
           next: (data: any) => {
             if (isArrayLike(data)) {
-              subscriber.next(this.storage.jobs);
+              this.storage.jobs.subscribe(data => subscriber.next(data));
             } else {
-              subscriber.next(this.storage.getJob(id));
-
+              this.storage.getJob(id).subscribe(data => subscriber.next(data));
             }
           },
           error: (error: any) => console.debug(error),

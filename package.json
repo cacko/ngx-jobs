@@ -27,6 +27,7 @@
     "file-saver": "^2.0.5",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.4",
+    "ngx-indexed-db": "^20.0.0",
     "ngx-localstorage": "^6.0.0",
     "ngx-moment": "^6.0.2",
     "ngx-pipes": "^3.2.2",

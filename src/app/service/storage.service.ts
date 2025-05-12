@@ -3,19 +3,28 @@ import { LocalStorageService } from 'ngx-localstorage';
 import { JobEntity } from '../entity/jobs.entity';
 import { findIndex, find } from 'lodash-es';
 import moment, { Moment } from 'moment';
-
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
   protected readonly storage = inject(LocalStorageService);
+  protected readonly iStorage = inject(NgxIndexedDBService);
 
 
   readonly KEY_HIDE_EXPIRED = "hide_expired";
   readonly KEY_LAST_MODIFUED = "last_modified";
   readonly KEY_JOBS = "jobs";
 
+  constructor() {
+    this.iStorage.count('job').subscribe((jobsCount) => {
+      if (!jobsCount) {
+        this.storage.remove(this.KEY_LAST_MODIFUED);
+      }
+    });
+  }
 
 
   set hide_expired(value: boolean) {
@@ -35,44 +44,39 @@ export class StorageService {
     return moment(res);
   }
 
-  getJob(id: string): JobEntity | null {
-    const jobs = this.jobs;
-    return find(jobs, { id: id }) || null;
+  getJob(id: string): Observable<JobEntity> {
+    return this.iStorage.getByID('job', id).pipe(map((j: any) => j.data));
   }
 
   addJob(value: JobEntity) {
-    const jobs = this.jobs;
-    const idx = findIndex(jobs, { id: value.id });
-    switch (idx) {
-      case -1:
-        jobs.push(value);
-        break;
-      default:
-        jobs[idx] = value;
-    }
-    this.storage.set(this.KEY_JOBS, jobs);
+    this.iStorage.update('job', { id: value.id, data: value }).subscribe((result) => {
+
+    });
   }
 
   addJobs(values: JobEntity[]) {
-    const jobs = this.jobs;
-    const newJobs = values.reduce((res: JobEntity[], job: JobEntity) => {
-      const idx = findIndex(jobs, { id: job.id });
-      switch (idx) {
-        case -1:
-          res.push(job);
-          break;
-        default:
-          jobs[idx] = job;
-      }
-      return res;
-    }, []);
-    jobs.push(...newJobs);
-    this.last_modified = moment.unix(Math.max(...jobs.map(j => moment(j.last_modified).unix()), this.last_modified.unix()));
-    this.storage.set(this.KEY_JOBS, jobs);
+    this.iStorage.bulkPut('job', values.map(j => ({ id: j.id, data: j }))).subscribe((result) => {
+      console.log('result: ', result);
+    });
+    // const jobs = this.jobs;
+    // const newJobs = values.reduce((res: JobEntity[], job: JobEntity) => {
+    //   const idx = findIndex(jobs, { id: job.id });
+    //   switch (idx) {
+    //     case -1:
+    //       res.push(job);
+    //       break;
+    //     default:
+    //       jobs[idx] = job;
+    //   }
+    //   return res;
+    // }, []);
+    // jobs.push(...newJobs);
+    this.last_modified = moment.unix(Math.max(...values.map(j => moment(j.last_modified).unix()), this.last_modified.unix()));
+    // this.storage.set(this.KEY_JOBS, jobs);
   }
 
-  get jobs(): JobEntity[] {
-    return this.storage.get(this.KEY_JOBS) || [];
+  get jobs(): Observable<JobEntity[]> {
+    return this.iStorage.getAll('job').pipe(map((data: any) => data.map((j: any) => j.data)));
   }
 
 

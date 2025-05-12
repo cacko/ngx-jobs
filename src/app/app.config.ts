@@ -10,6 +10,19 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideHttpClient } from '@angular/common/http';
 import { provideNgxLocalstorage } from 'ngx-localstorage';
+import { provideIndexedDb, DBConfig } from 'ngx-indexed-db';
+
+const dbConfig: DBConfig = {
+  name: 'jobs',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'job',
+    storeConfig: { keyPath: 'id', autoIncrement: false },
+    storeSchema: [
+      { name: 'data', keypath: 'data', options: { unique: false } },
+    ]
+  }]
+};
 
 
 export const appConfig: ApplicationConfig = {
@@ -21,7 +34,7 @@ export const appConfig: ApplicationConfig = {
     storageBucket: "jobs-c273f.firebasestorage.app",
     messagingSenderId: "889989614380",
     appId: "1:889989614380:web:110bd51e021ce061637a89",
-    measurementId: "G-R89TNKYX13"  
+    measurementId: "G-R89TNKYX13"
   })), provideAuth(() => getAuth()),
   provideAnalytics(() => getAnalytics()),
     ScreenTrackingService, UserTrackingService, provideDatabase(() => getDatabase()),
@@ -33,6 +46,7 @@ export const appConfig: ApplicationConfig = {
   }),
   provideNgxLocalstorage({
     prefix: `jobs-${window.location.hostname}`
-  })]
+  }),
+  provideIndexedDb(dbConfig)]
 };
 

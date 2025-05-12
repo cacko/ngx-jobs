@@ -184,7 +184,7 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
-"@angular/common@^19.0.0", "@angular/common@^19.0.0 || ^20.0.0", "@angular/common@^19.2.9", "@angular/common@>=17.0.0", "@angular/common@19.2.9":
+"@angular/common@^19.0.0", "@angular/common@^19.0.0 || ^20.0.0", "@angular/common@^19.2.9", "@angular/common@>=10.0.6 < 20.0.0", "@angular/common@>=17.0.0", "@angular/common@19.2.9":
   version "19.2.9"
   resolved "https://registry.npmjs.org/@angular/common/-/common-19.2.9.tgz"
   integrity sha512-4Lio3nRp13sTU15hsVcv8Zkj+7OKZ6Pc6CIIkQYHs9KisSwwvwmRZDU1wFhKlH+ogebLgOcNurIPdqeYWWnLjQ==
@@ -212,7 +212,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^19.0.0", "@angular/core@^19.0.0 || ^20.0.0", "@angular/core@^19.2.9", "@angular/core@>=14", "@angular/core@>=17.0.0", "@angular/core@19.2.9":
+"@angular/core@^19.0.0", "@angular/core@^19.0.0 || ^20.0.0", "@angular/core@^19.2.9", "@angular/core@>=10.0.6 < 20.0.0", "@angular/core@>=14", "@angular/core@>=17.0.0", "@angular/core@19.2.9":
   version "19.2.9"
   resolved "https://registry.npmjs.org/@angular/core/-/core-19.2.9.tgz"
   integrity sha512-73WMvxWll8/nQiAbigDhR27dQ+GjciODY5JVADdneNBSEwcQxi0HirlGzm5wy1TonOu4eTTWkvgV/3YlTOmo4A==
@@ -5013,6 +5013,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngx-indexed-db@^20.0.0:
+  version "20.0.0"
+  resolved "https://registry.npmjs.org/ngx-indexed-db/-/ngx-indexed-db-20.0.0.tgz"
+  integrity sha512-byC63zF9Ng+sG9JYpb0e9kA4TU9GEag24HaZk0LiF2s0skxfDdz77luAei9Ux3BRy7vaeDUFADQO77ejfCz0pQ==
+  dependencies:
+    tslib "^2.0.0"
 
 ngx-localstorage@^6.0.0:
   version "6.0.0"
