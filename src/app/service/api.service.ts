@@ -45,7 +45,6 @@ export class ApiService {
       const path = [type, id].filter(x => x.length);
       const urlParams = new URLSearchParams(omitBy(params, isUndefined));
       urlParams.set("last_modified", this.storage.last_modified.toISOString());
-
       this.loaderService.show();
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
@@ -61,7 +60,7 @@ export class ApiService {
               ? this.httpClient.get(nextPage, {
                 headers: { 'X-User-Token': this.userToken },
                 observe: 'response',
-              }).pipe(delay(pageNo * 200))
+              }).pipe(delay(100))
               : EMPTY;
           }),
           reduce((acc, current): any => {
@@ -77,7 +76,6 @@ export class ApiService {
               const job = res as JobEntity;
               this.storage.addJob(job);
             }
-
           })
         )
         .subscribe({
