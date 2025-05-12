@@ -98,7 +98,6 @@ export class ApiService {
   ): Observable<any> {
     return new Observable((subscriber: any) => {
       const path = [type];
-      this.loaderService.show();
       this.httpClient
         .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
           headers: { 'X-User-Token': this.userToken },

@@ -58,21 +58,7 @@ export class StorageService {
     this.iStorage.bulkPut('job', values.map(j => ({ id: j.id, data: j }))).subscribe((result) => {
       console.log('result: ', result);
     });
-    // const jobs = this.jobs;
-    // const newJobs = values.reduce((res: JobEntity[], job: JobEntity) => {
-    //   const idx = findIndex(jobs, { id: job.id });
-    //   switch (idx) {
-    //     case -1:
-    //       res.push(job);
-    //       break;
-    //     default:
-    //       jobs[idx] = job;
-    //   }
-    //   return res;
-    // }, []);
-    // jobs.push(...newJobs);
     this.last_modified = moment.unix(Math.max(...values.map(j => moment(j.last_modified).unix()), this.last_modified.unix()));
-    // this.storage.set(this.KEY_JOBS, jobs);
   }
 
   get jobs(): Observable<JobEntity[]> {
