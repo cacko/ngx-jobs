@@ -5,7 +5,11 @@
     >
         Hide Expired
     </mat-slide-toggle>
-    <button mat-stroked-button *ngIf="query.length > 0" (click)="onQuery()">
+    <button
+        mat-stroked-button
+        *ngIf="query.length > 0"
+        (click)="onQuery()"
+    >
         <span>{{query}}</span>
         <mat-icon iconPositionEnd>close</mat-icon>
     </button>
@@ -44,7 +48,7 @@
             data-label="company"
         >
             <app-jobcompany
-                [truncate]="true"
+                [trunc]="true"
                 [company]="element.company"
                 [clipclick]="false"
             ></app-jobcompany>
@@ -63,7 +67,7 @@
             data-label="Position"
         >
             <app-jobposition
-                [truncate]="true"
+                [trunc]="true"
                 [position]="element.position"
                 [clipclick]="false"
             ></app-jobposition>
@@ -82,7 +86,6 @@
             data-label="Location"
         >
             <app-joblocation
-                [truncate]="true"
                 [location]="element.location"
             ></app-joblocation>
         </mat-cell>
@@ -133,7 +136,7 @@
             <app-jobstatus [status]="element.status"></app-jobstatus>
         </mat-cell>
     </ng-container>
-        <ng-container matColumnDef="source">
+    <ng-container matColumnDef="source">
         <mat-header-cell
             *matHeaderCellDef
             mat-sort-header
@@ -145,7 +148,10 @@
             *matCellDef="let element"
             data-label="Source"
         >
-            <app-jobsource [source]="element.source"></app-jobsource>
+            <app-jobsource
+                [source]="element.source"
+                [trunc]="true"
+            ></app-jobsource>
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

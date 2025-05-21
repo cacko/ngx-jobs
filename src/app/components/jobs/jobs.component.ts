@@ -38,7 +38,6 @@ import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { LoaderService } from 'src/app/service/loader.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Dialog } from '@angular/cdk/dialog';
 import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from "../jobsource/jobsource.component";
@@ -47,10 +46,10 @@ interface RouteDataEntity {
 }
 
 @Component({
-    selector: 'app-jobs',
-    templateUrl: './jobs.component.html',
-    styleUrls: ['./jobs.component.scss'],
-    imports: [
+  selector: 'app-jobs',
+  templateUrl: './jobs.component.html',
+  styleUrls: ['./jobs.component.scss'],
+  imports: [
     CommonModule,
     MatIconModule,
     SimpleIconComponent,
@@ -61,13 +60,12 @@ interface RouteDataEntity {
     JoblocationComponent,
     MomentModule,
     JobstatusComponent,
-    TruncateDirective,
     MatPaginatorModule,
     MatButtonModule,
     MatSortModule,
     MatDialogModule,
     JobsourceComponent
-]
+  ]
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];

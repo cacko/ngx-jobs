@@ -1,7 +1,12 @@
-<div source>{{source|nounderscore}}</div>
 <div>
     <app-simple-icon
         [icon]="icon"
         *ngIf="icon"
     ></app-simple-icon>
+</div>
+<div
+    source
+    [truncate]="trunc"
+>
+    {{source|nounderscore}}
 </div>

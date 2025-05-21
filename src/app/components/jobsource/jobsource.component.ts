@@ -5,6 +5,7 @@ import { Source } from 'src/app/entity/jobs.entity';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 import { ccLinkedIn } from 'src/app/entity/icons.entity';
 import { NounderscorePipe } from 'src/app/pipes/nounderscore.pipe';
+import { TruncateDirective } from 'src/app/directive/truncate.directive';
 
 @Component({
   selector: 'app-jobsource',
@@ -13,12 +14,13 @@ import { NounderscorePipe } from 'src/app/pipes/nounderscore.pipe';
   imports: [
     CommonModule,
     SimpleIconComponent,
-    NounderscorePipe
+    NounderscorePipe,
+    TruncateDirective
   ]
 })
 export class JobsourceComponent implements OnInit {
   @Input() source!: Source;
-
+  @Input() trunc: boolean = false;
   icon?: SimpleIcon;
 
   ngOnInit(): void {

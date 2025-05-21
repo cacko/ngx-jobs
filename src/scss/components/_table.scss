@@ -24,19 +24,19 @@
     }
 
     .mat-column-position {
-      flex: 2;
+      flex: 1 0 10rem;
     }
 
     .mat-column-company {
-      flex: 2;
+      flex: 1 0 10rem;
     }
     .mat-column-location {
-      flex: 0 0 10rem;
+      flex: 1 2 5rem;
     }
 
-    // .mat-column-status {
-    //   flex: 0 0 150px;
-    // }
+    .mat-column-status {
+      flex: 1 1 5rem;
+    }
 
     // .mat-column-last_modified {
     //   flex: 0 0 150px;

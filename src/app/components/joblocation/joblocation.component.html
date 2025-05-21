@@ -1,10 +1,10 @@
 <section [ngSwitch]="mode">
   <ng-template [ngSwitchCase]="modes.BRIEF">
     <div>{{flag}}</div>
-    <div [truncate]="truncate">{{city}}</div>
+    <div [truncate]="trunc" (click)="onCityClick($event)">{{city}}</div>
   </ng-template>
   <ng-template [ngSwitchCase]="modes.FULL">
-    <div>{{city}}</div>
+    <div (click)="onCityClick($event)">{{city}}</div>
     <span class="spacer"></span>
     <div>{{country}}</div>
     <div>{{flag}}</div>

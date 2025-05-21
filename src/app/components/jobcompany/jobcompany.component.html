@@ -1,5 +1,5 @@
 <div
-    [truncate]="truncate"
+    [truncate]="trunc"
     name
     (click)="onNameClick($event)"
     *ngIf="clipclick"
@@ -7,7 +7,7 @@
     {{ company.name }}
 </div>
 <div
-    [truncate]="truncate"
+    [truncate]="trunc"
     name
     *ngIf="!clipclick"
 >

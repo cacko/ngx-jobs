@@ -15,6 +15,6 @@ import { TruncateDirective } from 'src/app/directive/truncate.directive';
 export class JobsiteComponent {
 
   @Input() onsite !: LocationType;
-  @Input() truncate: boolean = false;
+  @Input() trunc: boolean = false;
 
 }

@@ -12,5 +12,5 @@ import { TruncateDirective } from 'src/app/directive/truncate.directive';
 })
 export class JoburlComponent {
   @Input() url!: string;
-  @Input() truncate: boolean = false;
+  @Input() trunc: boolean = false;
 }

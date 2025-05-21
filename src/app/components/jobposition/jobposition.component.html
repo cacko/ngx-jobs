@@ -1,4 +1,4 @@
-<div [truncate]="truncate">
+<div>
     <app-simple-icon
         [icon]="icon"
         *ngIf="icon"
@@ -9,12 +9,14 @@
         name
         (click)="onNameClick($event)"
         *ngIf="clipclick"
+        [truncate]="trunc"
     >
         {{ position }}
     </div>
     <div
         name
         *ngIf="!clipclick"
+        [truncate]="trunc"
     >
         {{ position }}
     </div>
