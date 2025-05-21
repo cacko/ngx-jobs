@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { getIconFor } from 'src/app/entity/icons.entity';
 import { JobStatus } from 'src/app/entity/jobs.entity';
 
 @Component({
-    selector: 'app-jobstatus',
-    templateUrl: './jobstatus.component.html',
-    imports: [
-        CommonModule,
-        MatIconModule,
-    ]
+  selector: 'app-jobstatus',
+  templateUrl: './jobstatus.component.html',
+  imports: [
+    CommonModule,
+    MatIconModule,
+  ]
 })
 export class JobstatusComponent implements OnInit {
 
@@ -23,30 +24,11 @@ export class JobstatusComponent implements OnInit {
 
   ngOnInit(): void {
 
-    switch (this.status) {
-      case JobStatus.PENDING:
-        this.label = "Pending"
-        this.icon = "hourglass";
-        break;
-      case JobStatus.IN_PROGRESS:
-        this.label = "In Progress"
-        this.icon = "sync";
-        this.classes = "is-spinning"
-        this.color = 'accent';
-        break;
-      case JobStatus.REJECTED:
-        this.label = "Rejected";
-        this.icon = "thumb_down";
-        this.color = 'error'
-        break;
-      case JobStatus.EXPIRED:
-        this.label = "Expired";
-        this.icon = "history_off";
-        this.color = "warn";
-        break;
-      default:
-        this.label = this.status;
-    }
+    const res = getIconFor(this.status);
+    this.label = res.label;
+    this.icon = res.icon;
+    this.classes = res.classes || '';
+    this.color = res.color || '';
   }
 
 }

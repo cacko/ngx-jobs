@@ -49,9 +49,7 @@ export class StorageService {
   }
 
   addJob(value: JobEntity) {
-    this.iStorage.update('job', { id: value.id, data: value }).subscribe((result) => {
-
-    });
+    return this.iStorage.update('job', { id: value.id, data: value });
   }
 
   addJobs(values: JobEntity[]) {

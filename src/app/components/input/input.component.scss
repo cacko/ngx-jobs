@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+    mat-dialog-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem;
+        [buttons] {
+            padding-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 0.5rem;
+        }
+    }
+}

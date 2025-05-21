@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LogoComponent } from '../logo/logo.component';
 import { MatButtonModule } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 enum LOGIN_MODE {
   PASSWORD = 'password',
@@ -20,20 +20,20 @@ enum LOGIN_MODE {
 }
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatButtonToggleModule,
-        MatIconModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        FormsModule,
-        LogoComponent,
-        MatButtonModule,
-        MatInputModule
-    ]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LogoComponent,
+    MatButtonModule,
+    MatInputModule
+  ]
 })
 export class LoginComponent implements OnInit {
   private redirectTo: string = '/';

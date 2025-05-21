@@ -102,26 +102,10 @@ export class ApiService {
         .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
           headers: { 'X-User-Token': this.userToken },
         })
-        .pipe(
-          tap((res) => {
-            // if (isArrayLike(res)) {
-            //   const jobs = res as JobEntity[];
-            //   this.storage.addJobs(jobs);
-            // } else {
-            //   const job = res as JobEntity;
-            //   this.storage.addJob(job);
-            // }
-
-          })
-        )
         .subscribe({
           next: (data: any) => {
-            // if (isArrayLike(data)) {
-            //   subscriber.next(this.storage.jobs);
-            // } else {
-            //   subscriber.next(this.storage.getJob(id));
-
-            // }
+            const job = data as JobEntity;
+            this.storage.addJob(job).subscribe(() => subscriber.next(data));
           },
           error: (error: any) => console.debug(error),
         });
