@@ -26,7 +26,8 @@ export enum Source {
   DIRECT = 'direct',
   DWP = 'dwp',
   TOTALJOBS = 'totaljobs',
-  INDEED = 'indeed'
+  INDEED = 'indeed',
+  WELCOMETOTHEJUNGLR = 'welcome_to_the_jungle'
 }
 
 export enum SkillGroup {

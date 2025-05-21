@@ -1797,6 +1797,13 @@
     "@napi-rs/nice-win32-ia32-msvc" "1.0.1"
     "@napi-rs/nice-win32-x64-msvc" "1.0.1"
 
+"@ng-icons/svgl@^31.4.0":
+  version "31.4.0"
+  resolved "https://registry.npmjs.org/@ng-icons/svgl/-/svgl-31.4.0.tgz"
+  integrity sha512-GHU1WYG9EJ2t1qsr+2x3GWVkgRxc5b7wv5SLjYaAjuOlmavIwNs7YKcTnPHbFaIXIIOEhdgtGZHsvipnBVcJAw==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngtools/webpack@19.2.10":
   version "19.2.10"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-19.2.10.tgz"
@@ -6096,10 +6103,10 @@ sigstore@^3.0.0:
     "@sigstore/tuf" "^3.1.0"
     "@sigstore/verify" "^2.1.0"
 
-simple-icons@^13.21.0:
-  version "13.21.0"
-  resolved "https://registry.npmjs.org/simple-icons/-/simple-icons-13.21.0.tgz"
-  integrity sha512-LI5pVJPBv6oc79OMsffwb6kEqnmB8P1Cjg1crNUlhsxPETQ5UzbCKQdxU+7MW6+DD1qfPkla/vSKlLD4IfyXpQ==
+simple-icons@^14.14.0:
+  version "14.14.0"
+  resolved "https://registry.npmjs.org/simple-icons/-/simple-icons-14.14.0.tgz"
+  integrity sha512-HqWjAA2Zl7ZPIycMvg71ojT7ZTtFNjJL6mLNv1oqtSAcd94EjcOvjDAW9P/MgTaKcutmZgQal84LlCmJb6WBPQ==
 
 slash@^5.1.0:
   version "5.1.0"

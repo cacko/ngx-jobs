@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { SimpleIcon, siIndeed, siLinkedin, siPaddypower } from 'simple-icons';
+import { SimpleIcon, siIndeed, siPaddypower, siWelcometothejungle } from 'simple-icons';
 import { Source } from 'src/app/entity/jobs.entity';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
+import { ccLinkedIn } from 'src/app/entity/icons.entity';
 
 @Component({
-    selector: 'app-jobsource',
-    templateUrl: './jobsource.component.html',
-    styleUrl: './jobsource.component.scss',
-    imports: [
-        CommonModule,
-        SimpleIconComponent
-    ]
+  selector: 'app-jobsource',
+  templateUrl: './jobsource.component.html',
+  styleUrl: './jobsource.component.scss',
+  imports: [
+    CommonModule,
+    SimpleIconComponent
+  ]
 })
 export class JobsourceComponent implements OnInit {
   @Input() source!: Source;
@@ -21,13 +22,16 @@ export class JobsourceComponent implements OnInit {
   ngOnInit(): void {
     switch (this.source) {
       case Source.LINKEDIN:
-        this.icon = siLinkedin;
+        this.icon = ccLinkedIn;
         break;
       case Source.DIRECT:
         this.icon = siPaddypower;
         break;
       case Source.INDEED:
         this.icon = siIndeed;
+        break;
+      case Source.WELCOMETOTHEJUNGLR:
+        this.icon = siWelcometothejungle;
         break;
     }
   }

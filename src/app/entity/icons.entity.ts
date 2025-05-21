@@ -26,7 +26,6 @@ import {
   siKotlin,
   siKubernetes,
   siLaravel,
-  siLinkedin,
   siLinux,
   siMariadb,
   siMongodb,
@@ -45,9 +44,33 @@ import {
   siUbuntu,
   siIndeed,
   siIos,
-  siHtml5
+  siHtml5,
+  siZend,
+  siMamp
 } from 'simple-icons';
+import {
+  svglLinkedin,
+  svglAwsLight
+} from '@ng-icons/svgl';
 import { JobEvent, JobStatus } from './jobs.entity';
+
+export const ccLinkedIn = {
+  title: "LinkedIn",
+  slug: "linkedin",
+  svg: svglLinkedin,
+  path: "",
+  source: "",
+  hex: "",
+};
+
+export const ccAWS = {
+  title: "AWS",
+  slug: "aws",
+  svg: svglAwsLight,
+  path: "",
+  source: "",
+  hex: "",
+};
 
 export interface IconsInterface {
   [key: string]: SimpleIcon;
@@ -68,14 +91,14 @@ export const DEVICONS: IconsInterface = {
   fastapi: siFastapi,
   firebase: siFirebase,
   android: siAndroid,
-  linkedin: siLinkedin,
+  linkedin: ccLinkedIn,
   angular: siAngular,
   docker: siDocker,
   github: siGithub,
   javascript: siJavascript,
   mysql: siMysql,
   postgresql: siPostgresql,
-  aws: siAmazonwebservices,
+  aws: ccAWS,
   bootstrap: siBootstrap,
   git: siGit,
   go: siGo,
@@ -104,6 +127,8 @@ export const DEVICONS: IconsInterface = {
   indeed: siIndeed,
   ios: siIos,
   html: siHtml5,
+  zend: siZend,
+  lamp: siMamp
 };
 
 export interface StylesEntity {

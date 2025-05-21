@@ -3,20 +3,22 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { SimpleIcon } from 'simple-icons';
 
 @Component({
-    selector: 'app-simple-icon',
-    templateUrl: './simple-icon.component.html',
-    imports: [CommonModule],
-    styleUrl: './simple-icon.component.scss'
+  selector: 'app-simple-icon',
+  templateUrl: './simple-icon.component.html',
+  imports: [CommonModule],
+  styleUrl: './simple-icon.component.scss'
 })
 export class SimpleIconComponent implements OnInit {
   @Input() icon!: SimpleIcon;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
 
   ngOnInit(): void {
     const nativeElement = this.elementRef.nativeElement;
     nativeElement.innerHTML = this.icon.svg;
-    nativeElement.style.fill = `#${this.icon.hex}`;
+    if (this.icon.hex.length) {
+      nativeElement.style.fill = `#${this.icon.hex}`;
+    }
   }
 }
