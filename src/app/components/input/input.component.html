@@ -6,7 +6,7 @@
     <mat-icon matSuffix>info</mat-icon>
     <mat-label>Status</mat-label>
     <mat-select formControlName="event" required="true">
-      @for (status of EVENTS | values; track status) {
+      @for (status of EVENTS | values ; track status ) {
       <mat-option [value]="status"><mat-icon >{{getIcon(status).icon}}</mat-icon> {{ status | ucfirst }}</mat-option>
       }
     </mat-select>

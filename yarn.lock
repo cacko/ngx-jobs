@@ -3073,10 +3073,10 @@ cosmiconfig@^9.0.0:
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
 
-countries-list@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.npmjs.org/countries-list/-/countries-list-3.0.6.tgz"
-  integrity sha512-BCJODHTSRMIxS0W80NZw8bC7x6/WS8Tf4FdtFrEbW0FONBbqTAzOrKNG06UEMgLGxOZpOJddiVEdCztKLpmPxA==
+countries-list@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/countries-list/-/countries-list-3.1.1.tgz"
+  integrity sha512-nPklKJ5qtmY5MdBKw1NiBAoyx5Sa7p2yPpljZyQ7gyCN1m+eMFs9I6CT37Mxt8zvR5L3VzD3DJBE4WQzX3WF4A==
 
 cross-spawn@^7.0.0:
   version "7.0.6"

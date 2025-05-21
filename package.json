@@ -23,7 +23,7 @@
     "@angular/router": "^19.2.11",
     "@angular/service-worker": "^19.2.11",
     "@ng-icons/svgl": "^31.4.0",
-    "countries-list": "^3.0.6",
+    "countries-list": "^3.1.1",
     "crypto-js": "^4.2.0",
     "file-saver": "^2.0.5",
     "lodash-es": "^4.17.21",
