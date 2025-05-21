@@ -16,7 +16,7 @@ export class StorageService {
 
   readonly KEY_HIDE_EXPIRED = "hide_expired";
   readonly KEY_LAST_MODIFUED = "last_modified";
-  readonly KEY_JOBS = "jobs";
+  readonly KEY_TOKEN = "token";
 
   constructor() {
     this.iStorage.count('job').subscribe((jobsCount) => {
@@ -39,6 +39,14 @@ export class StorageService {
     this.storage.set(this.KEY_LAST_MODIFUED, value);
   }
 
+  get token(): string {
+    return this.storage.get(this.KEY_TOKEN) || '';
+  }
+
+  set token(value: any) {
+    this.storage.set(this.KEY_TOKEN, value);
+  }
+
   get last_modified(): moment.Moment {
     const res: string = this.storage.get(this.KEY_LAST_MODIFUED) || moment.unix(0).toISOString();
     return moment(res);
@@ -54,7 +62,6 @@ export class StorageService {
 
   addJobs(values: JobEntity[]) {
     this.iStorage.bulkPut('job', values.map(j => ({ id: j.id, data: j }))).subscribe((result) => {
-      console.log('result: ', result);
     });
     this.last_modified = moment.unix(Math.max(...values.map(j => moment(j.last_modified).unix()), this.last_modified.unix()));
   }

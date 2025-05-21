@@ -46,10 +46,8 @@ export class TimelineComponent {
     });
 
     dialogRef.afterClosed().subscribe(jobId => {
-      console.log(jobId)
       if (jobId) {
         this.storage.getJob(jobId).subscribe((entity) => {
-          console.log(entity);
           this.job = new JobModel(entity);
         })
       }

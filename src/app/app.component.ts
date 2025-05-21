@@ -22,6 +22,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from './service/api.service';
 
 
 
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private animationService: AnimationService,
     private breakpoints: BreakpointObserver,
-    private iconRegister: MatIconRegistry
+    private iconRegister: MatIconRegistry,
   ) {
     this.iconRegister.setDefaultFontSetClass('material-symbols-sharp');
 

@@ -11,11 +11,12 @@ import {
   isSignInWithEmailLink,
   onIdTokenChanged
 } from '@angular/fire/auth';
-import { BehaviorSubject, EMPTY, Observable, Subscription, timer } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, Subscription, tap, timer } from 'rxjs';
 import { ApiService } from './api.service';
 import moment, { Moment } from 'moment';
 import { Database, objectVal, ref } from '@angular/fire/database';
 import { Admins } from '../entity/api.entity';
+import { StorageService } from './storage.service';
 
 
 @Injectable({
@@ -34,9 +35,12 @@ export class UserService {
   constructor(
     private auth: Auth,
     private api: ApiService,
+    private storage: StorageService,
     private db: Database = inject(Database)
   ) {
-    this.user = authState(this.auth);
+    this.user = authState(this.auth).pipe(tap((res) => {
+      this.initToken(res);
+    }));
     const path = `access/admin`;
     const accessRef = ref(this.db, path);
     objectVal(accessRef).subscribe({
@@ -47,21 +51,23 @@ export class UserService {
     });
   }
 
-  init() {
-
-
-    onIdTokenChanged(this.auth, (res) => {
-      this.userData = res;
-      this.updateAdmin();
-      res?.getIdTokenResult().then((tokenResult) => {
-        this.api.userToken = tokenResult.token;
-        const expiry = moment(tokenResult.expirationTime);
-        const refresh = expiry.subtract(5 * 60, 'seconds')
-        this.refreshSub && this.refreshSub?.unsubscribe();
-        this.refreshSub = timer(refresh.toDate()).subscribe(() => {
-          res.getIdToken(true);
-        });
+  private initToken(res: User | null) {
+    this.userData = res;
+    this.updateAdmin();
+    res?.getIdTokenResult().then((tokenResult) => {
+      this.storage.token = tokenResult.token;
+      const expiry = moment(tokenResult.expirationTime);
+      const refresh = expiry.subtract(5 * 60, 'seconds')
+      this.refreshSub && this.refreshSub?.unsubscribe();
+      this.refreshSub = timer(refresh.toDate()).subscribe(() => {
+        res.getIdToken(true);
       });
+    });
+  }
+
+  init() {
+    onIdTokenChanged(this.auth, (res) => {
+      this.initToken(res);
     })
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
+import { EMPTY, Observable, Subject, delay, delayWhen, expand, reduce, tap } from 'rxjs';
 import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
@@ -25,7 +25,6 @@ interface CacheEntry {
 export class ApiService {
   errorSubject = new Subject<string>();
   error = this.errorSubject.asObservable();
-  userToken = '';
   uid = '';
   constructor(
     private httpClient: HttpClient,
@@ -48,17 +47,20 @@ export class ApiService {
       this.loaderService.show();
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
-          headers: { 'X-User-Token': this.userToken },
+          headers: { 'X-User-Token': this.storage.token },
           params: new HttpParams({ fromString: urlParams.toString() }),
           observe: 'response',
         })
         .pipe(
+          // delayWhen(() => {
+
+          // }),
           expand((res) => {
             const nextPage = res.headers.get('x-pagination-next');
             const pageNo = parseInt(String(res.headers.get('x-pagination-page')));
             return nextPage
               ? this.httpClient.get(nextPage, {
-                headers: { 'X-User-Token': this.userToken },
+                headers: { 'X-User-Token': this.storage.token },
                 observe: 'response',
               }).pipe(delay(100))
               : EMPTY;
@@ -100,7 +102,7 @@ export class ApiService {
       const path = [type];
       this.httpClient
         .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
-          headers: { 'X-User-Token': this.userToken },
+          headers: { 'X-User-Token': this.storage.token },
         })
         .subscribe({
           next: (data: any) => {
