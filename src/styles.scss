@@ -87,11 +87,9 @@ html {
 }
 
 :root {
-  @include mat.core-overrides(
-    (
-      app-background-color: #000,
-    )
-  );
+  @include mat.toolbar-overrides((
+    container-background-color: #000,
+  ));
 }
 
 *,
