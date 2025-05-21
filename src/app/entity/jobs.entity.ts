@@ -107,6 +107,7 @@ export const DeviceColumns: DC = {
     'status',
     'last_modified',
     'applied',
+    'source'
   ],
   mobile: [
     'company',

@@ -133,6 +133,21 @@
             <app-jobstatus [status]="element.status"></app-jobstatus>
         </mat-cell>
     </ng-container>
+        <ng-container matColumnDef="source">
+        <mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by Source"
+        >
+            Source
+        </mat-header-cell>
+        <mat-cell
+            *matCellDef="let element"
+            data-label="Source"
+        >
+            <app-jobsource [source]="element.source"></app-jobsource>
+        </mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row
         *matRowDef="let row; columns: displayedColumns;"

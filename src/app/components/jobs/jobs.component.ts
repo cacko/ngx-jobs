@@ -41,6 +41,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
+import { JobsourceComponent } from "../jobsource/jobsource.component";
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -50,22 +51,23 @@ interface RouteDataEntity {
     templateUrl: './jobs.component.html',
     styleUrls: ['./jobs.component.scss'],
     imports: [
-        CommonModule,
-        MatIconModule,
-        SimpleIconComponent,
-        MatSlideToggleModule,
-        MatTableModule,
-        JobcompanyComponent,
-        JobpositionComponent,
-        JoblocationComponent,
-        MomentModule,
-        JobstatusComponent,
-        TruncateDirective,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSortModule,
-        MatDialogModule,
-    ]
+    CommonModule,
+    MatIconModule,
+    SimpleIconComponent,
+    MatSlideToggleModule,
+    MatTableModule,
+    JobcompanyComponent,
+    JobpositionComponent,
+    JoblocationComponent,
+    MomentModule,
+    JobstatusComponent,
+    TruncateDirective,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
+    MatDialogModule,
+    JobsourceComponent
+]
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
@@ -143,6 +145,8 @@ export class JobsComponent implements OnInit, AfterViewInit {
           return a.location.city.localeCompare(b.location.city) * d;
         case 'status':
           return a.status.localeCompare(b.status) * d;
+        case 'source':
+          return a.source.localeCompare(b.source) * d;
         case 'last_modified':
           return (
             clamp(a.last_modified.unix() - b.last_modified.unix(), -1, 1) * d

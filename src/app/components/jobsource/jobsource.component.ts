@@ -4,6 +4,7 @@ import { SimpleIcon, siIndeed, siPaddypower, siWelcometothejungle } from 'simple
 import { Source } from 'src/app/entity/jobs.entity';
 import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 import { ccLinkedIn } from 'src/app/entity/icons.entity';
+import { NounderscorePipe } from 'src/app/pipes/nounderscore.pipe';
 
 @Component({
   selector: 'app-jobsource',
@@ -11,7 +12,8 @@ import { ccLinkedIn } from 'src/app/entity/icons.entity';
   styleUrl: './jobsource.component.scss',
   imports: [
     CommonModule,
-    SimpleIconComponent
+    SimpleIconComponent,
+    NounderscorePipe
   ]
 })
 export class JobsourceComponent implements OnInit {
