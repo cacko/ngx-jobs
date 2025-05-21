@@ -6,13 +6,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { JobEvent, JobStatus } from 'src/app/entity/jobs.entity';
+import { JobEntity, JobEvent, JobStatus } from 'src/app/entity/jobs.entity';
 import { NgPipesModule } from 'ngx-pipes';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
 import { ApiPutType } from 'src/app/entity/api.entity';
-import { getEventIconFor, getIconFor } from 'src/app/entity/icons.entity';
-import { DialogRef } from '@angular/cdk/dialog';
+import { getEventIconFor } from 'src/app/entity/icons.entity';
 
 @Component({
   selector: 'app-input',
@@ -29,7 +28,7 @@ export class InputComponent {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
-    public dialog: DialogRef<InputComponent>,
+    public dialog: MatDialogRef<InputComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { job_id: string }
   ) {
     this.form = this.fb.group({
@@ -45,8 +44,8 @@ export class InputComponent {
     if (this.form.valid) {
       this.api.put(ApiPutType.EVENTS, Object.assign({
         job_id: this.data.job_id
-      }, this.form.value)).subscribe((data) => {
-        this.dialog.close(data.id);
+      }, this.form.value)).subscribe((data: JobEntity) => {
+        this.dialog.close(data.id)
       })
 
     }

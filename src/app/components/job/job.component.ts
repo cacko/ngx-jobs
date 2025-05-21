@@ -7,7 +7,6 @@ import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { LoaderService } from 'src/app/service/loader.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface RouteDataEntity {
   data?: JobEntity;
@@ -30,8 +29,7 @@ export class JobComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private loader: LoaderService,
-    private snackBar: MatSnackBar
+    private loader: LoaderService
   ) { }
 
   ngOnInit() {
@@ -46,5 +44,9 @@ export class JobComponent implements OnInit {
 
   async onBack() {
     await this.router.navigateByUrl("/");
+  }
+
+  onUpdated(job: JobModel) {
+    this.job = job;
   }
 }

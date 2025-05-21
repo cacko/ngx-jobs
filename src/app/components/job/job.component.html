@@ -1,3 +1,3 @@
 <app-jobposition [position]="job.position" [clipclick]="true"></app-jobposition>
 <app-jobdetails [job]="job"></app-jobdetails>
-<app-timeline [job]="job"></app-timeline>
+<app-timeline [job]="job" (updated)="onUpdated($event)"></app-timeline>
