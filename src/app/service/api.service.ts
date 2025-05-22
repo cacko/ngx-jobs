@@ -45,6 +45,7 @@ export class ApiService {
       const urlParams = new URLSearchParams(omitBy(params, isUndefined));
       urlParams.set("last_modified", this.storage.last_modified.toISOString());
       this.loaderService.show();
+      
       this.httpClient
         .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
           headers: { 'X-User-Token': this.storage.token },
