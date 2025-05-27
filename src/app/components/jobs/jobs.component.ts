@@ -41,6 +41,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from "../jobsource/jobsource.component";
+import { JobsService } from 'src/app/service/jobs.service';
 interface RouteDataEntity {
   data?: JobEntity[];
 }
@@ -86,6 +87,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private loader: LoaderService,
     public storage: StorageService,
+    private jobsService: JobsService,
     private breakpointObserver: BreakpointObserver,
     private platform: Platform
   ) {
@@ -160,20 +162,18 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe({
-      next: (data: RouteDataEntity) => {
-        const jobs = orderBy(
-          data.data as JobEntity[],
-          ['last_modified'],
-          ['desc']
-        );
-        this.jobs = jobs
-          .filter((je) => !je.deleted)
-          .map((data) => new JobModel(data));
-        this.dataSource.data = this.jobs;
-        this.loader.hide();
-      },
-    });
+    this.jobsService.getJobs().subscribe((data) => {
+      const jobs = orderBy(
+        data as JobEntity[],
+        ['last_modified'],
+        ['desc']
+      );
+      this.jobs = jobs
+        .filter((je) => !je.deleted)
+        .map((data) => new JobModel(data));
+      this.dataSource.data = this.jobs;
+      this.loader.hide();
+    })
   }
 
   onClickCompany(ev: MouseEvent, row: JobModel) {

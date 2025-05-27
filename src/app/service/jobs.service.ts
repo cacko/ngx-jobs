@@ -6,6 +6,7 @@ import { JobEntity } from '../entity/jobs.entity';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { RouterStateSnapshot } from '@angular/router';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import { ApiService } from './api.service';
 export class JobsService {
   constructor(private api: ApiService) { }
 
-  getJobs(): any {
+  getJobs(): Observable<JobEntity[]> {
     return this.api.fetch(ApiFetchType.JOBS);
   }
 
@@ -21,10 +22,3 @@ export class JobsService {
     return  this.api.fetch(ApiFetchType.JOBS_EXPORT);
   }
 }
-
-export const jobsResolver: ResolveFn<JobEntity[]> = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  return inject(JobsService).getJobs();
-};
