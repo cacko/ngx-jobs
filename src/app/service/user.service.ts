@@ -34,21 +34,24 @@ export class UserService {
 
   constructor(
     private auth: Auth,
-    private api: ApiService,
     private storage: StorageService,
     private db: Database = inject(Database)
   ) {
-    this.user = authState(this.auth).pipe(tap((res) => {
-      this.initToken(res);
-    }));
-    const path = `access/admin`;
-    const accessRef = ref(this.db, path);
-    objectVal(accessRef).subscribe({
-      next: (data: any) => {
-        this.admins = (data || {}) as Admins;
-        this.updateAdmin();
-      }
-    });
+    this.user = authState(this.auth).pipe(
+      tap((res) => {
+        if (res) {
+          const path = `access/admin`;
+          const accessRef = ref(this.db, path);
+          objectVal(accessRef).subscribe({
+            next: (data: any) => {
+              this.admins = (data || {}) as Admins;
+              this.updateAdmin();
+            }
+          });
+        }
+      })
+    );
+
   }
 
   private initToken(res: User | null) {

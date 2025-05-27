@@ -32,8 +32,6 @@ export class ApiService {
     private storage: StorageService
   ) { }
 
-
-
   fetch(
     type: ApiFetchType,
     query: string = '',
