@@ -23,25 +23,26 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
 import { MatButtonModule } from '@angular/material/button';
 import { ApiService } from './service/api.service';
+import { Analytics, setAnalyticsCollectionEnabled } from '@angular/fire/analytics';
 
 
 
 
 @Component({
-    selector: 'app-root',
-    imports: [
-        CommonModule,
-        LoaderComponent,
-        MatIconModule,
-        FlyingIconComponent,
-        RouterModule,
-        LogoComponent,
-        MatToolbarModule,
-        NgPipesModule,
-        MatButtonModule
-    ],
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    MatIconModule,
+    FlyingIconComponent,
+    RouterModule,
+    LogoComponent,
+    MatToolbarModule,
+    NgPipesModule,
+    MatButtonModule
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   user: User | null = null;
@@ -61,7 +62,9 @@ export class AppComponent implements OnInit {
     private animationService: AnimationService,
     private breakpoints: BreakpointObserver,
     private iconRegister: MatIconRegistry,
+    private analytics: Analytics
   ) {
+    setAnalyticsCollectionEnabled(this.analytics, true);
     this.iconRegister.setDefaultFontSetClass('material-symbols-sharp');
 
     this.userService.user.subscribe((res) => {
