@@ -8,10 +8,8 @@ import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { LoaderService } from 'src/app/service/loader.service';
 import { JobService } from 'src/app/service/job.service';
+import { BehaviorSubject } from 'rxjs';
 
-interface RouteDataEntity {
-  data?: JobEntity;
-}
 
 @Component({
     selector: 'app-job',
@@ -25,7 +23,8 @@ interface RouteDataEntity {
 })
 export class JobComponent implements OnInit {
 
-  job !: JobModel;
+  private jobSubject = new BehaviorSubject<JobModel | null>(null);
+  $job = this.jobSubject.asObservable();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,7 +38,7 @@ export class JobComponent implements OnInit {
       this.jobService.getJob(params.get("email") || "", params.get("id") || "").subscribe((data: JobEntity) => {
         this.loader.hide();
         const job = new JobModel(data);
-        this.job = job;
+        this.jobSubject.next(job)
       })
     })
       // next: (data: RouteDataEntity) => {
@@ -51,10 +50,10 @@ export class JobComponent implements OnInit {
   }
 
   async onBack() {
-    await this.router.navigateByUrl(`/${this.job.useremail}`);
+    await this.router.navigateByUrl(`/${this.jobSubject.getValue()?.useremail}`);
   }
 
   onUpdated(job: JobModel) {
-    this.job = job;
+    this.jobSubject.next(job);
   }
 }
