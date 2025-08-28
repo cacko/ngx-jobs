@@ -4,55 +4,33 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding: 1em 1em 20vh 1em;
     flex-grow: 1;
-    padding-bottom: 10vh;
 
     p {
       text-align: center;
     }
 
-    mat-card.mdc-card {
-      border-radius: 1rem;
+    row-gap: 1rem;
 
-      mat-card-content {
+    app-logo {
+      width: 15rem;
+      height: auto;
+      align-self: center;
+      justify-self: center;
+      padding: 1rem;
+    }
+
+    [buttons] {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      button {
+        width: 15rem;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 2rem;
-        row-gap: 1rem;
-
-        app-logo {
-          width: 20vw;
-          height: auto;
-          align-self: center;
-          justify-self: center;
-          padding: 1rem;
-        }
-      }
-
-      form {
-        display: flex;
-        flex-direction: column;
-        width: 40vw;
-        max-width: 90vw;
-        mat-button-toggle-group {
-          margin-bottom: 1rem;
-        }
-      }
-
-      [buttons] {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-        justify-content: center;
-        align-items: center;
-        button {
-          width: 15rem;
-          display: flex;
-          align-items: center;
-        }
       }
     }
   }

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, Subject, delay, delayWhen, expand, reduce, tap } from 'rxjs';
+import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
 import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import * as moment from 'moment';
 import { Params } from '@angular/router';
 import {
   omitBy,
@@ -14,10 +13,6 @@ import { LoaderService } from './loader.service';
 import { JobEntity } from '../entity/jobs.entity';
 import { StorageService } from './storage.service';
 
-interface CacheEntry {
-  timestamp: moment.Moment;
-  data: any;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -34,14 +29,15 @@ export class ApiService {
 
   fetch(
     type: ApiFetchType,
+    email: string,
     query: string = '',
     params: Params = {}
   ): Observable<any> {
     return new Observable((subscriber: any) => {
       let id = query;
-      const path = [type, id].filter(x => x.length);
+      const path = [type, email, id].filter(x => x.length);
       const urlParams = new URLSearchParams(omitBy(params, isUndefined));
-      urlParams.set("last_modified", this.storage.last_modified.toISOString());
+      urlParams.set("last_modified", this.storage.getLastModified(email).toISOString());
       this.loaderService.show();
       
       this.httpClient
@@ -82,9 +78,9 @@ export class ApiService {
         .subscribe({
           next: (data: any) => {
             if (isArrayLike(data)) {
-              this.storage.jobs.subscribe(data => subscriber.next(data));
+              this.storage.getJobs(email).subscribe(data => subscriber.next(data));
             } else {
-              this.storage.getJob(id).subscribe(data => subscriber.next(data));
+              this.storage.getJob(this.storage.jobId(data)).subscribe(data => subscriber.next(data));
             }
           },
           error: (error: any) => console.debug(error),

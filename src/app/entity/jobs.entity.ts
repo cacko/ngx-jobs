@@ -89,6 +89,7 @@ export interface JobEntity {
   onsite: LocationType;
   source: Source;
   url: string;
+  useremail: string;
   cover_letter?: CoverLetterEntity;
   events?: JobEventEntity[];
   skills?: SkillEntity[];

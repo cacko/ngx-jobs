@@ -36,8 +36,7 @@ export class JobComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      console.log(params.get("id"));
-      this.jobService.getJob(params.get("id") || "").subscribe((data: JobEntity) => {
+      this.jobService.getJob(params.get("email") || "", params.get("id") || "").subscribe((data: JobEntity) => {
         this.loader.hide();
         const job = new JobModel(data);
         this.job = job;
@@ -52,7 +51,7 @@ export class JobComponent implements OnInit {
   }
 
   async onBack() {
-    await this.router.navigateByUrl("/");
+    await this.router.navigateByUrl(`/${this.job.useremail}`);
   }
 
   onUpdated(job: JobModel) {

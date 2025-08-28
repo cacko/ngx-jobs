@@ -6,7 +6,7 @@ import {
   HostListener,
   inject,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { clamp, orderBy, remove, words } from 'lodash-es';
 import {
   DeviceColumns,
@@ -34,17 +34,14 @@ import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JoblocationComponent } from '../joblocation/joblocation.component';
 import { MomentModule } from 'ngx-moment';
 import { JobstatusComponent } from '../jobstatus/jobstatus.component';
-import { TruncateDirective } from 'src/app/directive/truncate.directive';
 import { LoaderService } from 'src/app/service/loader.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
-import { JobsourceComponent } from "../jobsource/jobsource.component";
+import { JobsourceComponent } from '../jobsource/jobsource.component';
 import { JobsService } from 'src/app/service/jobs.service';
-interface RouteDataEntity {
-  data?: JobEntity[];
-}
+
 
 @Component({
   selector: 'app-jobs',
@@ -65,8 +62,8 @@ interface RouteDataEntity {
     MatButtonModule,
     MatSortModule,
     MatDialogModule,
-    JobsourceComponent
-  ]
+    JobsourceComponent,
+  ],
 })
 export class JobsComponent implements OnInit, AfterViewInit {
   jobs: JobModel[] = [];
@@ -110,14 +107,16 @@ export class JobsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.sortData = this.sortData;
     this.dataSource.filterPredicate = this.filterData;
-    this.updateFilter()
+    this.updateFilter();
   }
 
   private updateFilter() {
     const statuses = Object.values(JobStatus) as string[];
     this.dataSource.filter = [
       this.query,
-      statuses.filter((s) => !this.storage.hide_expired || s !== JobStatus.EXPIRED).join(" "),
+      statuses
+        .filter((s) => !this.storage.hide_expired || s !== JobStatus.EXPIRED)
+        .join(' '),
     ]
       .filter((t) => t.trim().length)
       .join(' ');
@@ -153,7 +152,11 @@ export class JobsComponent implements OnInit, AfterViewInit {
           );
         case 'applied':
           return (
-            clamp(a.applied.timestamp.unix() - b.applied.timestamp.unix(), -1, 1) * d
+            clamp(
+              a.applied.timestamp.unix() - b.applied.timestamp.unix(),
+              -1,
+              1
+            ) * d
           );
         default:
           return 0;
@@ -162,18 +165,17 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.jobsService.getJobs().subscribe((data) => {
-      const jobs = orderBy(
-        data as JobEntity[],
-        ['last_modified'],
-        ['desc']
-      );
-      this.jobs = jobs
-        .filter((je) => !je.deleted)
-        .map((data) => new JobModel(data));
-      this.dataSource.data = this.jobs;
-      this.loader.hide();
-    })
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      const email = params.get('email') || '';
+      this.jobsService.getJobs(email).subscribe((data) => {
+        const jobs = orderBy(data as JobEntity[], ['last_modified'], ['desc']);
+        this.jobs = jobs
+          .filter((je) => !je.deleted)
+          .map((data) => new JobModel(data));
+        this.dataSource.data = this.jobs;
+        this.loader.hide();
+      });
+    });
   }
 
   onClickCompany(ev: MouseEvent, row: JobModel) {
@@ -186,7 +188,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   onClick(ev: Event, row: JobModel) {
-    this.router.navigateByUrl(`/v/${row.id}`);
+    this.router.navigateByUrl(`/${row.useremail}/${row.id}`);
   }
 
   onExport() {
@@ -198,7 +200,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   onQuery() {
-    this.query = "";
+    this.query = '';
     this.updateFilter();
   }
 
@@ -227,7 +229,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
       role: 'dialog',
     });
     dialogRef.afterClosed().subscribe((input) => {
-      this.query = input || "";
+      this.query = input || '';
       this.updateFilter();
     });
 
@@ -239,7 +241,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
       }
       if (/^[\w ]$/.test($event.key)) {
         this.query += $event.key;
-        return this.updateFilter()
+        return this.updateFilter();
       }
     });
   }

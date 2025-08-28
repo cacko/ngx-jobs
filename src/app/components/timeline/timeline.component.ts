@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MomentModule } from 'ngx-moment';
@@ -25,11 +25,15 @@ import { StorageService } from 'src/app/service/storage.service';
     OverlayModule
   ]
 })
-export class TimelineComponent {
+export class TimelineComponent implements OnInit {
   @Input() job!: JobModel;
   readonly dialog = inject(MatDialog);
-  $isAdmin = this.userService.$isAdmin;
+  isOwner: boolean = false;
   @Output() updated = new EventEmitter<JobModel>();
+
+  ngOnInit(): void {
+    this.isOwner = this.userService.isOwner(this.job)
+  }
 
 
   constructor(private snackBar: MatSnackBar, private userService: UserService, private storage: StorageService) { }

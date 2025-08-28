@@ -31,7 +31,8 @@ export class JobModel implements JobEntity {
   cover_letter?: CoverLetterEntity | undefined;
   events: JobEventModel[] = [];
   skills: SkillModel[] = [];
-
+  useremail!: string;
+  
   constructor(original: Object) {
     Object.assign(this, original);
     this.events = this.events
@@ -46,6 +47,7 @@ export class JobModel implements JobEntity {
       find(this.events, (o) => o.event != JobEvent.EXPIRED)?.timestamp
     );
   }
+
 
   get applied(): JobEventEntity {
     return find(this.events, (ev) => ev.event == JobEvent.APPLIED) as JobEventEntity;

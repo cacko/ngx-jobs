@@ -1,4 +1,4 @@
-<div *ngIf="$isAdmin | async" admin-buttons>
+<div *ngIf="isOwner" admin-buttons>
     <button mat-stroked-button (click)="onAddEvent($event)">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Add Entry</span>

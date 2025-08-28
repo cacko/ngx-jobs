@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
 import {
   AuthGuard,
   redirectUnauthorizedTo,
@@ -8,17 +13,24 @@ import {
 import { LoginComponent } from './components/login/login.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { JobComponent } from './components/job/job.component';
+import { HomeComponent } from './components/home/home.component';
 
 // const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 // const redirectLoggedInToHome = () => redirectLoggedInTo(['w']);
 
 /** add redirect URL to login */
-const redirectUnauthorizedToLogin = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+const redirectUnauthorizedToLogin = (
+  next: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
   return redirectUnauthorizedTo(`/login?redirectTo=${state.url}`);
 };
 
 /** Uses the redirectTo query parameter if available to redirect logged in users, or defaults to '/' */
-const redirectLoggedInToPreviousPage = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+const redirectLoggedInToPreviousPage = (
+  next: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
   let redirectUrl = '/';
   try {
     const redirectToUrl = new URL(state.url, location.origin);
@@ -33,14 +45,7 @@ const redirectLoggedInToPreviousPage = (next: ActivatedRouteSnapshot, state: Rou
 export const routes: Routes = [
   {
     path: '',
-    component: JobsComponent,
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
-  },
-  {
-    path: 'v/:id',
-    component: JobComponent,
+    component: HomeComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
@@ -52,5 +57,19 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectLoggedInToPreviousPage },
   },
-];
+    {
+    path: ':email/:id',
+    component: JobComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: ':email',
+    component: JobsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
 
+];

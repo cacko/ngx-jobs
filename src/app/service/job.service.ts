@@ -12,7 +12,7 @@ export class JobService {
 
   constructor(private api: ApiService) { }
 
-  getJob(id: string): Observable<JobEntity> {
-    return this.api.fetch(ApiFetchType.JOB, id);
+  getJob(email: string, id: string): Observable<JobEntity> {
+    return this.api.fetch(ApiFetchType.JOB, email, id);
   }
 }
