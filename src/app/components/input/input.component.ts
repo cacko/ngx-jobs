@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { ApiService } from 'src/app/service/api.service';
 import { ApiPutType } from 'src/app/entity/api.entity';
 import { getEventIconFor } from 'src/app/entity/icons.entity';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-input',
@@ -28,6 +29,7 @@ export class InputComponent {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
+    private storage: StorageService,
     public dialog: MatDialogRef<InputComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { job_id: string, usermail: string }
   ) {
@@ -45,7 +47,7 @@ export class InputComponent {
       this.api.put(ApiPutType.EVENTS, this.data.usermail, Object.assign({
         job_id: this.data.job_id
       }, this.form.value)).subscribe((data: JobEntity) => {
-        this.dialog.close(data.id)
+        this.dialog.close(this.storage.jobId(data))
       })
 
     }
