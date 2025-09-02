@@ -29,7 +29,7 @@ export class InputComponent {
     private fb: FormBuilder,
     private api: ApiService,
     public dialog: MatDialogRef<InputComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { job_id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { job_id: string, usermail: string }
   ) {
     this.form = this.fb.group({
       event: JobEvent,
@@ -42,7 +42,7 @@ export class InputComponent {
   public onSubmit(event: SubmitEvent) {
     event.preventDefault();
     if (this.form.valid) {
-      this.api.put(ApiPutType.EVENTS, Object.assign({
+      this.api.put(ApiPutType.EVENTS, this.data.usermail, Object.assign({
         job_id: this.data.job_id
       }, this.form.value)).subscribe((data: JobEntity) => {
         this.dialog.close(data.id)

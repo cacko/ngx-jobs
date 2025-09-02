@@ -91,10 +91,11 @@ export class ApiService {
 
   put(
     type: ApiPutType,
+    email: string,
     payload: object = {}
   ): Observable<any> {
     return new Observable((subscriber: any) => {
-      const path = [type];
+      const path = [type, email];
       this.httpClient
         .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
           headers: { 'X-User-Token': this.storage.token },

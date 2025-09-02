@@ -47,11 +47,10 @@ export class TimelineComponent implements OnInit {
       hasBackdrop: true,
       panelClass: "event-form",
       backdropClass: "backdrop",
-      data: { job_id: this.job.id }
+      data: { job_id: this.job.id, usermail: this.job.useremail }
     });
 
     dialogRef.afterClosed().subscribe(jobId => {
-      console.log(jobId);
       if (jobId) {
         this.storage.getJob(jobId).subscribe((entity) => {
           this.job = new JobModel(entity);
