@@ -5,22 +5,19 @@ import {
   Subject,
   delay,
   expand,
-  firstValueFrom,
   reduce,
   switchMap,
-  tap,
 } from 'rxjs';
 import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
 import { omitBy, isUndefined, isArrayLike, concat } from 'lodash-es';
-import { LoaderService } from './loader.service';
 import { JobEntity } from '../entity/jobs.entity';
 import { StorageService } from './storage.service';
 import { Database, ref, DataSnapshot, onValue } from '@angular/fire/database';
 import moment from 'moment';
 import { addJobs, addJob, lastModified, setLastModified } from '../db';
-import {Md5} from 'ts-md5';
+import { Md5 } from 'ts-md5';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +32,6 @@ export class ApiService {
 
   constructor(
     private httpClient: HttpClient,
-    private loaderService: LoaderService,
     private storage: StorageService,
     private db: Database = inject(Database)
   ) {}
@@ -50,16 +46,11 @@ export class ApiService {
     const starCountRef = ref(this.db, `updates/${md5}`);
     this.updatesUnsub = onValue(starCountRef, (snapshot: DataSnapshot) => {
       const data = moment(snapshot.val() as string);
-      (async () => {
-        const last_modified = await lastModified(email);
+      lastModified(email).then((last_modified) => {
         if (data.isAfter(last_modified, 'minutes')) {
-          this.fetch(ApiFetchType.JOBS, email).subscribe({
-            next: (data: any) => {
-              console.log(data);
-            },
-          });
+          this.fetch(ApiFetchType.JOBS, email);
         }
-      })();
+      });
     });
   }
 
@@ -82,9 +73,6 @@ export class ApiService {
             observe: 'response',
           })
           .pipe(
-            // delayWhen(() => {
-
-            // }),
             expand((res) => {
               const nextPage = res.headers.get('x-pagination-next');
               const pageNo = parseInt(
