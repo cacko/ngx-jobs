@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { ApiPutType } from 'src/app/entity/api.entity';
 import { getEventIconFor } from 'src/app/entity/icons.entity';
 import { StorageService } from 'src/app/service/storage.service';
+import { getJobId } from 'src/app/db';
 
 @Component({
   selector: 'app-input',
@@ -47,7 +48,7 @@ export class InputComponent {
       this.api.put(ApiPutType.EVENTS, this.data.usermail, Object.assign({
         job_id: this.data.job_id
       }, this.form.value)).subscribe((data: JobEntity) => {
-        this.dialog.close(this.storage.jobId(data))
+        this.dialog.close(getJobId(data))
       })
 
     }

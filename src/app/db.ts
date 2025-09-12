@@ -24,6 +24,10 @@ const db = new Dexie(`jobs-store-${window.location.hostname}`) as Dexie & {
   >;
 };
 
+const getJobId = (job: JobEntity) => {
+  return `${job.useremail}/${job.id}`;
+}
+
 const lastModified = (email: string): Promise<moment.Moment> => {
   return new Promise((resolve) => {
     db.updates.get(email).then((update) => {
@@ -35,7 +39,7 @@ const lastModified = (email: string): Promise<moment.Moment> => {
 const addJobs = (jobs: JobEntity[]) => {
   return jobs.length ? db.jobs.bulkPut(
     jobs.map((item: JobEntity) => ({
-      id: `${item.useremail}/${item.id}`,
+      id: getJobId(item),
       email: item.useremail,
       data: item,
     }))
@@ -57,7 +61,7 @@ const setLastModified = (data: JobEntity[]) => {
 
 const addJob = (job: JobEntity) => {
   return db.jobs.put({
-    id: `${job.useremail}/${job.id}`,
+    id: getJobId(job),
     email: job.useremail,
     data: job,
   });
@@ -70,4 +74,4 @@ db.version(1).stores({
 });
 
 export type { JobRecord, UpdateRecord };
-export { db, lastModified, addJobs, setLastModified, addJob };
+export { db, lastModified, addJobs, setLastModified, addJob, getJobId };
