@@ -32,6 +32,7 @@ export class JobModel implements JobEntity {
   events: JobEventModel[] = [];
   skills: SkillModel[] = [];
   useremail!: string;
+  useruuid!: string;
   
   constructor(original: Object) {
     Object.assign(this, original);

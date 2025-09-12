@@ -3,16 +3,10 @@ import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
 import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
-import {
-  omitBy,
-  isUndefined,
-  isArrayLike,
-  concat
-} from 'lodash-es';
+import { omitBy, isUndefined, isArrayLike, concat } from 'lodash-es';
 import { LoaderService } from './loader.service';
 import { JobEntity } from '../entity/jobs.entity';
 import { StorageService } from './storage.service';
-
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +19,7 @@ export class ApiService {
     private httpClient: HttpClient,
     private loaderService: LoaderService,
     private storage: StorageService
-  ) { }
+  ) {}
 
   fetch(
     type: ApiFetchType,
@@ -35,13 +29,16 @@ export class ApiService {
   ): Observable<any> {
     return new Observable((subscriber: any) => {
       let id = query;
-      const path = [type, email, id].filter(x => x.length);
+      const path = [type, email, id].filter((x) => x.length);
       const urlParams = new URLSearchParams(omitBy(params, isUndefined));
-      urlParams.set("last_modified", this.storage.getLastModified(email).toISOString());
+      urlParams.set(
+        'last_modified',
+        this.storage.getLastModified(email).toISOString()
+      );
       this.loaderService.show();
-      
+
       this.httpClient
-        .get(`${ApiConfig.BASE_URI}/${path.join("/")}`, {
+        .get(`${ApiConfig.BASE_URI}/${path.join('/')}`, {
           headers: { 'X-User-Token': this.storage.token },
           params: new HttpParams({ fromString: urlParams.toString() }),
           observe: 'response',
@@ -52,17 +49,23 @@ export class ApiService {
           // }),
           expand((res) => {
             const nextPage = res.headers.get('x-pagination-next');
-            const pageNo = parseInt(String(res.headers.get('x-pagination-page')));
+            const pageNo = parseInt(
+              String(res.headers.get('x-pagination-page'))
+            );
             return nextPage
-              ? this.httpClient.get(nextPage, {
-                headers: { 'X-User-Token': this.storage.token },
-                observe: 'response',
-              }).pipe(delay(100))
+              ? this.httpClient
+                  .get(nextPage, {
+                    headers: { 'X-User-Token': this.storage.token },
+                    observe: 'response',
+                  })
+                  .pipe(delay(100))
               : EMPTY;
           }),
           reduce((acc, current): any => {
             const data = current.body || {};
-            const pageNo = parseInt(String(current.headers.get('x-pagination-page')));
+            const pageNo = parseInt(
+              String(current.headers.get('x-pagination-page'))
+            );
             return isArrayLike(data) ? concat(acc, data) : data;
           }, []),
           tap((res) => {
@@ -78,9 +81,13 @@ export class ApiService {
         .subscribe({
           next: (data: any) => {
             if (isArrayLike(data)) {
-              this.storage.getJobs(email).subscribe(data => subscriber.next(data));
+              this.storage
+                .getJobs(email)
+                .subscribe((data) => subscriber.next(data));
             } else {
-              this.storage.getJob(this.storage.jobId(data)).subscribe(data => subscriber.next(data));
+              this.storage
+                .getJob(this.storage.jobId(data))
+                .subscribe((data) => subscriber.next(data));
             }
           },
           error: (error: any) => console.debug(error),
@@ -88,16 +95,11 @@ export class ApiService {
     });
   }
 
-
-  put(
-    type: ApiPutType,
-    email: string,
-    payload: object = {}
-  ): Observable<any> {
+  put(type: ApiPutType, email: string, payload: object = {}): Observable<any> {
     return new Observable((subscriber: any) => {
       const path = [type, email];
       this.httpClient
-        .put(`${ApiConfig.BASE_URI}/${path.join("/")}`, payload, {
+        .put(`${ApiConfig.BASE_URI}/${path.join('/')}`, payload, {
           headers: { 'X-User-Token': this.storage.token },
         })
         .subscribe({

@@ -22,7 +22,7 @@ import { provideIndexedDb, DBConfig } from 'ngx-indexed-db';
 
 const dbConfig: DBConfig = {
   name: 'jobs-store',
-  version: 1,
+  version: 2,
   objectStoresMeta: [
     {
       store: 'job',

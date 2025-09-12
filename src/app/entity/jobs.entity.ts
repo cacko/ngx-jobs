@@ -90,6 +90,7 @@ export interface JobEntity {
   source: Source;
   url: string;
   useremail: string;
+  useruuid: string;
   cover_letter?: CoverLetterEntity;
   events?: JobEventEntity[];
   skills?: SkillEntity[];
