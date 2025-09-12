@@ -39,7 +39,7 @@ export class JobComponent implements OnInit {
           this.loader.hide();
           const job = new JobModel(data);
           this.jobSubject.next(job);
-          this.jobService.startUpdates(job.useruuid, job.useremail);
+          this.jobService.startUpdates(params.get('email') || '');
         });
     });
   }

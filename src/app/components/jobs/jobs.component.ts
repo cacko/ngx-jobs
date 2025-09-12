@@ -15,7 +15,7 @@ import {
 } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { saveAs } from 'file-saver';
-import { ApiConfig, ApiFetchType } from 'src/app/entity/api.entity';
+import { ApiConfig, ApiFetchType, WSLoading } from 'src/app/entity/api.entity';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { siGooglesheets } from 'simple-icons';
@@ -42,7 +42,6 @@ import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from '../jobsource/jobsource.component';
 import { JobsService } from 'src/app/service/jobs.service';
 import { liveQuery } from 'dexie';
-
 
 @Component({
   selector: 'app-jobs',
@@ -167,16 +166,27 @@ export class JobsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      this.loader.show();
       const email = params.get('email') || '';
       this.jobsService.getJobs(email).subscribe((data) => {
-        const jobs = orderBy(data as JobEntity[], ['last_modified'], ['desc']);
-        this.jobs = jobs
-          .filter((je) => !je.deleted)
-          .map((data) => new JobModel(data));
-        this.dataSource.data = this.jobs;
-        this.loader.hide();
-        this.jobsService.startUpdates(this.jobs[0]?.useruuid || '', email);
+        switch (data) {
+          case WSLoading.BLOCKING_ON:
+            this.loader.show();
+            break;
+          case WSLoading.BLOCKING_OFF:
+            this.loader.hide();
+            break;
+          default:
+            const jobs = orderBy(
+              data as JobEntity[],
+              ['last_modified'],
+              ['desc']
+            );
+            this.jobs = jobs
+              .filter((je) => !je.deleted)
+              .map((data) => new JobModel(data));
+            this.dataSource.data = this.jobs;
+            this.jobsService.startUpdates(email);
+        }
       });
     });
   }

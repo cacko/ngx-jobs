@@ -1,12 +1,6 @@
-import { Injectable, inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  ResolveFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { Injectable } from '@angular/core';
 import { JobEntity } from '../entity/jobs.entity';
 import { ApiService } from './api.service';
-import { ApiFetchType } from '../entity/api.entity';
 import { Observable } from 'rxjs';
 import { liveQuery } from 'dexie';
 import { db } from '../db';
@@ -25,7 +19,7 @@ export class JobService {
     });
   }
 
-  startUpdates(uuid: string, email: string = '') {
-    this.api.startUpdates(uuid, email);
+  startUpdates(email: string) {
+    this.api.startUpdates(email);
   }
 }

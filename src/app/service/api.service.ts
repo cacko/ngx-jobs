@@ -20,6 +20,7 @@ import { StorageService } from './storage.service';
 import { Database, ref, DataSnapshot, onValue } from '@angular/fire/database';
 import moment from 'moment';
 import { addJobs, addJob, lastModified, setLastModified } from '../db';
+import {Md5} from 'ts-md5';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class ApiService {
   uid = '';
 
   private updatesUnsub: (() => void) | null = null;
-  private updatesUUID = '';
+  private updatesEmail = '';
 
   constructor(
     private httpClient: HttpClient,
@@ -39,13 +40,14 @@ export class ApiService {
     private db: Database = inject(Database)
   ) {}
 
-  startUpdates(uuid: string, email: string = '') {
-    if (this.updatesUUID === uuid) {
+  startUpdates(email: string) {
+    if (this.updatesEmail === email) {
       return;
     }
-    this.updatesUUID = uuid;
+    this.updatesEmail = email;
     this.updatesUnsub && this.updatesUnsub();
-    const starCountRef = ref(this.db, `updates/${uuid}`);
+    const md5 = Md5.hashStr(email);
+    const starCountRef = ref(this.db, `updates/${md5}`);
     this.updatesUnsub = onValue(starCountRef, (snapshot: DataSnapshot) => {
       const data = moment(snapshot.val() as string);
       (async () => {

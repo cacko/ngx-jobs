@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
-import { ApiFetchType } from '../entity/api.entity';
+import { ApiFetchType, WSLoading } from '../entity/api.entity';
 import { JobEntity } from '../entity/jobs.entity';
 import { ApiService } from './api.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { liveQuery } from 'dexie';
 import { db } from '../db';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobsService {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private loader: LoaderService) {}
 
-  getJobs(email: string): Observable<JobEntity[]> {
+  getJobs(email: string): Observable<JobEntity[]|WSLoading> {
     return new Observable((subscriber: any) => {
+      subscriber.next(WSLoading.BLOCKING_ON)
+      this.api.fetch(ApiFetchType.JOBS, email).subscribe({
+        next: (data: any) => {
+          subscriber.next(WSLoading.BLOCKING_OFF);
+        },
+      });
       liveQuery(() =>
         db.jobs
           .where({
@@ -21,12 +28,12 @@ export class JobsService {
           })
           .toArray()
           .then((jobs) => jobs.map((j) => j.data))
-      ).subscribe((data) => subscriber.next(data));
+      ).subscribe((data: JobEntity[]) => subscriber.next(data));
     });
   }
 
-  startUpdates(uuid: string, email: string = '') {
-    this.api.startUpdates(uuid, email);
+  startUpdates(email: string) {
+    this.api.startUpdates(email);
   }
 
   getExport(email: string): any {
