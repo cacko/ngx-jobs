@@ -10,19 +10,17 @@ import { LoaderService } from 'src/app/service/loader.service';
 import { JobService } from 'src/app/service/job.service';
 import { BehaviorSubject } from 'rxjs';
 
-
 @Component({
-    selector: 'app-job',
-    templateUrl: './job.component.html',
-    imports: [
-        CommonModule,
-        JobpositionComponent,
-        JobdetailsComponent,
-        TimelineComponent
-    ]
+  selector: 'app-job',
+  templateUrl: './job.component.html',
+  imports: [
+    CommonModule,
+    JobpositionComponent,
+    JobdetailsComponent,
+    TimelineComponent,
+  ],
 })
 export class JobComponent implements OnInit {
-
   private jobSubject = new BehaviorSubject<JobModel | null>(null);
   $job = this.jobSubject.asObservable();
 
@@ -31,26 +29,25 @@ export class JobComponent implements OnInit {
     private jobService: JobService,
     private router: Router,
     private loader: LoaderService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      this.jobService.getJob(params.get("email") || "", params.get("id") || "").subscribe((data: JobEntity) => {
-        this.loader.hide();
-        const job = new JobModel(data);
-        this.jobSubject.next(job)
-      })
-    })
-      // next: (data: RouteDataEntity) => {
-      //   this.loader.hide();
-      //   const job = new JobModel(data.data as JobEntity);
-      //   this.job = job;
-      // },
-    // });
+      this.jobService
+        .getJob(params.get('email') || '', params.get('id') || '')
+        .subscribe((data: JobEntity) => {
+          this.loader.hide();
+          const job = new JobModel(data);
+          this.jobSubject.next(job);
+          this.jobService.startUpdates(job.useruuid, job.useremail);
+        });
+    });
   }
 
   async onBack() {
-    await this.router.navigateByUrl(`/${this.jobSubject.getValue()?.useremail}`);
+    await this.router.navigateByUrl(
+      `/${this.jobSubject.getValue()?.useremail}`
+    );
   }
 
   onUpdated(job: JobModel) {

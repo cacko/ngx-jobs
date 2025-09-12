@@ -1,5 +1,15 @@
-import { Injectable } from '@angular/core';
-import { EMPTY, Observable, Subject, delay, expand, reduce, tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import {
+  EMPTY,
+  Observable,
+  Subject,
+  delay,
+  expand,
+  firstValueFrom,
+  reduce,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
@@ -7,6 +17,9 @@ import { omitBy, isUndefined, isArrayLike, concat } from 'lodash-es';
 import { LoaderService } from './loader.service';
 import { JobEntity } from '../entity/jobs.entity';
 import { StorageService } from './storage.service';
+import { Database, ref, DataSnapshot, onValue } from '@angular/fire/database';
+import moment from 'moment';
+import { addJobs, addJob, lastModified, setLastModified } from '../db';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +28,38 @@ export class ApiService {
   errorSubject = new Subject<string>();
   error = this.errorSubject.asObservable();
   uid = '';
+
+  private updatesUnsub: (() => void) | null = null;
+  private updatesUUID = '';
+
   constructor(
     private httpClient: HttpClient,
     private loaderService: LoaderService,
-    private storage: StorageService
+    private storage: StorageService,
+    private db: Database = inject(Database)
   ) {}
+
+  startUpdates(uuid: string, email: string = '') {
+    if (this.updatesUUID === uuid) {
+      return;
+    }
+    this.updatesUUID = uuid;
+    this.updatesUnsub && this.updatesUnsub();
+    const starCountRef = ref(this.db, `updates/${uuid}`);
+    this.updatesUnsub = onValue(starCountRef, (snapshot: DataSnapshot) => {
+      const data = moment(snapshot.val() as string);
+      (async () => {
+        const last_modified = await lastModified(email);
+        if (data.isAfter(last_modified, 'minutes')) {
+          this.fetch(ApiFetchType.JOBS, email).subscribe({
+            next: (data: any) => {
+              console.log(data);
+            },
+          });
+        }
+      })();
+    });
+  }
 
   fetch(
     type: ApiFetchType,
@@ -28,70 +68,59 @@ export class ApiService {
     params: Params = {}
   ): Observable<any> {
     return new Observable((subscriber: any) => {
-      let id = query;
-      const path = [type, email, id].filter((x) => x.length);
-      const urlParams = new URLSearchParams(omitBy(params, isUndefined));
-      urlParams.set(
-        'last_modified',
-        this.storage.getLastModified(email).toISOString()
-      );
-      this.loaderService.show();
-
-      this.httpClient
-        .get(`${ApiConfig.BASE_URI}/${path.join('/')}`, {
-          headers: { 'X-User-Token': this.storage.token },
-          params: new HttpParams({ fromString: urlParams.toString() }),
-          observe: 'response',
-        })
-        .pipe(
-          // delayWhen(() => {
-
-          // }),
-          expand((res) => {
-            const nextPage = res.headers.get('x-pagination-next');
-            const pageNo = parseInt(
-              String(res.headers.get('x-pagination-page'))
-            );
-            return nextPage
-              ? this.httpClient
-                  .get(nextPage, {
-                    headers: { 'X-User-Token': this.storage.token },
-                    observe: 'response',
-                  })
-                  .pipe(delay(100))
-              : EMPTY;
-          }),
-          reduce((acc, current): any => {
-            const data = current.body || {};
-            const pageNo = parseInt(
-              String(current.headers.get('x-pagination-page'))
-            );
-            return isArrayLike(data) ? concat(acc, data) : data;
-          }, []),
-          tap((res) => {
-            if (isArrayLike(res)) {
-              const jobs = res as JobEntity[];
-              this.storage.addJobs(jobs);
-            } else {
-              const job = res as JobEntity;
-              this.storage.addJob(job);
-            }
+      lastModified(email).then((last_modified) => {
+        let id = query;
+        const path = [type, email, id].filter((x) => x.length);
+        const urlParams = new URLSearchParams(omitBy(params, isUndefined));
+        urlParams.set('last_modified', last_modified.toISOString());
+        this.httpClient
+          .get(`${ApiConfig.BASE_URI}/${path.join('/')}`, {
+            headers: { 'X-User-Token': this.storage.token },
+            params: new HttpParams({ fromString: urlParams.toString() }),
+            observe: 'response',
           })
-        )
-        .subscribe({
-          next: (data: any) => {
-            if (isArrayLike(data)) {
-              this.storage
-                .getJobs(email)
-                .subscribe((data) => subscriber.next(data));
-            } else {
-              this.storage
-                .getJob(this.storage.jobId(data))
-                .subscribe((data) => subscriber.next(data));
-            }
-          },
-          error: (error: any) => console.debug(error),
-        });
+          .pipe(
+            // delayWhen(() => {
+
+            // }),
+            expand((res) => {
+              const nextPage = res.headers.get('x-pagination-next');
+              const pageNo = parseInt(
+                String(res.headers.get('x-pagination-page'))
+              );
+              return nextPage
+                ? this.httpClient
+                    .get(nextPage, {
+                      headers: { 'X-User-Token': this.storage.token },
+                      observe: 'response',
+                    })
+                    .pipe(delay(100))
+                : EMPTY;
+            }),
+            reduce((acc, current): any => {
+              const data = current.body || {};
+              const pageNo = parseInt(
+                String(current.headers.get('x-pagination-page'))
+              );
+              return isArrayLike(data) ? concat(acc, data) : data;
+            }, []),
+            switchMap((res) => {
+              if (isArrayLike(res)) {
+                const jobs = res as JobEntity[];
+                return Promise.all([addJobs(jobs), setLastModified(jobs)]);
+              } else {
+                const job = res as JobEntity;
+                return Promise.all([addJob(job), setLastModified([job])]);
+              }
+            })
+          )
+          .subscribe({
+            next: (data: any) => {
+              subscriber.next(data);
+            },
+            error: (error: any) => console.debug(error),
+          });
+      });
     });
   }
 
@@ -105,7 +134,7 @@ export class ApiService {
         .subscribe({
           next: (data: any) => {
             const job = data as JobEntity;
-            this.storage.addJob(job).subscribe(() => subscriber.next(data));
+            addJob(job).then(() => subscriber.next(data));
           },
           error: (error: any) => console.debug(error),
         });

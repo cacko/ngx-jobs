@@ -41,6 +41,7 @@ import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from '../jobsource/jobsource.component';
 import { JobsService } from 'src/app/service/jobs.service';
+import { liveQuery } from 'dexie';
 
 
 @Component({
@@ -166,6 +167,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      this.loader.show();
       const email = params.get('email') || '';
       this.jobsService.getJobs(email).subscribe((data) => {
         const jobs = orderBy(data as JobEntity[], ['last_modified'], ['desc']);
@@ -174,6 +176,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
           .map((data) => new JobModel(data));
         this.dataSource.data = this.jobs;
         this.loader.hide();
+        this.jobsService.startUpdates(this.jobs[0]?.useruuid || '', email);
       });
     });
   }

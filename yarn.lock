@@ -184,7 +184,7 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
-"@angular/common@^19.0.0", "@angular/common@^19.0.0 || ^20.0.0", "@angular/common@^19.2.11", "@angular/common@>=10.0.6 < 20.0.0", "@angular/common@>=17.0.0", "@angular/common@19.2.11":
+"@angular/common@^19.0.0", "@angular/common@^19.0.0 || ^20.0.0", "@angular/common@^19.2.11", "@angular/common@>=17.0.0", "@angular/common@19.2.11":
   version "19.2.11"
   resolved "https://registry.npmjs.org/@angular/common/-/common-19.2.11.tgz"
   integrity sha512-/ZnF2Nfp6S6TAu3VlvUAIp4NVd81WE1Q95wuwSSuoEx2aSyXzI+1myyKWSYe/jYCyGuppmocjTciEh8mAInmOw==
@@ -212,7 +212,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^19.0.0", "@angular/core@^19.0.0 || ^20.0.0", "@angular/core@^19.2.11", "@angular/core@>=10.0.6 < 20.0.0", "@angular/core@>=14", "@angular/core@>=17.0.0", "@angular/core@19.2.11":
+"@angular/core@^19.0.0", "@angular/core@^19.0.0 || ^20.0.0", "@angular/core@^19.2.11", "@angular/core@>=14", "@angular/core@>=17.0.0", "@angular/core@19.2.11":
   version "19.2.11"
   resolved "https://registry.npmjs.org/@angular/core/-/core-19.2.11.tgz"
   integrity sha512-kmtJQB7B5F2V1JIzy1oBPS6WrRyedSYkuge+XoX1mCSFJDef8HRNd7GopnQ0Zaz0vOTGvCCkWvvaH/+7s2lmAQ==
@@ -3215,6 +3215,11 @@ detect-node@^2.0.4:
   resolved "https://registry.npmjs.org/detect-node/-/detect-node-2.1.0.tgz"
   integrity sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==
 
+dexie@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/dexie/-/dexie-4.2.0.tgz"
+  integrity sha512-OSeyyWOUetDy9oFWeddJgi83OnRA3hSFh3RrbltmPgqHszE9f24eUCVLI4mPg0ifsWk0lQTdnS+jyGNrPMvhDA==
+
 di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/di/-/di-0.0.1.tgz"
@@ -5021,13 +5026,6 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
-
-ngx-indexed-db@^20.0.0:
-  version "20.0.0"
-  resolved "https://registry.npmjs.org/ngx-indexed-db/-/ngx-indexed-db-20.0.0.tgz"
-  integrity sha512-byC63zF9Ng+sG9JYpb0e9kA4TU9GEag24HaZk0LiF2s0skxfDdz77luAei9Ux3BRy7vaeDUFADQO77ejfCz0pQ==
-  dependencies:
-    tslib "^2.0.0"
 
 ngx-localstorage@^6.0.0:
   version "6.0.0"

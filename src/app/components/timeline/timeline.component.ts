@@ -50,14 +50,14 @@ export class TimelineComponent implements OnInit {
       data: { job_id: this.job.id, usermail: this.job.useremail }
     });
 
-    dialogRef.afterClosed().subscribe(jobId => {
-      if (jobId) {
-        this.storage.getJob(jobId).subscribe((entity) => {
-          this.job = new JobModel(entity);
-          this.updated.emit(this.job);
-        })
-      }
-    });
+    // dialogRef.afterClosed().subscribe(jobId => {
+    //   if (jobId) {
+    //     this.storage.getJob(jobId).subscribe((entity) => {
+    //       this.job = new JobModel(entity);
+    //       this.updated.emit(this.job);
+    //     })
+    //   }
+    // });
   }
 
   onCopied($ev: boolean) {
