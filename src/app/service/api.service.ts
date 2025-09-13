@@ -8,7 +8,7 @@ import {
   reduce,
   switchMap,
 } from 'rxjs';
-import { ApiConfig, ApiFetchType, ApiPutType } from '../entity/api.entity';
+import { ApiConfig, ApiFetchType, ApiPutType, WSLoading } from '../entity/api.entity';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
 import { omitBy, isUndefined, isArrayLike, concat } from 'lodash-es';
@@ -48,7 +48,14 @@ export class ApiService {
       const data = moment(snapshot.val() as string);
       lastModified(email).then((last_modified) => {
         if (data.isAfter(last_modified, 'minutes')) {
-          this.fetch(ApiFetchType.JOBS, email);
+          this.fetch(ApiFetchType.JOBS, email).subscribe({
+            next: (data: any) => {
+              // console.log('Updated jobs fetched', data);
+            },
+            error: (error: any) => {
+              console.debug(error);
+            },
+          });
         }
       });
     });
@@ -108,7 +115,7 @@ export class ApiService {
             next: (data: any) => {
               subscriber.next(data);
             },
-            error: (error: any) => console.debug(error),
+            error: (error: any) => subscriber.next(WSLoading.BLOCKING_OFF),
           });
       });
     });
