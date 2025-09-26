@@ -93,12 +93,20 @@ export class JobsComponent implements OnInit, AfterViewInit {
         Breakpoints.HandsetLandscape,
         Breakpoints.HandsetPortrait,
         Breakpoints.Small,
+        Breakpoints.XSmall,
+        Breakpoints.TabletPortrait,
+        Breakpoints.TabletLandscape,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+          
       ])
       .subscribe((result) => {
         this.displayedColumns = result.matches
           ? DeviceColumns.mobile
           : DeviceColumns.desktop;
-        this.sortingDisabled = result.matches ? true : false;
+        console.log(result);
+        this.sortingDisabled = result.matches;
       });
   }
 
