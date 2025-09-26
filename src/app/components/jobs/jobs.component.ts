@@ -94,11 +94,11 @@ export class JobsComponent implements OnInit, AfterViewInit {
         Breakpoints.HandsetPortrait,
         Breakpoints.Small,
         Breakpoints.XSmall,
-        Breakpoints.TabletPortrait,
-        Breakpoints.TabletLandscape,
-        Breakpoints.Medium,
-        Breakpoints.Large,
-        Breakpoints.XLarge,
+        // Breakpoints.TabletPortrait,
+        // Breakpoints.TabletLandscape,
+        // Breakpoints.Medium,
+        // Breakpoints.Large,
+        // Breakpoints.XLarge,
           
       ])
       .subscribe((result) => {
