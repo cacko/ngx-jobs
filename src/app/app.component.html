@@ -1,21 +1,43 @@
 <app-loader></app-loader>
 <mat-toolbar *ngIf="this.user">
-  <div head routerLink="/">
-    <app-logo *ngIf="!useBackButton"></app-logo>
-    <button *ngIf="useBackButton" mat-icon-button aria-label="back to listing">
-      <mat-icon >arrow_back_ios_new</mat-icon>
+    <div
+        head
+        routerLink="/"
+    >
+        <app-logo *ngIf="!useBackButton"></app-logo>
+        <button
+            *ngIf="useBackButton"
+            mat-icon-button
+            aria-label="back to listing"
+        >
+            <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+        <span name>jobs&#64;cacko.net</span>
+    </div>
+    <span class="spacer"></span>
+    <span
+        username
+        class="no-mobile"
+        color="accent"
+    >
+        {{this.user.email | match: '^[^@]+'}}
+    </span>
+    <button
+        mat-icon-button
+        aria-label="Logout"
+        (click)="logout()"
+    >
+        <mat-icon>logout</mat-icon>
     </button>
-    <span name>jobs&#64;cacko.net</span>
-  </div>
-  <span class="spacer"></span>
-  <span username class="no-mobile" color="accent">
-    {{this.user.email | match: '^[^@]+'}}
-  </span>
-  <button mat-icon-button aria-label="Logout" (click)="logout()">
-    <mat-icon >logout</mat-icon>
-  </button>
 </mat-toolbar>
 <div *ngIf="$isDesktop | async">
-  <app-flying-icon *ngFor="let nm of flyIcons|keys" [icon]="nm" [attr.id]="nm"></app-flying-icon>
+    <app-flying-icon
+        *ngFor="let nm of flyIcons|keys"
+        [icon]="nm"
+        [attr.id]="nm"
+    ></app-flying-icon>
 </div>
-<router-outlet></router-outlet>
+<router-outlet
+    (activate)='onActivate($event)'
+    (deactivate)='onDeactivate($event)'
+></router-outlet>

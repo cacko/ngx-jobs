@@ -1,11 +1,16 @@
 import { LoaderService } from './service/loader.service';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { Observable, Subject, interval, map } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 import {
   DEVICONS,
   StylesEntity,
@@ -22,11 +27,10 @@ import { LogoComponent } from './components/logo/logo.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgPipesModule } from 'ngx-pipes';
 import { MatButtonModule } from '@angular/material/button';
-import { ApiService } from './service/api.service';
-import { Analytics, setAnalyticsCollectionEnabled } from '@angular/fire/analytics';
-
-
-
+import {
+  Analytics,
+  setAnalyticsCollectionEnabled,
+} from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-root',
@@ -39,10 +43,10 @@ import { Analytics, setAnalyticsCollectionEnabled } from '@angular/fire/analytic
     LogoComponent,
     MatToolbarModule,
     NgPipesModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   user: User | null = null;
@@ -129,5 +133,12 @@ export class AppComponent implements OnInit {
   @HostListener('window:focus')
   onFocus() {
     this.animationService.resume();
+  }
+
+  onActivate(event: Component) {
+    console.log('Activate', event);
+  }
+  onDeactivate(event: Component) {
+    console.log('Deactivate', event);
   }
 }
