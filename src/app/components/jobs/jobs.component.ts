@@ -103,18 +103,23 @@ export class JobsComponent implements OnInit, AfterViewInit {
         switch (matched[0]) {
           case Breakpoints.XSmall:
             this.displayedColumns = DeviceColumns.small;
+            this.sortingDisabled = false;
             break;
           case Breakpoints.Small:
             this.displayedColumns = DeviceColumns.small;
+            this.sortingDisabled = false;
             break;
           case Breakpoints.Medium:
             this.displayedColumns = DeviceColumns.medium;
+            this.sortingDisabled = false;
             break;
           case Breakpoints.Large:
             this.displayedColumns = DeviceColumns.large;
+            this.sortingDisabled = true;
             break;
           case Breakpoints.XLarge:
             this.displayedColumns = DeviceColumns.xlarge;
+            this.sortingDisabled = true;
             break;
         }
       });
@@ -223,9 +228,9 @@ export class JobsComponent implements OnInit, AfterViewInit {
   }
 
   onExport() {
+    const email = this.activatedRoute.snapshot.paramMap.get('email') || '';
     saveAs(
-      `
-    ${ApiConfig.BASE_URI}/${ApiFetchType.JOBS_EXPORT}`,
+      `${ApiConfig.BASE_URI}/${ApiFetchType.JOBS}/${email}.xlsx`,
       'jobs.xlsx'
     );
   }
