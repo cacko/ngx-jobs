@@ -14,16 +14,18 @@
         <mat-icon iconPositionEnd>close</mat-icon>
     </button>
     <span class="spacer"></span>
-    <button
+    <!-- <button
         mat-button
         button-with-icon
+        fileSaver
+        [url]="exportUrl()"
+        [header]="exportHeader()"
         aria-label="Export liste to XLSX"
-        (click)="onExport()"
         [disabled]="exportDisabled"
     >
         <app-simple-icon [icon]="excelIcon"></app-simple-icon>
         <span>Export</span>
-    </button>
+    </button> -->
 </div>
 <mat-table
     mat-table

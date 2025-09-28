@@ -41,7 +41,7 @@ import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from '../jobsource/jobsource.component';
 import { JobsService } from 'src/app/service/jobs.service';
-import { liveQuery } from 'dexie';
+import { FileSaverDirective } from 'ngx-filesaver';
 
 @Component({
   selector: 'app-jobs',
@@ -63,6 +63,7 @@ import { liveQuery } from 'dexie';
     MatSortModule,
     MatDialogModule,
     JobsourceComponent,
+    FileSaverDirective
   ],
 })
 export class JobsComponent implements OnInit, AfterViewInit {
@@ -227,13 +228,25 @@ export class JobsComponent implements OnInit, AfterViewInit {
     this.router.navigateByUrl(`/${row.useremail}/${row.id}`);
   }
 
-  onExport() {
+  exportUrl(): string {
     const email = this.activatedRoute.snapshot.paramMap.get('email') || '';
-    saveAs(
-      `${ApiConfig.BASE_URI}/${ApiFetchType.JOBS}/${email}.xlsx`,
-      'jobs.xlsx'
-    );
+    return `${ApiConfig.BASE_URI}/${ApiFetchType.JOBS}/${email}.xlsx`;
   }
+
+  exportHeader(): { [header: string]: string } {
+    return { 'X-User-Token': this.storage.token || '' };
+  }
+
+  // onExport() {
+  //   const email = this.activatedRoute.snapshot.paramMap.get('email') || '';
+  //   saveAs(
+  //     `${ApiConfig.BASE_URI}/${ApiFetchType.JOBS}/${email}.xlsx`,
+  //     'jobs.xlsx',
+  //     {
+  //       headers: { 'X-User-Token': this.storage.token },
+  //     }
+  //   );
+  // }
 
   onQuery() {
     this.query = '';
