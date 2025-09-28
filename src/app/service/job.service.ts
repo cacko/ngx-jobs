@@ -12,11 +12,10 @@ import { ApiFetchType, WSLoading } from '../entity/api.entity';
 export class JobService {
   constructor(private api: ApiService) {}
 
-  getJob(email: string, id: string): Observable<JobEntity> {
-
+  getJob(email: string, id: string): Observable<WSLoading | JobEntity> {
     return new Observable((subscriber: any) => {
-      subscriber.next(WSLoading.BLOCKING_ON)
-      this.api.fetch(ApiFetchType.JOB, email, id).subscribe({
+      subscriber.next(WSLoading.BLOCKING_ON);
+      this.api.fetch(ApiFetchType.JOBS, email).subscribe({
         next: (data: any) => {
           subscriber.next(WSLoading.BLOCKING_OFF);
         },

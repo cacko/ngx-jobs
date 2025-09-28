@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
 @use "sass:map";
-@use "./scss/components/table" as Table;
+@use "./scss/components/jobs";
 @use "./scss/components/details" as Details;
 @use "./scss/components/timeline" as Timeline;
 @use "./scss/components/errors" as Errors;
@@ -26,46 +26,29 @@ html {
   padding: 0;
   margin: 0;
 
-  $theme: mat.define-theme(
-    (
-      color: (
-        theme-type: dark,
-        primary: mat.$azure-palette,
-        tertiary: mat.$orange-palette,
-      ),
-      typography: (
-        plain-family: "Syne Mono",
-        brand-family: "Luckiest Guy",
-        use-system-variables: true,
-      ),
-      density: (
-        scale: -2,
-      ),
-    )
+  $themeVars: (
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: (
+      plain-family: "Syne Mono",
+      brand-family: "Luckiest Guy",
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
   );
+  $theme: mat.define-theme($themeVars);
 
-  @include mat.theme(
-    (
-      color: (
-        theme-type: dark,
-        primary: mat.$azure-palette,
-        tertiary: mat.$orange-palette,
-      ),
-      typography: (
-        plain-family: "Share Tech Mono",
-        brand-family: "Luckiest Guy",
-        use-system-variables: true,
-      ),
-      density: (
-        scale: 0,
-      ),
-    )
-  );
+  @include mat.theme($themeVars);
   @include mat.elevation-classes();
   @include mat.app-background();
   @include mat.all-component-themes($theme);
   // @include mat.all-component-typography(Theme.$typography);
-  @include Table.apply-theme($theme);
+  @include jobs.styles($theme);
   @include Details.apply-theme($theme);
   @include Timeline.apply-theme($theme);
   @include Errors.apply-theme($theme);
@@ -87,9 +70,11 @@ html {
 }
 
 :root {
-  @include mat.toolbar-overrides((
-    container-background-color: #000,
-  ));
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: #000,
+    )
+  );
 }
 
 *,
@@ -113,7 +98,7 @@ body {
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  font-family: "Share Tech Mono";
+  font-family: var(--mat-sys-body-medium-font);
   padding: 0;
   margin: 0;
   app-root {

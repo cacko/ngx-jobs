@@ -97,12 +97,14 @@ export interface JobEntity {
 }
 
 interface DC {
-  desktop: string[];
-  mobile: string[];
+  xlarge: string[];
+  small: string[];
+  large: string[];
+  medium : string[];
 };
 
 export const DeviceColumns: DC = {
-  desktop: [
+  xlarge: [
     'company',
     'position',
     'location',
@@ -111,7 +113,23 @@ export const DeviceColumns: DC = {
     'applied',
     'source'
   ],
-  mobile: [
+  large: [
+    'company',
+    'position',
+    'location',
+    'status',
+    'last_modified',
+    'applied',
+    'source'
+  ],
+  medium: [
+    'company',
+    'position',
+    'location',
+    'status',
+    'last_modified',
+  ],
+  small: [
     'company',
     'position'
   ]

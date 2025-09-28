@@ -1,7 +1,8 @@
 @use "sass:map";
 @use "@angular/material" as mat;
 @use "../mixin";
-@mixin apply-theme($theme) {
+
+@mixin styles($theme) {
   mat-table {
     // display: none;
     // font-size: 120%;
@@ -38,12 +39,12 @@
       flex: 1 1 5rem;
     }
 
-    // .mat-column-last_modified {
-    //   flex: 0 0 150px;
-    // }
+    .mat-column-last_modified {
+      flex: 1 5 5rem;
+    }
 
      .mat-column-applied {
-       flex: 1 5 150px;
+       flex: 1 5 5rem;
      }
     // .mat-column-location {
     //   flex: 0 0 10rem;
@@ -77,8 +78,8 @@
     align-items: center;
     grid-template-columns: 1fr 2fr;
     column-gap: 0.5rem;
-    background-color: mat.get-theme-color($theme, tertiary, 80);
-    border-bottom: 1rem solid mat.get-theme-color($theme, tertiary, 80);
+    background-color: var(--mat-sys-tertiary);
+    border-bottom: 1rem solid var(--mat-sys-tertiary);
 
     &:first-of-type {
       border-top: 0;
@@ -92,7 +93,7 @@
     }
 
     [content] {
-      background-color: mat.get-theme-color($theme, tertiary, 80);
+      background-color: var(--mat-sys-tertiary);
       padding: 0.5rem;
       font-weight: 400;
     }

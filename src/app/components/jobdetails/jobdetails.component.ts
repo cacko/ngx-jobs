@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { JobModel } from 'src/app/models/jobs.model';
 import { CompanyMode, JobcompanyComponent } from 'src/app/components/jobcompany/jobcompany.component';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ import { MomentModule } from 'ngx-moment';
         ClipboardModule
     ]
 })
-export class JobdetailsComponent {
+export class JobdetailsComponent implements OnInit {
 
   @Input() job!: JobModel;
   companyModes = CompanyMode;
@@ -42,6 +42,10 @@ export class JobdetailsComponent {
     private snackBar: MatSnackBar
   ) {
 
+  }
+
+  ngOnInit(): void {
+      console.log(this.job);
   }
 
   onJobCompany() {

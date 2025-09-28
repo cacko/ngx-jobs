@@ -33,7 +33,7 @@ export class JoblocationComponent implements OnInit {
   modes = LocationModes;
 
   ngOnInit(): void {
-    this.city = this.location.city || LocationType.REMOTE;
+    this.city = this.location?.city || LocationType.REMOTE;
     switch (this.city) {
       case LocationType.REMOTE:
         this.city = this.city.toUpperCase();

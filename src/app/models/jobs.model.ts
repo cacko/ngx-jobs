@@ -33,7 +33,8 @@ export class JobModel implements JobEntity {
   skills: SkillModel[] = [];
   useremail!: string;
   useruuid!: string;
-  
+  applied!: JobEventEntity;
+
   constructor(original: Object) {
     Object.assign(this, original);
     this.events = this.events
@@ -47,18 +48,21 @@ export class JobModel implements JobEntity {
     this.last_modified = moment(
       find(this.events, (o) => o.event != JobEvent.EXPIRED)?.timestamp
     );
-  }
-
-
-  get applied(): JobEventEntity {
-    return find(this.events, (ev) => ev.event == JobEvent.APPLIED) as JobEventEntity;
+    this.applied = find(
+      this.events,
+      (ev) => ev.event == JobEvent.APPLIED
+    ) as JobEventEntity;
   }
 
   filter(words: string[]): boolean {
-    return words.length === 0  || (
+    return (
+      words.length === 0 ||
       words.filter(
         (w) =>
-          [this.company.name, this.position].join(' ').toLowerCase().indexOf(w) > -1
+          [this.company.name, this.position]
+            .join(' ')
+            .toLowerCase()
+            .indexOf(w) > -1
       ).length > 0
     );
   }

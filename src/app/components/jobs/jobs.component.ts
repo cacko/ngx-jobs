@@ -72,7 +72,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   hideExpired = this.storage.hide_expired;
   query: string = '';
   readonly dialog = inject(MatDialog);
-  displayedColumns: string[] = DeviceColumns.desktop;
+  displayedColumns: string[] = DeviceColumns.xlarge;
   sortingDisabled = false;
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
@@ -90,23 +90,33 @@ export class JobsComponent implements OnInit, AfterViewInit {
   ) {
     this.breakpointObserver
       .observe([
-        Breakpoints.HandsetLandscape,
-        Breakpoints.HandsetPortrait,
-        Breakpoints.Small,
         Breakpoints.XSmall,
-        // Breakpoints.TabletPortrait,
-        // Breakpoints.TabletLandscape,
-        // Breakpoints.Medium,
-        // Breakpoints.Large,
-        // Breakpoints.XLarge,
-          
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
       ])
       .subscribe((result) => {
-        this.displayedColumns = result.matches
-          ? DeviceColumns.mobile
-          : DeviceColumns.desktop;
-        console.log(result);
-        this.sortingDisabled = result.matches;
+        const matched = Object.keys(result.breakpoints).filter(
+          (k) => result.breakpoints[k]
+        );
+        switch (matched[0]) {
+          case Breakpoints.XSmall:
+            this.displayedColumns = DeviceColumns.small;
+            break;
+          case Breakpoints.Small:
+            this.displayedColumns = DeviceColumns.small;
+            break;
+          case Breakpoints.Medium:
+            this.displayedColumns = DeviceColumns.medium;
+            break;
+          case Breakpoints.Large:
+            this.displayedColumns = DeviceColumns.large;
+            break;
+          case Breakpoints.XLarge:
+            this.displayedColumns = DeviceColumns.xlarge;
+            break;
+        }
       });
   }
 
@@ -161,7 +171,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
         case 'applied':
           return (
             clamp(
-              a.applied.timestamp.unix() - b.applied.timestamp.unix(),
+              a.applied?.timestamp.unix() - b.applied?.timestamp.unix(),
               -1,
               1
             ) * d

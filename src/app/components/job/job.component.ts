@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
-import { JobEntity } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
 import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JobdetailsComponent } from '../jobdetails/jobdetails.component';
@@ -9,6 +8,7 @@ import { TimelineComponent } from '../timeline/timeline.component';
 import { LoaderService } from 'src/app/service/loader.service';
 import { JobService } from 'src/app/service/job.service';
 import { BehaviorSubject } from 'rxjs';
+import { WSLoading } from 'src/app/entity/api.entity';
 
 @Component({
   selector: 'app-job',
@@ -35,11 +35,20 @@ export class JobComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.jobService
         .getJob(params.get('email') || '', params.get('id') || '')
-        .subscribe((data: JobEntity) => {
-          this.loader.hide();
-          const job = new JobModel(data);
-          this.jobSubject.next(job);
-          this.jobService.startUpdates(params.get('email') || '');
+        .subscribe((data) => {
+          switch (data) {
+            case WSLoading.BLOCKING_ON:
+              this.loader.show();
+              break;
+            case WSLoading.BLOCKING_OFF:
+              this.loader.hide();
+              break;
+            default:
+              const job = new JobModel(data);
+              this.jobSubject.next(job);
+              this.loader.hide();
+              this.jobService.startUpdates(params.get('email') || '');
+          }
         });
     });
   }
