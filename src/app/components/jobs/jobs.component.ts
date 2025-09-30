@@ -14,7 +14,6 @@ import {
   JobStatus,
 } from 'src/app/entity/jobs.entity';
 import { JobModel } from 'src/app/models/jobs.model';
-import { saveAs } from 'file-saver';
 import { ApiConfig, ApiFetchType, WSLoading } from 'src/app/entity/api.entity';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -28,7 +27,6 @@ import { StorageService } from 'src/app/service/storage.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { SimpleIconComponent } from '../simple-icon/simple-icon.component';
 import { JobcompanyComponent } from '../jobcompany/jobcompany.component';
 import { JobpositionComponent } from '../jobposition/jobposition.component';
 import { JoblocationComponent } from '../joblocation/joblocation.component';
@@ -41,7 +39,7 @@ import { SearchComponent } from '../search/search.component';
 import { Platform } from '@angular/cdk/platform';
 import { JobsourceComponent } from '../jobsource/jobsource.component';
 import { JobsService } from 'src/app/service/jobs.service';
-import { FileSaverDirective } from 'ngx-filesaver';
+import { TitleService } from 'src/app/service/title.service';
 
 @Component({
   selector: 'app-jobs',
@@ -50,7 +48,6 @@ import { FileSaverDirective } from 'ngx-filesaver';
   imports: [
     CommonModule,
     MatIconModule,
-    SimpleIconComponent,
     MatSlideToggleModule,
     MatTableModule,
     JobcompanyComponent,
@@ -62,8 +59,7 @@ import { FileSaverDirective } from 'ngx-filesaver';
     MatButtonModule,
     MatSortModule,
     MatDialogModule,
-    JobsourceComponent,
-    FileSaverDirective
+    JobsourceComponent
   ],
 })
 export class JobsComponent implements OnInit, AfterViewInit {
@@ -75,6 +71,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   readonly dialog = inject(MatDialog);
   displayedColumns: string[] = DeviceColumns.xlarge;
   sortingDisabled = false;
+  private titleService = inject(TitleService);
 
   dataSource: MatTableDataSource<JobModel> = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -104,11 +101,11 @@ export class JobsComponent implements OnInit, AfterViewInit {
         switch (matched[0]) {
           case Breakpoints.XSmall:
             this.displayedColumns = DeviceColumns.small;
-            this.sortingDisabled = false;
+            this.sortingDisabled = true;
             break;
           case Breakpoints.Small:
             this.displayedColumns = DeviceColumns.small;
-            this.sortingDisabled = false;
+            this.sortingDisabled = true;
             break;
           case Breakpoints.Medium:
             this.displayedColumns = DeviceColumns.medium;
@@ -116,11 +113,11 @@ export class JobsComponent implements OnInit, AfterViewInit {
             break;
           case Breakpoints.Large:
             this.displayedColumns = DeviceColumns.large;
-            this.sortingDisabled = true;
+            this.sortingDisabled = false;
             break;
           case Breakpoints.XLarge:
             this.displayedColumns = DeviceColumns.xlarge;
-            this.sortingDisabled = true;
+            this.sortingDisabled = false;
             break;
         }
       });
@@ -191,6 +188,7 @@ export class JobsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const email = params.get('email') || '';
+      this.titleService.setTitle(`${email}`);
       this.jobsService.getJobs(email).subscribe((data) => {
         switch (data) {
           case WSLoading.BLOCKING_ON:

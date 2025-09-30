@@ -12,7 +12,7 @@
         >
             <mat-icon>arrow_back_ios_new</mat-icon>
         </button>
-        <span name>jobs&#64;cacko.net</span>
+        <span name>{{ $path | async }}</span>
     </div>
     <span class="spacer"></span>
     <span
@@ -37,7 +37,4 @@
         [attr.id]="nm"
     ></app-flying-icon>
 </div>
-<router-outlet
-    (activate)='onActivate($event)'
-    (deactivate)='onDeactivate($event)'
-></router-outlet>
+<router-outlet></router-outlet>

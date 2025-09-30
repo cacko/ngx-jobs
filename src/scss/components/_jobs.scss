@@ -121,7 +121,7 @@
   @include mat.table-overrides(
     (
       header-headline-font: var(--mat-sys-title-large-font),
-      header-headline-size: var(--mat-sys-title-medium-size),
+      header-headline-size: var(--mat-sys-title-large-size),
     )
   );
 }

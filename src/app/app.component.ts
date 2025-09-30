@@ -1,16 +1,11 @@
 import { LoaderService } from './service/loader.service';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener , inject} from '@angular/core';
 import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
-import { Observable, Subject, interval, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, interval, map } from 'rxjs';
 import { UserService } from './service/user.service';
 import { User } from '@angular/fire/auth';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterModule,
-} from '@angular/router';
+import {NavigationEnd, Router, RouterModule  } from '@angular/router';
 import {
   DEVICONS,
   StylesEntity,
@@ -31,6 +26,7 @@ import {
   Analytics,
   setAnalyticsCollectionEnabled,
 } from '@angular/fire/analytics';
+import { TitleService } from './service/title.service';
 
 @Component({
   selector: 'app-root',
@@ -52,22 +48,23 @@ export class AppComponent implements OnInit {
   user: User | null = null;
   useBackButton: boolean = false;
   flyIcons = DEVICONS;
-  title = 'geo';
   styleSubjects: StyleSubjects = {};
   styleObservers: StyleObservers = {};
   $isDesktop?: Observable<boolean>;
-
+  private swUpdate = inject(SwUpdate)
+  private breakpoints = inject(BreakpointObserver)
+  private router = inject(Router)
+  private iconRegister = inject(MatIconRegistry)
+  private analytics = inject(Analytics)
+  private userService = inject(UserService)
+  private animationService = inject(AnimationService)
+  private titleService = inject(TitleService)
+  $path = this.titleService.title$;
   constructor(
     private loaderService: LoaderService,
-    private swUpdate: SwUpdate,
     private snackBar: MatSnackBar,
-    private userService: UserService,
-    private router: Router,
-    private animationService: AnimationService,
-    private breakpoints: BreakpointObserver,
-    private iconRegister: MatIconRegistry,
-    private analytics: Analytics
   ) {
+
     setAnalyticsCollectionEnabled(this.analytics, true);
     this.iconRegister.setDefaultFontSetClass('material-symbols-sharp');
 
@@ -106,7 +103,7 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.useBackButton = val.url !== '/';
+        this.useBackButton = val.url !== '/alex@cacko.net';
       }
     });
     this.loaderService.show();
@@ -133,12 +130,5 @@ export class AppComponent implements OnInit {
   @HostListener('window:focus')
   onFocus() {
     this.animationService.resume();
-  }
-
-  onActivate(event: Component) {
-    console.log('Activate', event);
-  }
-  onDeactivate(event: Component) {
-    console.log('Deactivate', event);
   }
 }

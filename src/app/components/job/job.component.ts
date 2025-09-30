@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { JobModel } from 'src/app/models/jobs.model';
 import { JobpositionComponent } from '../jobposition/jobposition.component';
@@ -9,6 +9,7 @@ import { LoaderService } from 'src/app/service/loader.service';
 import { JobService } from 'src/app/service/job.service';
 import { BehaviorSubject } from 'rxjs';
 import { WSLoading } from 'src/app/entity/api.entity';
+import { TitleService } from 'src/app/service/title.service';
 
 @Component({
   selector: 'app-job',
@@ -23,6 +24,8 @@ import { WSLoading } from 'src/app/entity/api.entity';
 export class JobComponent implements OnInit {
   private jobSubject = new BehaviorSubject<JobModel | null>(null);
   $job = this.jobSubject.asObservable();
+  private _title = 'jobs@cacko.net';
+  private titleService = inject(TitleService);
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +48,10 @@ export class JobComponent implements OnInit {
               break;
             default:
               const job = new JobModel(data);
+              this.titleService.setTitle(
+                `${job.useremail} - ${job.company.name}`
+              );
+
               this.jobSubject.next(job);
               this.loader.hide();
               this.jobService.startUpdates(params.get('email') || '');
