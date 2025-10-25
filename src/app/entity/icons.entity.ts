@@ -46,7 +46,10 @@ import {
   siIos,
   siHtml5,
   siZend,
-  siMamp
+  siMamp,
+  siNginx,
+  siDrupal,
+  siCloudflare
 } from 'simple-icons';
 import {
   svglLinkedin,
@@ -128,7 +131,10 @@ export const DEVICONS: IconsInterface = {
   ios: siIos,
   html: siHtml5,
   zend: siZend,
-  lamp: siMamp
+  lamp: siMamp,
+  nginx: siNginx,
+  drupal: siDrupal,
+  cloudflare: siCloudflare
 };
 
 export interface StylesEntity {
